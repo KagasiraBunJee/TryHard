@@ -8,18 +8,49 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var projects = [TryProject]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        projects = [
+            TryProject(title: "SwiftCharts", projectInfo: "", vc: VCLoader<THSwiftChartsVC>.load(storyboardId: .Main, inStoryboardID: "THSwiftChartsVC")),
+            TryProject(title: "QExpand", projectInfo: "", vc: VCLoader<QExpandVC>.load(storyboardId: .Main, inStoryboardID: "QExpandVC")),
+            TryProject(title: "Blur", projectInfo: "", vc: VCLoader<THBlurVC>.load(storyboardId: .Main, inStoryboardID: "THBlurVC")),
+            TryProject(title: "SocketChat", projectInfo: "", vc: VCLoader<THSocketVC>.load(storyboardId: .Main, inStoryboardID: "THSocketVC")),
+            TryProject(title: "PrivateBT", projectInfo: "", vc: VCLoader<THPrivateBT>.load(storyboardId: .Main, inStoryboardID: "THPrivateBT")),
+            TryProject(title: "PublicBT", projectInfo: "", vc: VCLoader<THPublicBT>.load(storyboardId: .Bluetooth, inStoryboardID: "THPublicBT")),
+            TryProject(title: "Accessory", projectInfo: "", vc: VCLoader<THAccessory>.load(storyboardId: .Accessory, inStoryboardID: "THAccessory"))
+        ]
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //MARK:- UITableViewDataSource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return projects.count
     }
-
-
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("projectCell")!
+        let project = projects[indexPath.row]
+        
+        cell.textLabel!.text = project.title
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let project = projects[indexPath.row]
+        
+        self.navigationController?.pushViewController(project.viewController!, animated: true)
+    }
 }
 

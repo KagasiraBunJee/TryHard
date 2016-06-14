@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--PublicBT-->
+        <scene sceneID="knS-PL-LDx">
+            <objects>
+                <viewController storyboardIdentifier="THPublicBT" id="bsx-nf-GHc" customClass="THPublicBT" customModule="TryHard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K7j-vH-ByW"/>
+                        <viewControllerLayoutGuide type="bottom" id="yfE-47-IZ2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sla-Vy-sDu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUm-01-rpv">
+                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h1-in-0in">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                        <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Scan"/>
+                                        <connections>
+                                            <action selector="scanAction:" destination="bsx-nf-GHc" eventType="touchUpInside" id="dIx-c8-hxo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTv-fa-Na4">
+                                        <rect key="frame" x="200" y="0.0" width="200" height="50"/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.96078431369999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Refresh"/>
+                                        <connections>
+                                            <action selector="refresh:" destination="bsx-nf-GHc" eventType="touchUpInside" id="x8R-pu-yXq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZm-xe-SdK">
+                                        <rect key="frame" x="400" y="0.0" width="200" height="50"/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.96078431369999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="stopAction:" destination="bsx-nf-GHc" eventType="touchUpInside" id="u3p-bk-Zbi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="bTv-fa-Na4" firstAttribute="width" secondItem="cZm-xe-SdK" secondAttribute="width" id="1In-OA-rRc"/>
+                                    <constraint firstAttribute="height" constant="50" id="JAh-VG-zEV"/>
+                                    <constraint firstItem="9h1-in-0in" firstAttribute="width" secondItem="bTv-fa-Na4" secondAttribute="width" id="d2c-7U-x4J"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bZw-G3-huT">
+                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="deviceCell" id="7xW-lu-vBc">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7xW-lu-vBc" id="1AM-dl-pdc">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="AUm-01-rpv" secondAttribute="trailing" id="0fb-x5-KZK"/>
+                            <constraint firstItem="AUm-01-rpv" firstAttribute="leading" secondItem="Sla-Vy-sDu" secondAttribute="leading" id="8KP-v6-cv3"/>
+                            <constraint firstAttribute="trailing" secondItem="bZw-G3-huT" secondAttribute="trailing" id="FGW-Ds-Fx3"/>
+                            <constraint firstItem="AUm-01-rpv" firstAttribute="top" secondItem="K7j-vH-ByW" secondAttribute="bottom" id="Ghh-rT-8LW"/>
+                            <constraint firstItem="bZw-G3-huT" firstAttribute="top" secondItem="AUm-01-rpv" secondAttribute="bottom" id="Vky-Iz-LVR"/>
+                            <constraint firstItem="yfE-47-IZ2" firstAttribute="top" secondItem="bZw-G3-huT" secondAttribute="bottom" id="gfx-at-1Dl"/>
+                            <constraint firstItem="bZw-G3-huT" firstAttribute="leading" secondItem="Sla-Vy-sDu" secondAttribute="leading" id="wqF-ey-b2g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="refreshButton" destination="bTv-fa-Na4" id="eyP-qe-rA7"/>
+                        <outlet property="scanButton" destination="9h1-in-0in" id="g2a-Oc-E02"/>
+                        <outlet property="stopButton" destination="cZm-xe-SdK" id="mKw-SC-pDn"/>
+                        <outlet property="tableView" destination="bZw-G3-huT" id="JYv-AK-o72"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c8z-ai-SbI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="523" y="371"/>
+        </scene>
+    </scenes>
+</document>
