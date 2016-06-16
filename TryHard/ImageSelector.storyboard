@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Image Selector-->
+        <scene sceneID="cFK-BO-OMs">
+            <objects>
+                <viewController storyboardIdentifier="THImageSelector" id="w5j-bH-XqV" customClass="THImageSelector" customModule="TryHard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wUD-vd-6yb"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ugy-tk-3Wb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fB1-4m-IwU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ru-pS-73Z">
+                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KII-zZ-uxy">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                        <state key="normal" title="Select"/>
+                                        <connections>
+                                            <action selector="select:" destination="w5j-bH-XqV" eventType="touchUpInside" id="wM6-LQ-ZAk"/>
+                                            <action selector="selectImage:" destination="w5j-bH-XqV" eventType="touchUpInside" id="XFV-7k-Wg8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZY-iU-e0o">
+                                        <rect key="frame" x="300" y="0.0" width="300" height="50"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancel:" destination="w5j-bH-XqV" eventType="touchUpInside" id="ncP-SP-fPh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="KII-zZ-uxy" firstAttribute="width" secondItem="zZY-iU-e0o" secondAttribute="width" id="5Jl-e1-Zg8"/>
+                                    <constraint firstAttribute="height" constant="50" id="oRI-sO-AsO"/>
+                                </constraints>
+                            </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="66r-Gq-kgb">
+                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                                <collectionViewLayout key="collectionViewLayout" id="oOe-yd-H1d" customClass="HanabiCollectionViewLayout"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="HqW-cW-0G5" customClass="ImageCell" customModule="TryHard" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lTJ-JM-CBv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="lTJ-JM-CBv" secondAttribute="trailing" id="SFV-Ow-1zO"/>
+                                            <constraint firstItem="lTJ-JM-CBv" firstAttribute="top" secondItem="HqW-cW-0G5" secondAttribute="top" id="XOv-PA-ePM"/>
+                                            <constraint firstAttribute="bottom" secondItem="lTJ-JM-CBv" secondAttribute="bottom" id="hdV-eU-5iU"/>
+                                            <constraint firstItem="lTJ-JM-CBv" firstAttribute="leading" secondItem="HqW-cW-0G5" secondAttribute="leading" id="zvj-uB-6Ow"/>
+                                        </constraints>
+                                        <size key="customSize" width="600" height="100"/>
+                                        <connections>
+                                            <outlet property="imageCell" destination="lTJ-JM-CBv" id="VB2-Df-caL"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3ru-pS-73Z" secondAttribute="trailing" id="6CD-Si-cWe"/>
+                            <constraint firstItem="66r-Gq-kgb" firstAttribute="leading" secondItem="fB1-4m-IwU" secondAttribute="leading" id="84O-0A-7Wu"/>
+                            <constraint firstItem="3ru-pS-73Z" firstAttribute="leading" secondItem="fB1-4m-IwU" secondAttribute="leading" id="QGa-A8-DYg"/>
+                            <constraint firstAttribute="trailing" secondItem="66r-Gq-kgb" secondAttribute="trailing" id="TEY-kY-dNX"/>
+                            <constraint firstItem="66r-Gq-kgb" firstAttribute="top" secondItem="3ru-pS-73Z" secondAttribute="bottom" id="hlG-uV-A0f"/>
+                            <constraint firstItem="3ru-pS-73Z" firstAttribute="top" secondItem="wUD-vd-6yb" secondAttribute="bottom" id="oet-dT-6UN"/>
+                            <constraint firstItem="Ugy-tk-3Wb" firstAttribute="top" secondItem="66r-Gq-kgb" secondAttribute="bottom" id="xZo-uv-NDx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="66r-Gq-kgb" id="kTl-bz-aFw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zra-bx-7Nn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="478" y="355"/>
+        </scene>
+    </scenes>
+</document>

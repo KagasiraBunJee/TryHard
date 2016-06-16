@@ -7,22 +7,42 @@ PODS:
   - CocoaAsyncSocket/GCD (7.4.3)
   - CocoaAsyncSocket/RunLoop (7.4.3)
   - DGActivityIndicatorView (2.0)
+  - HanabiCollectionViewLayout (1.1.1)
   - LiveFrost (1.1.2)
   - PeerTalk (0.0.1)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
   - SwiftCharts (0.3)
+  - TesseractOCRiOS (4.0.0)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
   - DGActivityIndicatorView
+  - HanabiCollectionViewLayout (from `https://github.com/kshin/Hanabi`)
   - LiveFrost (~> 1.1.2)
   - PeerTalk
+  - SDWebImage (~> 3.8.1)
   - SwiftCharts (~> 0.3)
+  - TesseractOCRiOS (~> 4.0.0)
+
+EXTERNAL SOURCES:
+  HanabiCollectionViewLayout:
+    :git: https://github.com/kshin/Hanabi
+
+CHECKOUT OPTIONS:
+  HanabiCollectionViewLayout:
+    :commit: 9c88e95730a4a5819bcaf19c500bbd5563af849b
+    :git: https://github.com/kshin/Hanabi
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
+  HanabiCollectionViewLayout: b0fc52553b3225afdd7a9a97d62b57436211b137
   LiveFrost: 0631143a00e336ad6a8f183d4b02df93f8900d9d
   PeerTalk: 5e6843592fea14a4221a9829c43d92a309b7130b
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftCharts: c66a449d58f9c811c467f865a47b1b6136b49499
+  TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
 
 COCOAPODS: 0.39.0

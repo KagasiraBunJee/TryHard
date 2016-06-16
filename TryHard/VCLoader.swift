@@ -13,6 +13,8 @@ enum FOStoryboard : String {
     case Main
     case Bluetooth
     case Accessory
+    case Tesseract
+    case ImageSelector
 }
 
 class VCLoader<VC: UIViewController> {

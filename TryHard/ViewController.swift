@@ -27,7 +27,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             TryProject(title: "SocketChat", projectInfo: "", vc: VCLoader<THSocketVC>.load(storyboardId: .Main, inStoryboardID: "THSocketVC")),
             TryProject(title: "PrivateBT", projectInfo: "", vc: VCLoader<THPrivateBT>.load(storyboardId: .Main, inStoryboardID: "THPrivateBT")),
             TryProject(title: "PublicBT", projectInfo: "", vc: VCLoader<THPublicBT>.load(storyboardId: .Bluetooth, inStoryboardID: "THPublicBT")),
-            TryProject(title: "Accessory", projectInfo: "", vc: VCLoader<THAccessory>.load(storyboardId: .Accessory, inStoryboardID: "THAccessory"))
+            TryProject(title: "Accessory", projectInfo: "", vc: VCLoader<THAccessory>.load(storyboardId: .Accessory, inStoryboardID: "THAccessory")),
+            TryProject(title: "Tesseract", projectInfo: "", vc: VCLoader<THTesseractVC>.load(storyboardId: .Tesseract, inStoryboardID: "THTesseractVC"))
         ]
     }
     

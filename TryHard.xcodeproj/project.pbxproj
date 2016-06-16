@@ -30,6 +30,12 @@
 		196D33F21CFDD5FA0031D023 /* THNewChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196D33F11CFDD5FA0031D023 /* THNewChatCell.swift */; };
 		1981867D1CF86FC60037B745 /* THTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1981867C1CF86FC60037B745 /* THTextField.swift */; };
 		1986C6B71D0E97C50061BD27 /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1986C6B61D0E97C50061BD27 /* BTDevice.m */; };
+		198E08D61D12CB4500CB0EED /* Tesseract.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198E08D51D12CB4500CB0EED /* Tesseract.storyboard */; };
+		198E08D91D12CB7F00CB0EED /* THTesseractVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E08D81D12CB7F00CB0EED /* THTesseractVC.swift */; };
+		198E08DF1D12DB9400CB0EED /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 198E08DE1D12DB9400CB0EED /* tessdata */; };
+		198E08E21D12E06C00CB0EED /* THImageSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E08E11D12E06C00CB0EED /* THImageSelector.swift */; };
+		198E08E41D12E07E00CB0EED /* ImageSelector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198E08E31D12E07E00CB0EED /* ImageSelector.storyboard */; };
+		198E08E71D12E3BF00CB0EED /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E08E61D12E3BF00CB0EED /* ImageCell.swift */; };
 		199D9E211CE1CC50008AF05F /* VCLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199D9E201CE1CC50008AF05F /* VCLoader.swift */; };
 		19A0FA151CEF2BE0000B1B2B /* THSocketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A0FA141CEF2BE0000B1B2B /* THSocketVC.swift */; };
 		19A0FA181CEF30F1000B1B2B /* THChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A0FA171CEF30F1000B1B2B /* THChatCell.swift */; };
@@ -88,6 +94,12 @@
 		1981867C1CF86FC60037B745 /* THTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTextField.swift; sourceTree = "<group>"; };
 		1986C6B51D0E97C50061BD27 /* BTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDevice.h; sourceTree = "<group>"; };
 		1986C6B61D0E97C50061BD27 /* BTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDevice.m; sourceTree = "<group>"; };
+		198E08D51D12CB4500CB0EED /* Tesseract.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tesseract.storyboard; sourceTree = "<group>"; };
+		198E08D81D12CB7F00CB0EED /* THTesseractVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTesseractVC.swift; sourceTree = "<group>"; };
+		198E08DE1D12DB9400CB0EED /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = TryHard/tessdata; sourceTree = "<group>"; };
+		198E08E11D12E06C00CB0EED /* THImageSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THImageSelector.swift; sourceTree = "<group>"; };
+		198E08E31D12E07E00CB0EED /* ImageSelector.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageSelector.storyboard; sourceTree = "<group>"; };
+		198E08E61D12E3BF00CB0EED /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		199D9E201CE1CC50008AF05F /* VCLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLoader.swift; sourceTree = "<group>"; };
 		19A0FA141CEF2BE0000B1B2B /* THSocketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THSocketVC.swift; sourceTree = "<group>"; };
 		19A0FA171CEF30F1000B1B2B /* THChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THChatCell.swift; sourceTree = "<group>"; };
@@ -194,6 +206,8 @@
 		194F72031CAD82CE00484580 /* Projects */ = {
 			isa = PBXGroup;
 			children = (
+				198E08E01D12E04F00CB0EED /* THTextImageSelector */,
+				198E08D71D12CB5E00CB0EED /* Tesseract */,
 				193155161D0FF29F00C0E62A /* Accessory */,
 				193155111D0FE1F000C0E62A /* PublicBT */,
 				191FD8E61D0AF08500205F2D /* PrivateBT */,
@@ -288,6 +302,8 @@
 				19671CD01CE46FAE008A4C5A /* 3D.storyboard */,
 				193155141D0FE29900C0E62A /* Bluetooth.storyboard */,
 				193155191D0FF2CE00C0E62A /* Accessory.storyboard */,
+				198E08D51D12CB4500CB0EED /* Tesseract.storyboard */,
+				198E08E31D12E07E00CB0EED /* ImageSelector.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -295,6 +311,7 @@
 		19671CCE1CE46D43008A4C5A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				198E08DE1D12DB9400CB0EED /* tessdata */,
 				1956AC931C9C42EF00E5DF0A /* Info.plist */,
 				1956AC901C9C42EF00E5DF0A /* LaunchScreen.storyboard */,
 				1956AC8E1C9C42EF00E5DF0A /* Assets.xcassets */,
@@ -335,6 +352,31 @@
 				1986C6B61D0E97C50061BD27 /* BTDevice.m */,
 			);
 			name = BTDevice;
+			sourceTree = "<group>";
+		};
+		198E08D71D12CB5E00CB0EED /* Tesseract */ = {
+			isa = PBXGroup;
+			children = (
+				198E08D81D12CB7F00CB0EED /* THTesseractVC.swift */,
+			);
+			name = Tesseract;
+			sourceTree = "<group>";
+		};
+		198E08E01D12E04F00CB0EED /* THTextImageSelector */ = {
+			isa = PBXGroup;
+			children = (
+				198E08E51D12E3AA00CB0EED /* Cell */,
+				198E08E11D12E06C00CB0EED /* THImageSelector.swift */,
+			);
+			name = THTextImageSelector;
+			sourceTree = "<group>";
+		};
+		198E08E51D12E3AA00CB0EED /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				198E08E61D12E3BF00CB0EED /* ImageCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		199D9E221CE1CC53008AF05F /* Helper */ = {
@@ -495,11 +537,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				193155151D0FE29900C0E62A /* Bluetooth.storyboard in Resources */,
+				198E08DF1D12DB9400CB0EED /* tessdata in Resources */,
 				1931551A1D0FF2CE00C0E62A /* Accessory.storyboard in Resources */,
 				1956AC921C9C42EF00E5DF0A /* LaunchScreen.storyboard in Resources */,
 				1956AC8F1C9C42EF00E5DF0A /* Assets.xcassets in Resources */,
 				1956AC8A1C9C42EF00E5DF0A /* Main.storyboard in Resources */,
+				198E08E41D12E07E00CB0EED /* ImageSelector.storyboard in Resources */,
 				19671CD11CE46FAE008A4C5A /* 3D.storyboard in Resources */,
+				198E08D61D12CB4500CB0EED /* Tesseract.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +620,9 @@
 				1956AC8D1C9C42EF00E5DF0A /* TryHard.xcdatamodeld in Sources */,
 				1956ACB61C9C447F00E5DF0A /* TryProject.swift in Sources */,
 				196D33F21CFDD5FA0031D023 /* THNewChatCell.swift in Sources */,
+				198E08D91D12CB7F00CB0EED /* THTesseractVC.swift in Sources */,
+				198E08E21D12E06C00CB0EED /* THImageSelector.swift in Sources */,
+				198E08E71D12E3BF00CB0EED /* ImageCell.swift in Sources */,
 				194F72061CAD841300484580 /* THSwiftChartsVC.swift in Sources */,
 				194DFBB41CE6214500A2762D /* THBlurVC.swift in Sources */,
 				1956AC871C9C42EF00E5DF0A /* ViewController.swift in Sources */,
@@ -734,6 +782,7 @@
 			baseConfigurationReference = 65EBDEA9D8BA64A0F5F26411 /* Pods-TryHard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -752,6 +801,7 @@
 			baseConfigurationReference = D5076CB0D7E0A05798C6981D /* Pods-TryHard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
