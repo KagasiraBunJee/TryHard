@@ -14,3 +14,5 @@
 
 //#import "BluetoothDevice.h"
 //#import "BluetoothManager.h"
+
+#import "UIImage+CV.h"

@@ -25,6 +25,17 @@
 		1956AC9D1C9C42EF00E5DF0A /* TryHardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1956AC9C1C9C42EF00E5DF0A /* TryHardTests.swift */; };
 		1956ACA81C9C42EF00E5DF0A /* TryHardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1956ACA71C9C42EF00E5DF0A /* TryHardUITests.swift */; };
 		1956ACB61C9C447F00E5DF0A /* TryProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1956ACB51C9C447F00E5DF0A /* TryProject.swift */; };
+		19644A341D1416DB008712CC /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19644A331D1416DB008712CC /* opencv2.framework */; };
+		19644A361D14171C008712CC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19644A351D14171C008712CC /* AVFoundation.framework */; };
+		19644A381D141723008712CC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19644A371D141723008712CC /* CoreMedia.framework */; };
+		19644A3A1D141739008712CC /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19644A391D141739008712CC /* AssetsLibrary.framework */; };
+		19644A3E1D142079008712CC /* UIImage+CV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 19644A3D1D142079008712CC /* UIImage+CV.mm */; };
+		19644A451D1428B0008712CC /* ImageProcessing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19644A441D1428B0008712CC /* ImageProcessing.storyboard */; };
+		19644A471D142907008712CC /* THImageProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19644A461D142907008712CC /* THImageProcessingVC.swift */; };
+		19644A4A1D14360E008712CC /* THVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19644A491D14360E008712CC /* THVideoController.swift */; };
+		19644A4C1D14363E008712CC /* VideoProcessing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19644A4B1D14363E008712CC /* VideoProcessing.storyboard */; };
+		19644A501D144610008712CC /* trained_classifierNM1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 19644A4E1D144610008712CC /* trained_classifierNM1.xml */; };
+		19644A511D144610008712CC /* trained_classifierNM2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 19644A4F1D144610008712CC /* trained_classifierNM2.xml */; };
 		19671CD11CE46FAE008A4C5A /* 3D.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19671CD01CE46FAE008A4C5A /* 3D.storyboard */; };
 		196D33F01CFDCF5C0031D023 /* THRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196D33EF1CFDCF5C0031D023 /* THRoundedView.swift */; };
 		196D33F21CFDD5FA0031D023 /* THNewChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196D33F11CFDD5FA0031D023 /* THNewChatCell.swift */; };
@@ -88,6 +99,18 @@
 		1956ACA71C9C42EF00E5DF0A /* TryHardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryHardUITests.swift; sourceTree = "<group>"; };
 		1956ACA91C9C42EF00E5DF0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1956ACB51C9C447F00E5DF0A /* TryProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TryProject.swift; sourceTree = "<group>"; };
+		19644A331D1416DB008712CC /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = TryHard/opencv2.framework; sourceTree = "<group>"; };
+		19644A351D14171C008712CC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		19644A371D141723008712CC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		19644A391D141739008712CC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		19644A3C1D142079008712CC /* UIImage+CV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CV.h"; sourceTree = "<group>"; };
+		19644A3D1D142079008712CC /* UIImage+CV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+CV.mm"; sourceTree = "<group>"; };
+		19644A441D1428B0008712CC /* ImageProcessing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageProcessing.storyboard; sourceTree = "<group>"; };
+		19644A461D142907008712CC /* THImageProcessingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THImageProcessingVC.swift; sourceTree = "<group>"; };
+		19644A491D14360E008712CC /* THVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THVideoController.swift; sourceTree = "<group>"; };
+		19644A4B1D14363E008712CC /* VideoProcessing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VideoProcessing.storyboard; sourceTree = "<group>"; };
+		19644A4E1D144610008712CC /* trained_classifierNM1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = trained_classifierNM1.xml; sourceTree = "<group>"; };
+		19644A4F1D144610008712CC /* trained_classifierNM2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = trained_classifierNM2.xml; sourceTree = "<group>"; };
 		19671CD01CE46FAE008A4C5A /* 3D.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 3D.storyboard; sourceTree = "<group>"; };
 		196D33EF1CFDCF5C0031D023 /* THRoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THRoundedView.swift; sourceTree = "<group>"; };
 		196D33F11CFDD5FA0031D023 /* THNewChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THNewChatCell.swift; sourceTree = "<group>"; };
@@ -117,6 +140,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19644A3A1D141739008712CC /* AssetsLibrary.framework in Frameworks */,
+				19644A381D141723008712CC /* CoreMedia.framework in Frameworks */,
+				19644A361D14171C008712CC /* AVFoundation.framework in Frameworks */,
+				19644A341D1416DB008712CC /* opencv2.framework in Frameworks */,
 				CE938B36B5692693070F3386 /* Pods_TryHard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +233,8 @@
 		194F72031CAD82CE00484580 /* Projects */ = {
 			isa = PBXGroup;
 			children = (
+				19644A481D1435EA008712CC /* VideoProcessing */,
+				19644A3B1D141F53008712CC /* ImageProcessing */,
 				198E08E01D12E04F00CB0EED /* THTextImageSelector */,
 				198E08D71D12CB5E00CB0EED /* Tesseract */,
 				193155161D0FF29F00C0E62A /* Accessory */,
@@ -230,6 +259,7 @@
 		1956AC781C9C42EF00E5DF0A = {
 			isa = PBXGroup;
 			children = (
+				19644A331D1416DB008712CC /* opencv2.framework */,
 				1956AC831C9C42EF00E5DF0A /* TryHard */,
 				1956AC9B1C9C42EF00E5DF0A /* TryHardTests */,
 				1956ACA61C9C42EF00E5DF0A /* TryHardUITests */,
@@ -295,6 +325,40 @@
 			name = Entity;
 			sourceTree = "<group>";
 		};
+		19644A3B1D141F53008712CC /* ImageProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				19644A461D142907008712CC /* THImageProcessingVC.swift */,
+			);
+			name = ImageProcessing;
+			sourceTree = "<group>";
+		};
+		19644A3F1D142086008712CC /* CVTransform */ = {
+			isa = PBXGroup;
+			children = (
+				19644A3C1D142079008712CC /* UIImage+CV.h */,
+				19644A3D1D142079008712CC /* UIImage+CV.mm */,
+			);
+			name = CVTransform;
+			sourceTree = "<group>";
+		};
+		19644A481D1435EA008712CC /* VideoProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				19644A491D14360E008712CC /* THVideoController.swift */,
+			);
+			name = VideoProcessing;
+			sourceTree = "<group>";
+		};
+		19644A4D1D1445FF008712CC /* classifiers */ = {
+			isa = PBXGroup;
+			children = (
+				19644A4E1D144610008712CC /* trained_classifierNM1.xml */,
+				19644A4F1D144610008712CC /* trained_classifierNM2.xml */,
+			);
+			name = classifiers;
+			sourceTree = "<group>";
+		};
 		19671CCD1CE46D32008A4C5A /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +368,8 @@
 				193155191D0FF2CE00C0E62A /* Accessory.storyboard */,
 				198E08D51D12CB4500CB0EED /* Tesseract.storyboard */,
 				198E08E31D12E07E00CB0EED /* ImageSelector.storyboard */,
+				19644A441D1428B0008712CC /* ImageProcessing.storyboard */,
+				19644A4B1D14363E008712CC /* VideoProcessing.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -311,6 +377,7 @@
 		19671CCE1CE46D43008A4C5A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				19644A4D1D1445FF008712CC /* classifiers */,
 				198E08DE1D12DB9400CB0EED /* tessdata */,
 				1956AC931C9C42EF00E5DF0A /* Info.plist */,
 				1956AC901C9C42EF00E5DF0A /* LaunchScreen.storyboard */,
@@ -382,6 +449,7 @@
 		199D9E221CE1CC53008AF05F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				19644A3F1D142086008712CC /* CVTransform */,
 				199D9E201CE1CC50008AF05F /* VCLoader.swift */,
 				19A0FA191CEF4190000B1B2B /* Extensions.swift */,
 			);
@@ -418,6 +486,9 @@
 		A7F4EDC60E59D8F261D75AC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				19644A391D141739008712CC /* AssetsLibrary.framework */,
+				19644A371D141723008712CC /* CoreMedia.framework */,
+				19644A351D14171C008712CC /* AVFoundation.framework */,
 				19CD6C061D1006DA00F180A5 /* BluetoothManager.framework */,
 				B0E25153A3A5DA438C94C8C0 /* Pods_TryHard.framework */,
 			);
@@ -489,6 +560,7 @@
 		1956AC791C9C42EF00E5DF0A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = TH;
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Sergey Polishchuk";
@@ -536,11 +608,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19644A511D144610008712CC /* trained_classifierNM2.xml in Resources */,
 				193155151D0FE29900C0E62A /* Bluetooth.storyboard in Resources */,
+				19644A451D1428B0008712CC /* ImageProcessing.storyboard in Resources */,
 				198E08DF1D12DB9400CB0EED /* tessdata in Resources */,
 				1931551A1D0FF2CE00C0E62A /* Accessory.storyboard in Resources */,
 				1956AC921C9C42EF00E5DF0A /* LaunchScreen.storyboard in Resources */,
+				19644A4C1D14363E008712CC /* VideoProcessing.storyboard in Resources */,
 				1956AC8F1C9C42EF00E5DF0A /* Assets.xcassets in Resources */,
+				19644A501D144610008712CC /* trained_classifierNM1.xml in Resources */,
 				1956AC8A1C9C42EF00E5DF0A /* Main.storyboard in Resources */,
 				198E08E41D12E07E00CB0EED /* ImageSelector.storyboard in Resources */,
 				19671CD11CE46FAE008A4C5A /* 3D.storyboard in Resources */,
@@ -628,6 +704,7 @@
 				1956AC871C9C42EF00E5DF0A /* ViewController.swift in Sources */,
 				1981867D1CF86FC60037B745 /* THTextField.swift in Sources */,
 				193155131D0FE21200C0E62A /* THPublicBT.swift in Sources */,
+				19644A3E1D142079008712CC /* UIImage+CV.mm in Sources */,
 				193155181D0FF2BD00C0E62A /* THAccessory.swift in Sources */,
 				19CB61801D0EA312004241C7 /* THDevice.swift in Sources */,
 				19A0FA181CEF30F1000B1B2B /* THChatCell.swift in Sources */,
@@ -635,7 +712,9 @@
 				1986C6B71D0E97C50061BD27 /* BTDevice.m in Sources */,
 				19A0FA151CEF2BE0000B1B2B /* THSocketVC.swift in Sources */,
 				194DFBAC1CE5FBCF00A2762D /* QExpandVC.swift in Sources */,
+				19644A471D142907008712CC /* THImageProcessingVC.swift in Sources */,
 				196D33F01CFDCF5C0031D023 /* THRoundedView.swift in Sources */,
+				19644A4A1D14360E008712CC /* THVideoController.swift in Sources */,
 				191FD8E81D0AF0D100205F2D /* THPrivateBT.swift in Sources */,
 				1956AC851C9C42EF00E5DF0A /* AppDelegate.swift in Sources */,
 				1931551C1D0FF77300C0E62A /* MI-Services.swift in Sources */,
@@ -786,6 +865,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TryHard",
 				);
 				INFOPLIST_FILE = TryHard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -805,6 +885,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TryHard",
 				);
 				INFOPLIST_FILE = TryHard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

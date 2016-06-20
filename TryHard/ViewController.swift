@@ -28,7 +28,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             TryProject(title: "PrivateBT", projectInfo: "", vc: VCLoader<THPrivateBT>.load(storyboardId: .Main, inStoryboardID: "THPrivateBT")),
             TryProject(title: "PublicBT", projectInfo: "", vc: VCLoader<THPublicBT>.load(storyboardId: .Bluetooth, inStoryboardID: "THPublicBT")),
             TryProject(title: "Accessory", projectInfo: "", vc: VCLoader<THAccessory>.load(storyboardId: .Accessory, inStoryboardID: "THAccessory")),
-            TryProject(title: "Tesseract", projectInfo: "", vc: VCLoader<THTesseractVC>.load(storyboardId: .Tesseract, inStoryboardID: "THTesseractVC"))
+            TryProject(title: "Text recognition", projectInfo: "Tesseract library", vc: VCLoader<THTesseractVC>.load(storyboardId: .Tesseract, inStoryboardID: "THTesseractVC")),
+            TryProject(title: "ImageProcessing", projectInfo: "", vc: VCLoader<THImageProcessingVC>.load(storyboardId: .ImageProcessing, inStoryboardID: "THImageProcessingVC")),
+            TryProject(title: "VideoProcessing", projectInfo: "", vc: VCLoader<THVideoController>.load(storyboardId: .VideoProcessing, inStoryboardID: "THVideoController"))
         ]
     }
     

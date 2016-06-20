@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Video Controller-->
+        <scene sceneID="O3g-7u-fCg">
+            <objects>
+                <viewController storyboardIdentifier="THVideoController" id="pog-cS-y8w" customClass="THVideoController" customModule="TryHard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RTg-du-zIw"/>
+                        <viewControllerLayoutGuide type="bottom" id="y9g-GA-S8X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nWf-xh-pCb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqX-aJ-V9U">
+                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIW-3M-5xv">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                        <state key="normal" title="Start"/>
+                                        <connections>
+                                            <action selector="startAction:" destination="pog-cS-y8w" eventType="touchUpInside" id="Hb2-T8-9g2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d30-ZW-hWm">
+                                        <rect key="frame" x="200" y="0.0" width="200" height="50"/>
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="stopAction:" destination="pog-cS-y8w" eventType="touchUpInside" id="ERS-Cp-KET"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmX-lg-1jS">
+                                        <rect key="frame" x="400" y="0.0" width="200" height="50"/>
+                                        <state key="normal" title="Detect"/>
+                                        <connections>
+                                            <action selector="detectAction:" destination="pog-cS-y8w" eventType="touchUpInside" id="5L0-s6-vCQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="EIW-3M-5xv" firstAttribute="width" secondItem="d30-ZW-hWm" secondAttribute="width" id="2h6-V9-Qok"/>
+                                    <constraint firstAttribute="height" constant="50" id="DqO-b5-bof"/>
+                                    <constraint firstItem="d30-ZW-hWm" firstAttribute="width" secondItem="WmX-lg-1jS" secondAttribute="width" id="orT-BX-1Xl"/>
+                                </constraints>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CPr-Ea-C38">
+                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CPr-Ea-C38" firstAttribute="leading" secondItem="nWf-xh-pCb" secondAttribute="leading" id="3wb-VZ-tpP"/>
+                            <constraint firstAttribute="trailing" secondItem="cqX-aJ-V9U" secondAttribute="trailing" id="HUL-bE-WD9"/>
+                            <constraint firstItem="CPr-Ea-C38" firstAttribute="top" secondItem="cqX-aJ-V9U" secondAttribute="bottom" id="QG4-ya-kBK"/>
+                            <constraint firstItem="cqX-aJ-V9U" firstAttribute="leading" secondItem="nWf-xh-pCb" secondAttribute="leading" id="Ue2-gz-7Zc"/>
+                            <constraint firstItem="y9g-GA-S8X" firstAttribute="top" secondItem="CPr-Ea-C38" secondAttribute="bottom" id="dbx-Tc-6Rp"/>
+                            <constraint firstItem="cqX-aJ-V9U" firstAttribute="top" secondItem="RTg-du-zIw" secondAttribute="bottom" id="oVZ-2R-fBH"/>
+                            <constraint firstAttribute="trailing" secondItem="CPr-Ea-C38" secondAttribute="trailing" id="q1N-90-b90"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="CPr-Ea-C38" id="MdN-0e-FUn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mo9-6H-NZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="434" y="426"/>
+        </scene>
+    </scenes>
+</document>
