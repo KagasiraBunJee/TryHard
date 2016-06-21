@@ -16,3 +16,5 @@
 //#import "BluetoothManager.h"
 
 #import "UIImage+CV.h"
+#import "THVideoHelper.h"
+#import "THCameraManager.h"

@@ -8,7 +8,7 @@ use_frameworks!
 target 'TryHard' do
 	pod 'SwiftCharts', '~> 0.3'
     pod 'LiveFrost', '~> 1.1.2'
-    pod 'TesseractOCRiOS', '~> 4.0.0'
+    pod 'TesseractOCRiOS', :git => 'https://github.com/gali8/Tesseract-OCR-iOS.git'
     pod 'SDWebImage', '~> 3.8.1'
     pod 'DGActivityIndicatorView'
     pod 'CocoaAsyncSocket'

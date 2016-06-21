@@ -47,3 +47,48 @@ extension UIViewController {
         }
     }
 }
+
+extension UIImage {
+    
+    func drawRects(rects:[CGRect], color:UIColor) -> UIImage {
+        
+        var newImage:UIImage!
+        
+        let size = CGSize(width: CGImageGetWidth(self.CGImage),
+                          height: CGImageGetHeight(self.CGImage))
+        
+        UIGraphicsBeginImageContextWithOptions(size, true, 0)
+        let ctx = UIGraphicsGetCurrentContext()
+        self.drawInRect(CGRectMake(0, 0, self.size.width, self.size.height))
+        
+        for rect in rects {
+            CGContextSaveGState(ctx)
+            
+            CGContextSetStrokeColorWithColor(ctx, color.CGColor)
+            CGContextSetLineWidth(ctx, 2.0)
+            CGContextStrokeRect(ctx, rect)
+            
+            CGContextRestoreGState(ctx)
+            
+            newImage = UIGraphicsGetImageFromCurrentImageContext()
+            
+        }
+        
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+}
+
+extension CIContext {
+    func createCGImage_(image:CIImage, fromRect:CGRect) -> CGImage {
+        let width = Int(fromRect.width)
+        let height = Int(fromRect.height)
+        
+        let rawData =  UnsafeMutablePointer<UInt8>.alloc(width * height * 4)
+        render(image, toBitmap: rawData, rowBytes: width * 4, bounds: fromRect, format: kCIFormatRGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
+        let dataProvider = CGDataProviderCreateWithData(nil, rawData, height * width * 4) {info, data, size in UnsafeMutablePointer<UInt8>(data).dealloc(size)}
+        return CGImageCreate(width, height, 8, 32, width * 4, CGColorSpaceCreateDeviceRGB(), CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue), dataProvider, nil, false, .RenderingIntentDefault)!
+    }
+}

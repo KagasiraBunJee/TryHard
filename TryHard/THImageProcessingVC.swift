@@ -15,7 +15,7 @@ class THImageProcessingVC: UIViewController {
     
     private var image:UIImage?
     
-    var url = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Emoticons_Puck_1881_with_Text.png")!
+    var url = NSURL(string: "https://onepagelove.com/wp-content/uploads/2016/03/opl-big-5.jpg")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +38,16 @@ class THImageProcessingVC: UIViewController {
     @IBAction func processAction(sender: AnyObject) {
         
         let image = self.imageBefore.image!.copy() as! UIImage
-//        self.imageBefore.image = image.blurredImage()
-        let images = image.textDetect()
         
-        if images != nil {
-            self.imageBefore.image = images
-        }
+//        let bounds = (image.textBoundsV2() as! [NSValue]).map { (value) -> CGRect in
+//            return value.CGRectValue()
+//        }
+//        
+//        let rectedImage = image.drawRects(bounds, color: UIColor.redColor())
+        
+        imageBefore.image = image.textDetectBetterV2()
+        
+        print(image.textBoundsV2())
         
     }
     

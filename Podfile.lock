@@ -24,16 +24,21 @@ DEPENDENCIES:
   - PeerTalk
   - SDWebImage (~> 3.8.1)
   - SwiftCharts (~> 0.3)
-  - TesseractOCRiOS (~> 4.0.0)
+  - TesseractOCRiOS (from `https://github.com/gali8/Tesseract-OCR-iOS.git`)
 
 EXTERNAL SOURCES:
   HanabiCollectionViewLayout:
     :git: https://github.com/kshin/Hanabi
+  TesseractOCRiOS:
+    :git: https://github.com/gali8/Tesseract-OCR-iOS.git
 
 CHECKOUT OPTIONS:
   HanabiCollectionViewLayout:
     :commit: 9c88e95730a4a5819bcaf19c500bbd5563af849b
     :git: https://github.com/kshin/Hanabi
+  TesseractOCRiOS:
+    :commit: b4edaf737b9495b6d609375c1ff2875be9acdb47
+    :git: https://github.com/gali8/Tesseract-OCR-iOS.git
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
@@ -43,6 +48,6 @@ SPEC CHECKSUMS:
   PeerTalk: 5e6843592fea14a4221a9829c43d92a309b7130b
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftCharts: c66a449d58f9c811c467f865a47b1b6136b49499
-  TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
+  TesseractOCRiOS: 729989db3984bb60ba3addb053569b172d48c409
 
 COCOAPODS: 0.39.0

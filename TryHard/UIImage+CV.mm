@@ -26,14 +26,6 @@ using namespace cv;
 using namespace std;
 using namespace cv::text;
 
-@interface UIImage()
-
-- (UIImage *)UIImageFromCVMat:(cv::Mat)cvMat;
-- (Mat)cvMatGrayFromUIImage:(UIImage *)image;
-- (Mat)cvMatFromUIImage:(UIImage *)image;
-
-@end
-
 @implementation UIImage (Maintenance)
 
 - (UIImage *)grayScaleImage
@@ -60,97 +52,15 @@ using namespace cv::text;
 //    }
     GaussianBlur(colorMatImage, blurredMat, cv::Size( 111, 111), 0, 0);
     
-    
-    
     return [self UIImageFromCVMat:blurredMat];
-}
-
-- (UIImage *)textDetect
-{
-    
-    cout << "Demo program of the Extremal Region Filter algorithm described in " << endl;
-    cout << "Neumann L., Matas J.: Real-Time Scene Text Localization and Recognition, CVPR 2012" << endl << endl;
-    
-//    namedWindow("grouping",WINDOW_NORMAL);
-    Mat src1 = [self cvMatFromUIImage:self];
-    
-    Mat src;
-    cvtColor(src1,src,COLOR_RGBA2BGR);
-    
-    // Extract channels to be processed individually
-    vector<Mat> channels;
-    computeNMChannels(src, channels);
-    
-    int cn = (int)channels.size();
-    // Append negative channels to detect ER- (bright regions over dark background)
-    for (int c = 0; c < cn-1; c++)
-        channels.push_back(255-channels[c]);
-    
-    // Create ERFilter objects with the 1st and 2nd stage default classifiers
-    
-    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"trained_classifierNM1" ofType:@"xml"];
-    NSString *path2 = [[NSBundle mainBundle] pathForResource:@"trained_classifierNM2" ofType:@"xml"];
-    
-    Ptr<ERFilter> er_filter1 = createERFilterNM1(loadClassifierNM1(path1.UTF8String),16,0.00015f,0.13f,0.2f,true,0.1f);
-    Ptr<ERFilter> er_filter2 = createERFilterNM2(loadClassifierNM2(path2.UTF8String),0.5);
-    
-    vector<vector<ERStat> > regions(channels.size());
-    // Apply the default cascade classifier to each independent channel (could be done in parallel)
-    cout << "Extracting Class Specific Extremal Regions from " << (int)channels.size() << " channels ..." << endl;
-    cout << "    (...) this may take a while (...)" << endl << endl;
-    for (int c=0; c<(int)channels.size(); c++)
-    {
-        er_filter1->run(channels[c], regions[c]);
-        er_filter2->run(channels[c], regions[c]);
-    }
-    
-    // Detect character groups
-    cout << "Grouping extracted ERs ... ";
-    vector< vector<Vec2i> > region_groups;
-    vector<cv::Rect> groups_boxes;
-    erGrouping(src, channels, regions, region_groups, groups_boxes, ERGROUPING_ORIENTATION_HORIZ);
-    //erGrouping(src, channels, regions, region_groups, groups_boxes, ERGROUPING_ORIENTATION_ANY, "./trained_classifier_erGrouping.xml", 0.5);
-    
-    // draw groups
-    groups_draw(src, groups_boxes);
-//    imshow("grouping",src);
-    
-    cout << "Done!" << endl << endl;
-    cout << "Press 'e' to show the extracted Extremal Regions, any other key to exit." << endl << endl;
-//    vector<Mat> rects = er_show(channels,regions);
-//
-//    NSMutableArray<UIImage *> *images;
-//    
-//    for (int c=0; c<(int)rects.size(); c++)
-//    {
-//        Mat rect = rects[c];
-//        
-//        UIImage *image = [self UIImageFromCVMat:rect];
-//        
-//        [images addObject:image];
-//    }
-//    
-//    // memory clean-up
-    er_filter1.release();
-    er_filter2.release();
-    regions.clear();
-    if (!groups_boxes.empty())
-    {
-        groups_boxes.clear();
-    }
-    
-    return [self UIImageFromCVMat:src];
 }
 
 - (UIImage *)textDetectBetter
 {
     Mat img1=[self cvMatFromUIImage:self];
     
-//    Mat img1;
-//    cvtColor(img2, img1, COLOR_BGR2GRAY);
-    
     //Detect
-    vector<cv::Rect> letterBBoxes1=detectLetters(img1);
+    vector<cv::Rect> letterBBoxes1=detectLetters123(img1);
     //Display
     for(int i=0; i< letterBBoxes1.size(); i++)
         rectangle(img1,letterBBoxes1[i],cv::Scalar(0,255,0),3,8,0);
@@ -158,6 +68,137 @@ using namespace cv::text;
     return [self UIImageFromCVMat:img1];
 }
 
+- (UIImage *)textDetectBetterV2
+{
+    Mat img1=[self cvMatFromUIImage:self];
+    Mat downscaled;
+    pyrDown(img1, downscaled);
+    Mat smallGrey;
+    cvtColor(downscaled, smallGrey, CV_BGR2GRAY);
+    Mat grad;
+    Mat morphKernel = getStructuringElement(MORPH_ELLIPSE, cv::Size(3, 3));
+    morphologyEx(smallGrey, grad, MORPH_GRADIENT, morphKernel);
+    
+    Mat bw;
+    threshold(grad, bw, 0.0, 255.0, THRESH_BINARY | THRESH_OTSU);
+    
+    Mat connected;
+    morphKernel = getStructuringElement(MORPH_RECT, cv::Size(9, 1));
+    morphologyEx(bw, connected, MORPH_CLOSE, morphKernel);
+    
+    Mat mask = Mat::zeros(bw.size(), CV_8UC1);
+    vector<vector<cv::Point>> contours;
+    vector<Vec4i> hierarchy;
+    findContours(connected, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+    
+    if (contours.size() > 0 )
+    {
+        for(int idx = 0; idx >= 0; idx = hierarchy[idx][0])
+        {
+            cv::Rect rect = boundingRect(contours[idx]);
+            Mat maskROI(mask, rect);
+            maskROI = Scalar(0, 0, 0);
+            // fill the contour
+            drawContours(mask, contours, idx, Scalar(255, 255, 255), CV_FILLED);
+            // ratio of non-zero pixels in the filled region
+            double r = (double)countNonZero(maskROI)/(rect.width*rect.height);
+            
+            if (r > .45
+                &&
+                (rect.height > 8 && rect.width > 8)
+                )
+            {
+                rect.width *= 2;
+                rect.height *=2;
+                rect.y *= 2;
+                rect.x *= 2;
+                
+                rectangle(img1, rect, Scalar(0, 255, 0), 2);
+            }
+        }
+    }
+    
+    return [self UIImageFromCVMat:img1];
+}
+
+-(NSArray *)textBounds
+{
+    Mat img1=[self cvMatFromUIImage:self];
+    
+    //Detect
+    vector<cv::Rect> letterBBoxes1=detectLetters123(img1);
+    //Display
+    NSMutableArray *arrays = [[NSMutableArray alloc]init];
+    for(int i=0; i< letterBBoxes1.size(); i++)
+    {
+        cv::Rect rect = letterBBoxes1[i];
+        CGRect textRect = CGRectMake(rect.x, rect.y, rect.width, rect.height);
+        [arrays addObject:[NSValue valueWithCGRect:textRect]];
+    }
+    
+    return arrays;
+}
+
+-(NSArray *)textBoundsV2
+{
+    Mat img1=[self cvMatFromUIImage:self];
+    Mat downscaled;
+    pyrDown(img1, downscaled);
+    Mat smallGrey;
+    cvtColor(downscaled, smallGrey, CV_BGR2GRAY);
+    Mat grad;
+    Mat morphKernel = getStructuringElement(MORPH_ELLIPSE, cv::Size(3, 3));
+    morphologyEx(smallGrey, grad, MORPH_GRADIENT, morphKernel);
+    
+    Mat bw;
+    threshold(grad, bw, 0.0, 255.0, THRESH_BINARY | THRESH_OTSU);
+    
+    Mat connected;
+    morphKernel = getStructuringElement(MORPH_RECT, cv::Size(9, 1));
+    morphologyEx(bw, connected, MORPH_CLOSE, morphKernel);
+    
+    Mat mask = Mat::zeros(bw.size(), CV_8UC1);
+    vector<vector<cv::Point>> contours;
+    vector<Vec4i> hierarchy;
+    findContours(connected, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+    
+    NSMutableArray *arrays = [[NSMutableArray alloc]init];
+    
+    if (contours.size() > 0 )
+    {
+        for(int idx = 0; idx >= 0; idx = hierarchy[idx][0])
+        {
+            cv::Rect rect = boundingRect(contours[idx]);
+            Mat maskROI(mask, rect);
+            maskROI = Scalar(0, 0, 0);
+            // fill the contour
+            drawContours(mask, contours, idx, Scalar(255, 255, 255), CV_FILLED);
+            // ratio of non-zero pixels in the filled region
+            double r = (double)countNonZero(maskROI)/(rect.width*rect.height);
+            
+            if (r > .45 /* assume at least 45% of the area is filled if it contains text */
+                &&
+                (rect.height > 8 && rect.width > 8) /* constraints on region size */
+                /* these two conditions alone are not very robust. better to use something
+                 like the number of significant peaks in a horizontal projection as a third condition */
+                )
+            {
+                rect.width *= 2;
+                rect.height *=2;
+                rect.y *= 2;
+                rect.x *= 2;
+                
+                CGRect textRect = CGRectMake(rect.x, rect.y, rect.width, rect.height);
+                [arrays addObject:[NSValue valueWithCGRect:textRect]];
+                //            rectangle(img1, rect, Scalar(0, 255, 0), 2);
+            }
+        }
+    }
+    
+    return arrays;
+}
+
+//MARK:- private methods
 - (UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
 {
     NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
@@ -220,7 +261,7 @@ using namespace cv::text;
 
 - (Mat)cvMatFromUIImage:(UIImage *)image
 {
-    CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat cols = image.size.width;
     CGFloat rows = image.size.height;
     
@@ -241,51 +282,9 @@ using namespace cv::text;
     return cvMat;
 }
 
-void show_help_and_exit(const char *cmd)
-{
-    cout << "    Usage: " << cmd << " <input_image> " << endl;
-    cout << "    Default classifier files (trained_classifierNM*.xml) must be in current directory" << endl << endl;
-    exit(-1);
-}
+//MARK:- Helper methods
 
-void groups_draw(Mat &src, vector<cv::Rect> &groups)
-{
-    for (int i=(int)groups.size()-1; i>=0; i--)
-    {
-        if (src.type() == CV_8UC3)
-            rectangle(src,groups.at(i).tl(),groups.at(i).br(),Scalar( 0, 255, 255 ), 1, 4 );
-        else
-            rectangle(src,groups.at(i).tl(),groups.at(i).br(),Scalar( 255 ), 1, 4 );
-    }
-}
-
-vector<Mat> er_show(vector<Mat> &channels, vector<vector<ERStat> > &regions)
-{
-    vector<Mat> rects((int)channels.size());
-    for (int c=0; c<(int)channels.size(); c++)
-    {
-        Mat dst = Mat::zeros(channels[0].rows+2,channels[0].cols+2,CV_8UC1);
-        for (int r=0; r<(int)regions[c].size(); r++)
-        {
-            ERStat er = regions[c][r];
-            if (er.parent != NULL) // deprecate the root region
-            {
-                int newMaskVal = 255;
-                int flags = 4 + (newMaskVal << 8) + FLOODFILL_FIXED_RANGE + FLOODFILL_MASK_ONLY;
-                floodFill(channels[c],dst,cv::Point(er.pixel%channels[c].cols,er.pixel/channels[c].cols),
-                          Scalar(255),0,Scalar(er.level),Scalar(0),flags);
-            }
-        }
-        char buff[10]; char *buff_ptr = buff;
-        sprintf(buff, "channel %d", c);
-        
-        rects.insert(rects.begin(), dst);
-//        imshow(buff_ptr, dst);
-    }
-    return rects;
-}
-
-vector<cv::Rect> detectLetters(cv::Mat img)
+vector<cv::Rect> detectLetters123(cv::Mat img)
 {
     std::vector<cv::Rect> boundRect;
     cv::Mat img_gray, img_sobel, img_threshold, element;

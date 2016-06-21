@@ -183,7 +183,7 @@ extension THPublicBT : CBPeripheralDelegate {
             for ch in service.characteristics! {
                 switch MICharacteristic(rawValue: ch.UUID.UUIDString)! {
                 case .Alert:
-                    break
+                    
                     let value = [0x01]
                     let data = NSData(bytes: value, length: value.count)
                     
