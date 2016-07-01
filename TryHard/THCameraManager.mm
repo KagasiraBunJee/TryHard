@@ -44,8 +44,8 @@ using namespace cv::text;
     
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:view];
     
-    self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
+    self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetLow;
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
@@ -80,10 +80,10 @@ using namespace cv::text;
 -(void)processImage:(cv::Mat &)image
 {
     //Detect
-    vector<cv::Rect> letterBBoxes1=detectLetters(image);
+//    vector<cv::Rect> letterBBoxes1=detectLetters(image);
     //Display
-    for(int i=0; i< letterBBoxes1.size(); i++)
-        rectangle(image,letterBBoxes1[i],cv::Scalar(0,255,255),1,8,0);
+//    for(int i=0; i< letterBBoxes1.size(); i++)
+//        rectangle(image,letterBBoxes1[i],cv::Scalar(0,255,255),1,8,0);
     
 //    Mat downscaled;
 //    pyrDown(image, downscaled);
@@ -131,6 +131,20 @@ using namespace cv::text;
 //            }
 //        }
 //    }
+    
+    //face
+    
+    vector<cv::Rect> detection_rois;
+    
+    const char *cascade_name = [[[NSBundle mainBundle] pathForResource:@"haarcascade_frontalface_default" ofType:@"xml"] cStringUsingEncoding:NSUTF8StringEncoding];
+    CascadeClassifier haar_cascade;
+    haar_cascade.load(cascade_name);
+    haar_cascade.detectMultiScale(image, detection_rois, 1.2, 2,
+                                  0|CV_HAAR_DO_CANNY_PRUNING);
+    
+    for(int i=0; i< detection_rois.size(); i++)
+        rectangle(image,detection_rois[i],cv::Scalar(0,255,255),1,8,0);
+
 }
 
 vector<cv::Rect> detectLetters(cv::Mat img)
@@ -154,6 +168,47 @@ vector<cv::Rect> detectLetters(cv::Mat img)
                 boundRect.push_back(appRect);
         }
     return boundRect;
+}
+
+void doMosaic(IplImage* in, int x0, int y0,
+              int width, int height, int size)
+{
+    int b, g, r, col, row;
+    
+    int xMin = size*(int)floor((double)x0/size);
+    int yMin = size*(int)floor((double)y0/size);
+    int xMax = size*(int)ceil((double)(x0+width)/size);
+    int yMax = size*(int)ceil((double)(y0+height)/size);
+    
+    for(int y=yMin; y<yMax; y+=size){
+        for(int x=xMin; x<xMax; x+=size){
+            b = g = r = 0;
+            for(int i=0; i<size; i++){
+                if( y+i > in->height ){
+                    break;
+                }
+                row = i;
+                for(int j=0; j<size; j++){
+                    if( x+j > in->width ){
+                        break;
+                    }
+                    b += (unsigned char)in->imageData[in->widthStep*(y+i)+(x+j)*3];
+                    g += (unsigned char)in->imageData[in->widthStep*(y+i)+(x+j)*3+1];
+                    r += (unsigned char)in->imageData[in->widthStep*(y+i)+(x+j)*3+2];
+                    col = j;
+                }
+            }
+            row++;
+            col++;
+            for(int i=0;i<row;i++){
+                for(int j=0;j<col;j++){
+                    in->imageData[in->widthStep*(y+i)+(x+j)*3]   = cvRound((double)b/(row*col));
+                    in->imageData[in->widthStep*(y+i)+(x+j)*3+1] = cvRound((double)g/(row*col));
+                    in->imageData[in->widthStep*(y+i)+(x+j)*3+2] = cvRound((double)r/(row*col));
+                }
+            }
+        }
+    }
 }
 
 @end

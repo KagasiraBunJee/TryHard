@@ -30,7 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             TryProject(title: "Accessory", projectInfo: "", vc: VCLoader<THAccessory>.load(storyboardId: .Accessory, inStoryboardID: "THAccessory")),
             TryProject(title: "Text recognition", projectInfo: "Tesseract library", vc: VCLoader<THTesseractVC>.load(storyboardId: .Tesseract, inStoryboardID: "THTesseractVC")),
             TryProject(title: "ImageProcessing", projectInfo: "", vc: VCLoader<THImageProcessingVC>.load(storyboardId: .ImageProcessing, inStoryboardID: "THImageProcessingVC")),
-            TryProject(title: "VideoProcessing", projectInfo: "", vc: VCLoader<THVideoController>.load(storyboardId: .VideoProcessing, inStoryboardID: "THVideoController"))
+            TryProject(title: "VideoProcessing", projectInfo: "", vc: VCLoader<THVideoController>.load(storyboardId: .VideoProcessing, inStoryboardID: "THVideoController")),
+            TryProject(title: "AudioCommands", projectInfo: "", vc: VCLoader<THCommandVC>.load(storyboardId: .Audio, inStoryboardID: "THCommandVC"))
         ]
     }
     

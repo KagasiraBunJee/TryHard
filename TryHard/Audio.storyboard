@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--CommandVC-->
+        <scene sceneID="Cfi-aZ-dXV">
+            <objects>
+                <viewController storyboardIdentifier="THCommandVC" id="OHC-i4-cXa" customClass="THCommandVC" customModule="TryHard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b5H-yj-4dT"/>
+                        <viewControllerLayoutGuide type="bottom" id="S3V-LC-hgt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jWK-Ww-04O">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZc-NC-ePz">
+                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mij-4v-hAw">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                        <state key="normal" title="Start"/>
+                                        <connections>
+                                            <action selector="startRecord:" destination="OHC-i4-cXa" eventType="touchUpInside" id="XY7-Ai-EY6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vf2-mi-F0Q">
+                                        <rect key="frame" x="300" y="0.0" width="300" height="50"/>
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="stopRecord:" destination="OHC-i4-cXa" eventType="touchUpInside" id="vlN-Kh-Vjf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Nvv-9b-lqR"/>
+                                    <constraint firstItem="Mij-4v-hAw" firstAttribute="width" secondItem="Vf2-mi-F0Q" secondAttribute="width" id="gqY-Q6-V1H"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aZc-NC-ePz" firstAttribute="leading" secondItem="jWK-Ww-04O" secondAttribute="leading" id="Qjd-9Z-vru"/>
+                            <constraint firstAttribute="trailing" secondItem="aZc-NC-ePz" secondAttribute="trailing" id="p7G-Rv-Chh"/>
+                            <constraint firstItem="aZc-NC-ePz" firstAttribute="top" secondItem="b5H-yj-4dT" secondAttribute="bottom" id="zHe-56-MxI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="42y-Qv-W6i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="482" y="343"/>
+        </scene>
+    </scenes>
+</document>

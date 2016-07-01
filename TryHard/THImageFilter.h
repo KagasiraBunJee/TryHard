@@ -12,4 +12,6 @@
 
 @interface THImageFilter : NSObject
 
++ (void) config;
+
 @end

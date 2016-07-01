@@ -18,3 +18,5 @@
 #import "UIImage+CV.h"
 #import "THVideoHelper.h"
 #import "THCameraManager.h"
+#import "THImageFilter.h"
+#import "THCommandListener.h"
