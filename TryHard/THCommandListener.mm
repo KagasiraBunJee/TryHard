@@ -17,13 +17,11 @@
 
 @property (nonatomic, retain) NSString *someProperty;
 
-+ (id)sharedManager;
-
 @end
 
 @implementation THCommandListener
 
-+ (id)sharedManager {
++ (THCommandListener *)sharedManager {
     
     static THCommandListener *sharedMyManager = nil;
     static dispatch_once_t onceToken;

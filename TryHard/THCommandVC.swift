@@ -16,11 +16,13 @@ class THCommandVC: UIViewController, AVAudioRecorderDelegate {
     
     var audioFile:NSString!
     
+    let commandManager = THCommandListener.sharedManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         recordingSession = AVAudioSession.sharedInstance()
-        audioFile = documentDir().stringByAppendingPathComponent("recording.m4a")
+        audioFile = documentDir().stringByAppendingPathComponent("recording.raw")
         
         do {
             try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
@@ -51,10 +53,11 @@ class THCommandVC: UIViewController, AVAudioRecorderDelegate {
         let audioURL = NSURL(fileURLWithPath: audioFile as String)
         
         let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000.0,
+            AVFormatIDKey: Int(kAudioFormatLinearPCM),
+            AVSampleRateKey: 8000.0,
             AVNumberOfChannelsKey: 1 as NSNumber,
-            AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue
+            AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue,
+            AVLinearPCMBitDepthKey: NSNumber(int: 16)
         ]
         
         do {
@@ -63,7 +66,8 @@ class THCommandVC: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.record()
             
 //            recordButton.setTitle("Tap to Stop", forState: .Normal)
-        } catch {
+        } catch let error as NSError {
+            print(error)
 //            finishRecording(success: false)
         }
 
@@ -73,5 +77,6 @@ class THCommandVC: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.stop()
         audioRecorder = nil
 
+        commandManager.parseCommand(String(format: "%@", audioFile))
     }
 }

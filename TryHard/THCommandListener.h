@@ -10,7 +10,7 @@
 
 @interface THCommandListener : NSObject
 
-+(id) sharedManager;
++(THCommandListener *)sharedManager;
 -(void) parseCommand:(NSString*) file;
 
 @end
