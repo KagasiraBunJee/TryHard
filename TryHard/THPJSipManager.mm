@@ -54,6 +54,16 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     if (status != PJ_SUCCESS) error("Error adding account", status);
 }
 
+- (void)callTo:(NSString *)sipUser
+{
+    char regUri[MAX_SIP_REG_URI_LENGTH];
+    sprintf(regUri, "sip:%s", [sipUser UTF8String]);
+    pj_str_t uri = pj_str(regUri);
+    
+    self.status = pjsua_call_make_call(currentAccount, &uri, 0, NULL, NULL, NULL);
+    if (self.status != PJ_SUCCESS) error("Error making call", status);
+}
+
 #pragma mark - setting up methods
 -(void)initPjSua
 {
@@ -129,16 +139,6 @@ static pjsua_acc_id registerAcc(pj_status_t &status, NSString* sipUser, NSString
     status = pjsua_acc_add(&cfg, PJ_TRUE, &acc_id);
     
     return acc_id;
-}
-
-- (void)callTo:(NSString *)sipUser
-{
-    char regUri[MAX_SIP_REG_URI_LENGTH];
-    sprintf(regUri, "sip:%s", [sipUser UTF8String]);
-    pj_str_t uri = pj_str(regUri);
-    
-    self.status = pjsua_call_make_call(currentAccount, &uri, 0, NULL, NULL, NULL);
-    if (self.status != PJ_SUCCESS) error("Error making call", status);
 }
 
 #pragma mark - Callback for pjsip
