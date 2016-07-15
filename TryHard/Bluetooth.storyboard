@@ -17,42 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUm-01-rpv">
-                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h1-in-0in">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
-                                        <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Scan"/>
-                                        <connections>
-                                            <action selector="scanAction:" destination="bsx-nf-GHc" eventType="touchUpInside" id="dIx-c8-hxo"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTv-fa-Na4">
-                                        <rect key="frame" x="200" y="0.0" width="200" height="50"/>
-                                        <color key="backgroundColor" red="0.94901960780000005" green="0.96078431369999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Refresh"/>
-                                        <connections>
-                                            <action selector="refresh:" destination="bsx-nf-GHc" eventType="touchUpInside" id="x8R-pu-yXq"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZm-xe-SdK">
-                                        <rect key="frame" x="400" y="0.0" width="200" height="50"/>
-                                        <color key="backgroundColor" red="0.94901960780000005" green="0.96078431369999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Stop"/>
-                                        <connections>
-                                            <action selector="stopAction:" destination="bsx-nf-GHc" eventType="touchUpInside" id="u3p-bk-Zbi"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="bTv-fa-Na4" firstAttribute="width" secondItem="cZm-xe-SdK" secondAttribute="width" id="1In-OA-rRc"/>
-                                    <constraint firstAttribute="height" constant="50" id="JAh-VG-zEV"/>
-                                    <constraint firstItem="9h1-in-0in" firstAttribute="width" secondItem="bTv-fa-Na4" secondAttribute="width" id="d2c-7U-x4J"/>
-                                </constraints>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTv-fa-Na4">
+                                <rect key="frame" x="200" y="20" width="200" height="62"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.96078431369999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Refresh"/>
+                                <connections>
+                                    <action selector="refresh:" destination="bsx-nf-GHc" eventType="touchUpInside" id="x8R-pu-yXq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZm-xe-SdK">
+                                <rect key="frame" x="400" y="20" width="200" height="62"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.96078431369999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopAction:" destination="bsx-nf-GHc" eventType="touchUpInside" id="u3p-bk-Zbi"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bZw-G3-huT">
-                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                                <rect key="frame" x="0.0" y="82" width="600" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="deviceCell" id="7xW-lu-vBc">
@@ -65,15 +47,34 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h1-in-0in">
+                                <rect key="frame" x="0.0" y="20" width="200" height="62"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="x2x-pd-F4g"/>
+                                </constraints>
+                                <state key="normal" title="Scan"/>
+                                <connections>
+                                    <action selector="scanAction:" destination="bsx-nf-GHc" eventType="touchUpInside" id="dIx-c8-hxo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="AUm-01-rpv" secondAttribute="trailing" id="0fb-x5-KZK"/>
-                            <constraint firstItem="AUm-01-rpv" firstAttribute="leading" secondItem="Sla-Vy-sDu" secondAttribute="leading" id="8KP-v6-cv3"/>
+                            <constraint firstItem="9h1-in-0in" firstAttribute="height" secondItem="bTv-fa-Na4" secondAttribute="height" id="BdA-3s-eT9"/>
+                            <constraint firstItem="bZw-G3-huT" firstAttribute="top" secondItem="9h1-in-0in" secondAttribute="bottom" id="DVE-DV-c9D"/>
+                            <constraint firstItem="bTv-fa-Na4" firstAttribute="width" secondItem="cZm-xe-SdK" secondAttribute="width" id="E0w-YX-rtN"/>
                             <constraint firstAttribute="trailing" secondItem="bZw-G3-huT" secondAttribute="trailing" id="FGW-Ds-Fx3"/>
-                            <constraint firstItem="AUm-01-rpv" firstAttribute="top" secondItem="K7j-vH-ByW" secondAttribute="bottom" id="Ghh-rT-8LW"/>
-                            <constraint firstItem="bZw-G3-huT" firstAttribute="top" secondItem="AUm-01-rpv" secondAttribute="bottom" id="Vky-Iz-LVR"/>
+                            <constraint firstItem="9h1-in-0in" firstAttribute="leading" secondItem="Sla-Vy-sDu" secondAttribute="leading" id="HIk-5O-DUL"/>
+                            <constraint firstItem="bTv-fa-Na4" firstAttribute="leading" secondItem="9h1-in-0in" secondAttribute="trailing" id="MRz-KE-kMs"/>
+                            <constraint firstAttribute="trailing" secondItem="cZm-xe-SdK" secondAttribute="trailing" id="TKq-Ey-ZaK"/>
+                            <constraint firstItem="bZw-G3-huT" firstAttribute="top" secondItem="bTv-fa-Na4" secondAttribute="bottom" id="XVL-ff-vMm"/>
+                            <constraint firstItem="bZw-G3-huT" firstAttribute="top" secondItem="cZm-xe-SdK" secondAttribute="bottom" id="bns-42-slW"/>
                             <constraint firstItem="yfE-47-IZ2" firstAttribute="top" secondItem="bZw-G3-huT" secondAttribute="bottom" id="gfx-at-1Dl"/>
+                            <constraint firstItem="9h1-in-0in" firstAttribute="top" secondItem="K7j-vH-ByW" secondAttribute="bottom" id="lFO-A7-P0Y"/>
+                            <constraint firstItem="9h1-in-0in" firstAttribute="width" secondItem="bTv-fa-Na4" secondAttribute="width" id="m8Q-ta-fDg"/>
+                            <constraint firstItem="bTv-fa-Na4" firstAttribute="height" secondItem="cZm-xe-SdK" secondAttribute="height" id="u4z-He-f6X"/>
+                            <constraint firstItem="cZm-xe-SdK" firstAttribute="leading" secondItem="bTv-fa-Na4" secondAttribute="trailing" id="wef-d7-4IH"/>
                             <constraint firstItem="bZw-G3-huT" firstAttribute="leading" secondItem="Sla-Vy-sDu" secondAttribute="leading" id="wqF-ey-b2g"/>
                         </constraints>
                     </view>

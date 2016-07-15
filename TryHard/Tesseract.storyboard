@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
@@ -16,45 +17,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKE-EW-NBl">
-                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeL-cU-G5z">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
-                                        <state key="normal" title="Recognize"/>
-                                        <connections>
-                                            <action selector="recognize:" destination="kPT-r4-Osh" eventType="touchUpInside" id="QSe-1p-dTG"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRj-RH-tLi">
-                                        <rect key="frame" x="150" y="0.0" width="150" height="50"/>
-                                        <state key="normal" title="Download"/>
-                                        <connections>
-                                            <action selector="download:" destination="kPT-r4-Osh" eventType="touchUpInside" id="OzN-Mz-reV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsY-kM-EA2">
-                                        <rect key="frame" x="300" y="0.0" width="150" height="50"/>
-                                        <state key="normal" title="Show text"/>
-                                        <connections>
-                                            <action selector="showRecognizedText:" destination="kPT-r4-Osh" eventType="touchUpInside" id="EcH-Yi-jj4"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaR-FS-dNZ">
-                                        <rect key="frame" x="450" y="0.0" width="150" height="50"/>
-                                        <state key="normal" title="Text"/>
-                                        <connections>
-                                            <action selector="selectText:" destination="kPT-r4-Osh" eventType="touchUpInside" id="Hwc-wc-rHh"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeL-cU-G5z">
+                                <rect key="frame" x="0.0" y="20" width="150" height="50"/>
                                 <constraints>
-                                    <constraint firstItem="JeL-cU-G5z" firstAttribute="width" secondItem="aRj-RH-tLi" secondAttribute="width" id="ITY-A6-RVn"/>
-                                    <constraint firstItem="aRj-RH-tLi" firstAttribute="width" secondItem="qsY-kM-EA2" secondAttribute="width" id="Upu-1i-FRN"/>
-                                    <constraint firstAttribute="height" constant="50" id="Uyo-da-dcA"/>
-                                    <constraint firstItem="qsY-kM-EA2" firstAttribute="width" secondItem="PaR-FS-dNZ" secondAttribute="width" id="iki-UL-6qT"/>
+                                    <constraint firstAttribute="height" constant="50" id="j6q-yt-67T"/>
                                 </constraints>
-                            </stackView>
+                                <state key="normal" title="Recognize"/>
+                                <connections>
+                                    <action selector="recognize:" destination="kPT-r4-Osh" eventType="touchUpInside" id="QSe-1p-dTG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsY-kM-EA2">
+                                <rect key="frame" x="300" y="20" width="150" height="50"/>
+                                <state key="normal" title="Show text"/>
+                                <connections>
+                                    <action selector="showRecognizedText:" destination="kPT-r4-Osh" eventType="touchUpInside" id="EcH-Yi-jj4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaR-FS-dNZ">
+                                <rect key="frame" x="450" y="20" width="150" height="50"/>
+                                <state key="normal" title="Text"/>
+                                <connections>
+                                    <action selector="selectText:" destination="kPT-r4-Osh" eventType="touchUpInside" id="Hwc-wc-rHh"/>
+                                </connections>
+                            </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dVV-on-c95">
                                 <rect key="frame" x="0.0" y="72" width="600" height="3"/>
                             </progressView>
@@ -69,22 +55,44 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRj-RH-tLi">
+                                <rect key="frame" x="150" y="20" width="150" height="50"/>
+                                <state key="normal" title="Download"/>
+                                <connections>
+                                    <action selector="download:" destination="kPT-r4-Osh" eventType="touchUpInside" id="OzN-Mz-reV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1wn-Yi-j3x" secondAttribute="trailing" id="0Cc-3R-GkU"/>
+                            <constraint firstItem="qsY-kM-EA2" firstAttribute="height" secondItem="PaR-FS-dNZ" secondAttribute="height" id="25B-Hc-pm4"/>
+                            <constraint firstItem="qsY-kM-EA2" firstAttribute="top" secondItem="8fl-Xl-i3E" secondAttribute="bottom" id="2dY-xQ-CzX"/>
+                            <constraint firstItem="PaR-FS-dNZ" firstAttribute="leading" secondItem="qsY-kM-EA2" secondAttribute="trailing" id="6GM-8v-oYI"/>
+                            <constraint firstItem="aRj-RH-tLi" firstAttribute="height" secondItem="qsY-kM-EA2" secondAttribute="height" id="7eC-Hk-hEe"/>
                             <constraint firstItem="dVV-on-c95" firstAttribute="leading" secondItem="tdg-Il-26D" secondAttribute="leading" id="9rJ-Xs-NJN"/>
                             <constraint firstItem="1wn-Yi-j3x" firstAttribute="top" secondItem="dVV-on-c95" secondAttribute="bottom" constant="2" id="ABD-zG-4Wh"/>
-                            <constraint firstItem="dVV-on-c95" firstAttribute="top" secondItem="XKE-EW-NBl" secondAttribute="bottom" constant="2" id="ADt-ye-Vgf"/>
                             <constraint firstItem="1wn-Yi-j3x" firstAttribute="leading" secondItem="tdg-Il-26D" secondAttribute="leading" id="B4Y-Rb-yFr"/>
+                            <constraint firstItem="dVV-on-c95" firstAttribute="top" secondItem="PaR-FS-dNZ" secondAttribute="bottom" constant="2" id="C6x-ir-4s6"/>
                             <constraint firstAttribute="trailing" secondItem="dVV-on-c95" secondAttribute="trailing" id="DhH-rX-byV"/>
                             <constraint firstAttribute="trailing" secondItem="mMq-LB-cPI" secondAttribute="trailing" id="G29-v3-obE"/>
+                            <constraint firstItem="aRj-RH-tLi" firstAttribute="leading" secondItem="JeL-cU-G5z" secondAttribute="trailing" id="GC5-eW-zxF"/>
+                            <constraint firstItem="JeL-cU-G5z" firstAttribute="leading" secondItem="tdg-Il-26D" secondAttribute="leading" id="HEE-M3-OzA"/>
+                            <constraint firstItem="dVV-on-c95" firstAttribute="top" secondItem="aRj-RH-tLi" secondAttribute="bottom" constant="2" id="I4w-eZ-EE4"/>
                             <constraint firstItem="mMq-LB-cPI" firstAttribute="top" secondItem="1wn-Yi-j3x" secondAttribute="bottom" constant="2" id="Kqr-84-sKe"/>
                             <constraint firstItem="jZi-Eh-Qm1" firstAttribute="top" secondItem="mMq-LB-cPI" secondAttribute="bottom" id="Lev-Jr-jQk"/>
-                            <constraint firstAttribute="trailing" secondItem="XKE-EW-NBl" secondAttribute="trailing" id="XbX-9d-bB7"/>
+                            <constraint firstItem="dVV-on-c95" firstAttribute="top" secondItem="qsY-kM-EA2" secondAttribute="bottom" constant="2" id="WVr-E4-kl9"/>
+                            <constraint firstItem="PaR-FS-dNZ" firstAttribute="top" secondItem="8fl-Xl-i3E" secondAttribute="bottom" id="bfH-Zl-uIu"/>
+                            <constraint firstItem="JeL-cU-G5z" firstAttribute="height" secondItem="aRj-RH-tLi" secondAttribute="height" id="bzl-i4-z6Z"/>
+                            <constraint firstItem="qsY-kM-EA2" firstAttribute="width" secondItem="PaR-FS-dNZ" secondAttribute="width" id="d86-Yn-gVM"/>
+                            <constraint firstItem="qsY-kM-EA2" firstAttribute="leading" secondItem="aRj-RH-tLi" secondAttribute="trailing" id="fwX-eP-ruJ"/>
+                            <constraint firstItem="JeL-cU-G5z" firstAttribute="width" secondItem="aRj-RH-tLi" secondAttribute="width" id="grO-KM-HCH"/>
+                            <constraint firstAttribute="trailing" secondItem="PaR-FS-dNZ" secondAttribute="trailing" id="jgl-R6-dHW"/>
+                            <constraint firstItem="aRj-RH-tLi" firstAttribute="top" secondItem="8fl-Xl-i3E" secondAttribute="bottom" id="mcE-Z4-XsM"/>
+                            <constraint firstItem="aRj-RH-tLi" firstAttribute="width" secondItem="qsY-kM-EA2" secondAttribute="width" id="oNg-Ph-xQw"/>
                             <constraint firstItem="mMq-LB-cPI" firstAttribute="leading" secondItem="tdg-Il-26D" secondAttribute="leading" id="pGt-m3-uG0"/>
-                            <constraint firstItem="XKE-EW-NBl" firstAttribute="top" secondItem="8fl-Xl-i3E" secondAttribute="bottom" id="q9S-He-glR"/>
-                            <constraint firstItem="XKE-EW-NBl" firstAttribute="leading" secondItem="tdg-Il-26D" secondAttribute="leading" id="v2U-dN-p5k"/>
+                            <constraint firstItem="dVV-on-c95" firstAttribute="top" secondItem="JeL-cU-G5z" secondAttribute="bottom" constant="2" id="uT7-Vy-xsN"/>
+                            <constraint firstItem="JeL-cU-G5z" firstAttribute="top" secondItem="8fl-Xl-i3E" secondAttribute="bottom" id="xoL-Pm-i95"/>
                         </constraints>
                     </view>
                     <connections>

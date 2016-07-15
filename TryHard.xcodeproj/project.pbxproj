@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19012B031D37E3D000072A3E /* pjsipfull.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19012B021D37E3D000072A3E /* pjsipfull.a */; };
 		19012B061D37E75600072A3E /* THPJSIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19012B051D37E75600072A3E /* THPJSIP.swift */; };
 		19012B0A1D37E83700072A3E /* THPJSipManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 19012B091D37E83700072A3E /* THPJSipManager.mm */; };
 		19012EE71D37EA7400072A3E /* m_auto.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 19012DB61D37EA7300072A3E /* m_auto.h.in */; };
@@ -53,6 +52,8 @@
 		19671CD11CE46FAE008A4C5A /* 3D.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19671CD01CE46FAE008A4C5A /* 3D.storyboard */; };
 		196D33F01CFDCF5C0031D023 /* THRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196D33EF1CFDCF5C0031D023 /* THRoundedView.swift */; };
 		196D33F21CFDD5FA0031D023 /* THNewChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196D33F11CFDD5FA0031D023 /* THNewChatCell.swift */; };
+		197760571D38DF2A0057795D /* SIP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197760561D38DF2A0057795D /* SIP.storyboard */; };
+		1977605A1D3931C50057795D /* pjsipfull.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 197760591D3931C50057795D /* pjsipfull.a */; };
 		1981867D1CF86FC60037B745 /* THTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1981867C1CF86FC60037B745 /* THTextField.swift */; };
 		1986C6B71D0E97C50061BD27 /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1986C6B61D0E97C50061BD27 /* BTDevice.m */; };
 		198E08D61D12CB4500CB0EED /* Tesseract.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198E08D51D12CB4500CB0EED /* Tesseract.storyboard */; };
@@ -95,7 +96,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		19012B021D37E3D000072A3E /* pjsipfull.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = pjsipfull.a; sourceTree = "<group>"; };
 		19012B051D37E75600072A3E /* THPJSIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THPJSIP.swift; sourceTree = "<group>"; };
 		19012B081D37E83700072A3E /* THPJSipManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPJSipManager.h; sourceTree = "<group>"; };
 		19012B091D37E83700072A3E /* THPJSipManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = THPJSipManager.mm; sourceTree = "<group>"; };
@@ -450,6 +450,8 @@
 		19671CD01CE46FAE008A4C5A /* 3D.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 3D.storyboard; sourceTree = "<group>"; };
 		196D33EF1CFDCF5C0031D023 /* THRoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THRoundedView.swift; sourceTree = "<group>"; };
 		196D33F11CFDD5FA0031D023 /* THNewChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THNewChatCell.swift; sourceTree = "<group>"; };
+		197760561D38DF2A0057795D /* SIP.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SIP.storyboard; sourceTree = "<group>"; };
+		197760591D3931C50057795D /* pjsipfull.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = pjsipfull.a; sourceTree = "<group>"; };
 		1981867C1CF86FC60037B745 /* THTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTextField.swift; sourceTree = "<group>"; };
 		1986C6B51D0E97C50061BD27 /* BTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDevice.h; sourceTree = "<group>"; };
 		1986C6B61D0E97C50061BD27 /* BTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDevice.m; sourceTree = "<group>"; };
@@ -535,7 +537,7 @@
 				19644A341D1416DB008712CC /* opencv2.framework in Frameworks */,
 				CE938B36B5692693070F3386 /* Pods_TryHard.framework in Frameworks */,
 				199139DA1D255D5000CAA99E /* libpocketsphinx.a in Frameworks */,
-				19012B031D37E3D000072A3E /* pjsipfull.a in Frameworks */,
+				1977605A1D3931C50057795D /* pjsipfull.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1170,7 +1172,7 @@
 				199139D91D255D5000CAA99E /* libpocketsphinx.a */,
 				199139DB1D25634400CAA99E /* libsphinxbase.a */,
 				199139DD1D25636000CAA99E /* libsphinxad.a */,
-				19012B021D37E3D000072A3E /* pjsipfull.a */,
+				197760591D3931C50057795D /* pjsipfull.a */,
 				199139A71D255A8300CAA99E /* include */,
 				1956AC831C9C42EF00E5DF0A /* TryHard */,
 				1956AC9B1C9C42EF00E5DF0A /* TryHardTests */,
@@ -1290,6 +1292,7 @@
 				19644A441D1428B0008712CC /* ImageProcessing.storyboard */,
 				19644A4B1D14363E008712CC /* VideoProcessing.storyboard */,
 				19133F9C1D26B0FB0090F5A7 /* Audio.storyboard */,
+				197760561D38DF2A0057795D /* SIP.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -1630,6 +1633,7 @@
 				1956AC8F1C9C42EF00E5DF0A /* Assets.xcassets in Resources */,
 				19644A501D144610008712CC /* trained_classifierNM1.xml in Resources */,
 				19012EEA1D37EA7400072A3E /* config_auto.h.in in Resources */,
+				197760571D38DF2A0057795D /* SIP.storyboard in Resources */,
 				1956AC8A1C9C42EF00E5DF0A /* Main.storyboard in Resources */,
 				19133F9D1D26B0FB0090F5A7 /* Audio.storyboard in Resources */,
 				198E08E41D12E07E00CB0EED /* ImageSelector.storyboard in Resources */,
@@ -1902,7 +1906,7 @@
 					$SOURCE_ROOT/include/pjsip/include,
 				);
 				INFOPLIST_FILE = TryHard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1960,7 +1964,7 @@
 					$SOURCE_ROOT/include/pjsip/include,
 				);
 				INFOPLIST_FILE = TryHard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

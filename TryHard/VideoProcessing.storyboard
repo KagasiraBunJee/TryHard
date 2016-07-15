@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
@@ -16,37 +17,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqX-aJ-V9U">
-                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIW-3M-5xv">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
-                                        <state key="normal" title="Start"/>
-                                        <connections>
-                                            <action selector="startAction:" destination="pog-cS-y8w" eventType="touchUpInside" id="Hb2-T8-9g2"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d30-ZW-hWm">
-                                        <rect key="frame" x="200" y="0.0" width="200" height="50"/>
-                                        <state key="normal" title="Stop"/>
-                                        <connections>
-                                            <action selector="stopAction:" destination="pog-cS-y8w" eventType="touchUpInside" id="ERS-Cp-KET"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmX-lg-1jS">
-                                        <rect key="frame" x="400" y="0.0" width="200" height="50"/>
-                                        <state key="normal" title="Detect"/>
-                                        <connections>
-                                            <action selector="detectAction:" destination="pog-cS-y8w" eventType="touchUpInside" id="5L0-s6-vCQ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIW-3M-5xv">
+                                <rect key="frame" x="0.0" y="20" width="200" height="50"/>
                                 <constraints>
-                                    <constraint firstItem="EIW-3M-5xv" firstAttribute="width" secondItem="d30-ZW-hWm" secondAttribute="width" id="2h6-V9-Qok"/>
-                                    <constraint firstAttribute="height" constant="50" id="DqO-b5-bof"/>
-                                    <constraint firstItem="d30-ZW-hWm" firstAttribute="width" secondItem="WmX-lg-1jS" secondAttribute="width" id="orT-BX-1Xl"/>
+                                    <constraint firstAttribute="height" constant="50" id="eGK-MJ-b0j"/>
                                 </constraints>
-                            </stackView>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startAction:" destination="pog-cS-y8w" eventType="touchUpInside" id="Hb2-T8-9g2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d30-ZW-hWm">
+                                <rect key="frame" x="200" y="20" width="200" height="50"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopAction:" destination="pog-cS-y8w" eventType="touchUpInside" id="ERS-Cp-KET"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmX-lg-1jS">
+                                <rect key="frame" x="400" y="20" width="200" height="50"/>
+                                <state key="normal" title="Detect"/>
+                                <connections>
+                                    <action selector="detectAction:" destination="pog-cS-y8w" eventType="touchUpInside" id="5L0-s6-vCQ"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CPr-Ea-C38">
                                 <rect key="frame" x="0.0" y="70" width="600" height="530"/>
                             </imageView>
@@ -58,16 +52,26 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CPr-Ea-C38" firstAttribute="leading" secondItem="nWf-xh-pCb" secondAttribute="leading" id="3wb-VZ-tpP"/>
+                            <constraint firstAttribute="trailing" secondItem="WmX-lg-1jS" secondAttribute="trailing" id="4PP-MN-DyQ"/>
+                            <constraint firstItem="EIW-3M-5xv" firstAttribute="width" secondItem="d30-ZW-hWm" secondAttribute="width" id="5fA-KA-GUL"/>
+                            <constraint firstItem="WmX-lg-1jS" firstAttribute="leading" secondItem="d30-ZW-hWm" secondAttribute="trailing" id="5vz-i4-90d"/>
+                            <constraint firstItem="EIW-3M-5xv" firstAttribute="height" secondItem="d30-ZW-hWm" secondAttribute="height" id="6gZ-FO-QT4"/>
                             <constraint firstItem="y9g-GA-S8X" firstAttribute="top" secondItem="OiC-BK-V4S" secondAttribute="bottom" id="BAg-ty-Hgf"/>
+                            <constraint firstItem="CPr-Ea-C38" firstAttribute="top" secondItem="EIW-3M-5xv" secondAttribute="bottom" id="DmB-VZ-nDg"/>
                             <constraint firstAttribute="trailing" secondItem="OiC-BK-V4S" secondAttribute="trailing" id="FUO-Qo-9IQ"/>
-                            <constraint firstAttribute="trailing" secondItem="cqX-aJ-V9U" secondAttribute="trailing" id="HUL-bE-WD9"/>
-                            <constraint firstItem="CPr-Ea-C38" firstAttribute="top" secondItem="cqX-aJ-V9U" secondAttribute="bottom" id="QG4-ya-kBK"/>
-                            <constraint firstItem="cqX-aJ-V9U" firstAttribute="leading" secondItem="nWf-xh-pCb" secondAttribute="leading" id="Ue2-gz-7Zc"/>
-                            <constraint firstItem="OiC-BK-V4S" firstAttribute="top" secondItem="cqX-aJ-V9U" secondAttribute="bottom" id="a2R-gO-wbC"/>
+                            <constraint firstItem="OiC-BK-V4S" firstAttribute="top" secondItem="EIW-3M-5xv" secondAttribute="bottom" id="GCq-Ya-IX2"/>
+                            <constraint firstItem="d30-ZW-hWm" firstAttribute="height" secondItem="WmX-lg-1jS" secondAttribute="height" id="Gdp-wA-x1N"/>
+                            <constraint firstItem="WmX-lg-1jS" firstAttribute="top" secondItem="RTg-du-zIw" secondAttribute="bottom" id="Rbp-Lq-M2r"/>
+                            <constraint firstItem="OiC-BK-V4S" firstAttribute="top" secondItem="WmX-lg-1jS" secondAttribute="bottom" id="apO-gc-rph"/>
+                            <constraint firstItem="d30-ZW-hWm" firstAttribute="width" secondItem="WmX-lg-1jS" secondAttribute="width" id="cGT-Rr-Png"/>
                             <constraint firstItem="y9g-GA-S8X" firstAttribute="top" secondItem="CPr-Ea-C38" secondAttribute="bottom" id="dbx-Tc-6Rp"/>
-                            <constraint firstItem="cqX-aJ-V9U" firstAttribute="top" secondItem="RTg-du-zIw" secondAttribute="bottom" id="oVZ-2R-fBH"/>
+                            <constraint firstItem="EIW-3M-5xv" firstAttribute="leading" secondItem="nWf-xh-pCb" secondAttribute="leading" id="dyM-3k-iA6"/>
+                            <constraint firstItem="d30-ZW-hWm" firstAttribute="top" secondItem="RTg-du-zIw" secondAttribute="bottom" id="itf-Xb-POO"/>
+                            <constraint firstItem="OiC-BK-V4S" firstAttribute="top" secondItem="d30-ZW-hWm" secondAttribute="bottom" id="iva-PO-IvJ"/>
+                            <constraint firstItem="EIW-3M-5xv" firstAttribute="top" secondItem="RTg-du-zIw" secondAttribute="bottom" id="o3u-UH-QpX"/>
                             <constraint firstItem="OiC-BK-V4S" firstAttribute="leading" secondItem="nWf-xh-pCb" secondAttribute="leading" id="pRa-hO-cs4"/>
                             <constraint firstAttribute="trailing" secondItem="CPr-Ea-C38" secondAttribute="trailing" id="q1N-90-b90"/>
+                            <constraint firstItem="d30-ZW-hWm" firstAttribute="leading" secondItem="EIW-3M-5xv" secondAttribute="trailing" id="tZB-kT-4az"/>
                         </constraints>
                     </view>
                     <connections>

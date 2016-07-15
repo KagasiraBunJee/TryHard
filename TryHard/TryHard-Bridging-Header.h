@@ -20,3 +20,4 @@
 #import "THCameraManager.h"
 #import "THImageFilter.h"
 #import "THCommandListener.h"
+#import "THPJSipManager.h"

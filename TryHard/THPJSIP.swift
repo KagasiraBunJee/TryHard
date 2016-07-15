@@ -9,19 +9,24 @@
 import UIKit
 
 class THPJSIP: UIViewController {
-
-    var status:pj_status_t!
+    
+    @IBOutlet weak var nickname: UITextField!
+    @IBOutlet weak var friend: UITextField!
+    
+    var sipManager:THPJSipManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        status = pjsua_create()
+        sipManager = THPJSipManager.sharedManager()
         
-        if status != PJ_SUCCESS.rawValue {
-            
-        }
-        
-        // Do any additional setup after loading the view.
     }
-
+    
+    @IBAction func registerAction(sender: AnyObject) {
+        sipManager.registerUser(nickname.text!, sipDomain: "10.0.1.68")
+    }
+    
+    @IBAction func makeCall(sender: AnyObject) {
+        sipManager.callTo(friend.text!)
+    }
 }

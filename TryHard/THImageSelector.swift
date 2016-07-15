@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import HanabiCollectionViewLayout
+//import HanabiCollectionViewLayout
 import SDWebImage
 
 class THImageSelector: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -28,13 +28,13 @@ class THImageSelector: UIViewController, UICollectionViewDelegate, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let layout = HanabiCollectionViewLayout()
+//        let layout = HanabiCollectionViewLayout()
         
-        layout.standartHeight = 100
-        layout.focusedHeight = 280
-        layout.dragOffset = 180
+//        layout.standartHeight = 100
+//        layout.focusedHeight = 280
+//        layout.dragOffset = 180
         
-        collectionView.collectionViewLayout = layout
+//        collectionView.collectionViewLayout = layout
         collectionView.delegate = self
         collectionView.dataSource = self
     }

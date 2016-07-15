@@ -198,7 +198,7 @@ using namespace cv::text;
     return arrays;
 }
 
-//MARK:- private methods
+#pragma mark private methods
 - (UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
 {
     NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
@@ -282,7 +282,7 @@ using namespace cv::text;
     return cvMat;
 }
 
-//MARK:- Helper methods
+#pragma mark Helper methods
 
 vector<cv::Rect> detectLetters123(cv::Mat img)
 {
