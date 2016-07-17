@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--CommandVC-->
+        <scene sceneID="Cfi-aZ-dXV">
+            <objects>
+                <viewController storyboardIdentifier="THCommandVC" id="OHC-i4-cXa" customClass="THCommandVC" customModule="TryHard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b5H-yj-4dT"/>
+                        <viewControllerLayoutGuide type="bottom" id="S3V-LC-hgt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jWK-Ww-04O">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mij-4v-hAw">
+                                <rect key="frame" x="0.0" y="20" width="300" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="zC7-w9-eTi"/>
+                                </constraints>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startRecord:" destination="OHC-i4-cXa" eventType="touchUpInside" id="XY7-Ai-EY6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vf2-mi-F0Q">
+                                <rect key="frame" x="300" y="20" width="300" height="50"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopRecord:" destination="OHC-i4-cXa" eventType="touchUpInside" id="vlN-Kh-Vjf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mij-4v-hAw" firstAttribute="top" secondItem="b5H-yj-4dT" secondAttribute="bottom" id="1l6-3y-l8b"/>
+                            <constraint firstItem="Mij-4v-hAw" firstAttribute="width" secondItem="Vf2-mi-F0Q" secondAttribute="width" id="4bW-LJ-l09"/>
+                            <constraint firstItem="Mij-4v-hAw" firstAttribute="leading" secondItem="jWK-Ww-04O" secondAttribute="leading" id="VPM-Ke-gqe"/>
+                            <constraint firstItem="Vf2-mi-F0Q" firstAttribute="top" secondItem="b5H-yj-4dT" secondAttribute="bottom" id="fRX-h2-TOb"/>
+                            <constraint firstItem="Mij-4v-hAw" firstAttribute="height" secondItem="Vf2-mi-F0Q" secondAttribute="height" id="qY4-iZ-96o"/>
+                            <constraint firstItem="Vf2-mi-F0Q" firstAttribute="leading" secondItem="Mij-4v-hAw" secondAttribute="trailing" id="sq2-5A-aHa"/>
+                            <constraint firstAttribute="trailing" secondItem="Vf2-mi-F0Q" secondAttribute="trailing" id="w18-6S-lJ9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="42y-Qv-W6i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="482" y="343"/>
+        </scene>
+    </scenes>
+</document>

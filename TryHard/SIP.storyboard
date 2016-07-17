@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--THPJSIP-->
+        <scene sceneID="iHA-Ti-0rv">
+            <objects>
+                <viewController storyboardIdentifier="THPJSIP" id="j5M-96-4TC" customClass="THPJSIP" customModule="TryHard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nbd-7u-jFb"/>
+                        <viewControllerLayoutGuide type="bottom" id="whU-Zn-R8B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dSs-HV-NXx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mfS-GN-vdM">
+                                <rect key="frame" x="20" y="20" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1CB-Rt-zgd">
+                                <rect key="frame" x="20" y="58" width="57" height="30"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerAction:" destination="j5M-96-4TC" eventType="touchUpInside" id="w50-gQ-nOM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCK-cr-TOk">
+                                <rect key="frame" x="20" y="96" width="30" height="30"/>
+                                <state key="normal" title="Call"/>
+                                <connections>
+                                    <action selector="makeCall:" destination="j5M-96-4TC" eventType="touchUpInside" id="jmE-pj-UDO"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bvj-q5-AeU">
+                                <rect key="frame" x="20" y="134" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xjj-1G-52S">
+                                <rect key="frame" x="20" y="172" width="51" height="30"/>
+                                <state key="normal" title="Answer"/>
+                                <connections>
+                                    <action selector="answerCall:" destination="j5M-96-4TC" eventType="touchUpInside" id="ElL-6K-gIb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6z-j7-ten">
+                                <rect key="frame" x="20" y="210" width="58" height="30"/>
+                                <state key="normal" title="Hang up"/>
+                                <connections>
+                                    <action selector="hangUP:" destination="j5M-96-4TC" eventType="touchUpInside" id="PjG-Rj-4bj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3K-GC-NVm">
+                                <rect key="frame" x="20" y="248" width="30" height="30"/>
+                                <state key="normal" title="hold"/>
+                                <connections>
+                                    <action selector="holdCall:" destination="j5M-96-4TC" eventType="touchUpInside" id="lfe-cY-z5Y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdF-pU-Xlx">
+                                <rect key="frame" x="20" y="286" width="47" height="30"/>
+                                <state key="normal" title="unhold"/>
+                                <connections>
+                                    <action selector="unholdCall:" destination="j5M-96-4TC" eventType="touchUpInside" id="5mX-2I-HeQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xjj-1G-52S" firstAttribute="top" secondItem="Bvj-q5-AeU" secondAttribute="bottom" constant="8" id="AQa-jc-ygu"/>
+                            <constraint firstItem="Bvj-q5-AeU" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="FhR-9z-Gf6"/>
+                            <constraint firstItem="1CB-Rt-zgd" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="Ifb-j2-l2L"/>
+                            <constraint firstItem="E6z-j7-ten" firstAttribute="top" secondItem="Xjj-1G-52S" secondAttribute="bottom" constant="8" id="NiS-Mh-9eg"/>
+                            <constraint firstItem="qdF-pU-Xlx" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="O5W-SY-npd"/>
+                            <constraint firstItem="mfS-GN-vdM" firstAttribute="top" secondItem="nbd-7u-jFb" secondAttribute="bottom" id="QEq-rP-7bh"/>
+                            <constraint firstItem="wCK-cr-TOk" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="TQ9-qS-JoT"/>
+                            <constraint firstItem="l3K-GC-NVm" firstAttribute="top" secondItem="E6z-j7-ten" secondAttribute="bottom" constant="8" id="YAO-40-DiE"/>
+                            <constraint firstItem="qdF-pU-Xlx" firstAttribute="top" secondItem="l3K-GC-NVm" secondAttribute="bottom" constant="8" id="egc-Ls-lR9"/>
+                            <constraint firstItem="Bvj-q5-AeU" firstAttribute="top" secondItem="wCK-cr-TOk" secondAttribute="bottom" constant="8" id="fOy-gx-dqo"/>
+                            <constraint firstItem="1CB-Rt-zgd" firstAttribute="top" secondItem="mfS-GN-vdM" secondAttribute="bottom" constant="8" id="gYE-64-nIY"/>
+                            <constraint firstItem="l3K-GC-NVm" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="kxA-yZ-P2I"/>
+                            <constraint firstAttribute="trailing" secondItem="Bvj-q5-AeU" secondAttribute="trailing" constant="20" id="pYg-NM-cRP"/>
+                            <constraint firstItem="E6z-j7-ten" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="qPm-Nq-pd4"/>
+                            <constraint firstItem="mfS-GN-vdM" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="t7c-4x-fhK"/>
+                            <constraint firstItem="wCK-cr-TOk" firstAttribute="top" secondItem="1CB-Rt-zgd" secondAttribute="bottom" constant="8" id="tEB-Ok-RP0"/>
+                            <constraint firstItem="Xjj-1G-52S" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="w4n-jG-997"/>
+                            <constraint firstAttribute="trailing" secondItem="mfS-GN-vdM" secondAttribute="trailing" constant="20" id="wYH-eK-Hlb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="friend" destination="Bvj-q5-AeU" id="idZ-IU-TZO"/>
+                        <outlet property="nickname" destination="mfS-GN-vdM" id="Dk0-hX-Pn1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xJJ-Hc-1G3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="398" y="319"/>
+        </scene>
+    </scenes>
+</document>
