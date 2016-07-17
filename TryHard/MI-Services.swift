@@ -35,6 +35,7 @@ enum MICharacteristic : String {
     case SENSOR_DATA = "FF0E"       //read/notify
     case PAIR = "FF0F"              //read/write
     case Unknown1 = "FF10"
+    case Unknown2 = "FEC9"
     
     //Alert service
     case Alert = "2A06"             //write w/o response

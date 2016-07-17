@@ -20,6 +20,8 @@ class THPublicBT: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var centralManager = CBCentralManager()
     var connectedDevice:CBPeripheral!
     
+    var miManager:MIServiceManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +29,8 @@ class THPublicBT: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         tableView.dataSource = self
         
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        
+        miManager = MIServiceManager.sharedManager()
         
         scanButton.enabled = false
     }
@@ -172,6 +176,7 @@ extension THPublicBT : CBPeripheralDelegate {
         
         if MIService(rawValue: service.UUID.UUIDString)! == .MILI {
             for ch in service.characteristics! {
+                miManager.add(ch)
                 switch MICharacteristic(rawValue: ch.UUID.UUIDString)! {
                 case .PAIR:
                     connectedDevice.writeValue("2".dataUsingEncoding(NSUTF8StringEncoding)!, forCharacteristic: ch, type: .WithResponse)
@@ -181,18 +186,19 @@ extension THPublicBT : CBPeripheralDelegate {
             }
         } else if MIService(rawValue: service.UUID.UUIDString)! == .Alert {
             for ch in service.characteristics! {
-                switch MICharacteristic(rawValue: ch.UUID.UUIDString)! {
-                case .Alert:
-                    break
-                    let value = [0x01]
-                    let data = NSData(bytes: value, length: value.count)
-                    
-                    connectedDevice.writeValue(data, forCharacteristic: ch, type: .WithResponse)
-                default:
-                    break
-                }
+                miManager.add(ch)
+//                switch MICharacteristic(rawValue: ch.UUID.UUIDString)! {
+//                case .Alert:
+//                    let value = [0x02]
+//                    let data = NSData(bytes: value, length: value.count)
+//                    connectedDevice.writeValue(data, forCharacteristic: ch, type: .WithoutResponse)
+//                default:
+//                    break
+//                }
             }
         }
+        
+        
         
         print("-----------------")
     }
@@ -222,9 +228,9 @@ extension THPublicBT : CBPeripheralDelegate {
             let data = characteristic.value
             
 //            let c = CBMutableCharacteristic(type: CBUUID(string: MICharacteristic.Alert.rawValue), properties: .Notify, value: nil, permissions: .Writeable)
-//            let value = [0x01]
-//            let data1 = NSData(bytes: value, length: value.count)
-//            connectedDevice.writeValue(data1, forCharacteristic: c, type: .WithResponse)
+            let value = [0x02]
+            let data1 = NSData(bytes: value, length: value.count)
+            peripheral.writeValue(data1, forCharacteristic: miManager.get(.Alert)!, type: .WithoutResponse)
         default:
             break
         }
