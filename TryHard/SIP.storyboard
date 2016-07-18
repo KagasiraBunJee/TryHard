@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,10 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mfS-GN-vdM">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mfS-GN-vdM" customClass="THTextField" customModule="TryHard" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1CB-Rt-zgd">
                                 <rect key="frame" x="20" y="58" width="57" height="30"/>
@@ -36,10 +36,10 @@
                                     <action selector="makeCall:" destination="j5M-96-4TC" eventType="touchUpInside" id="jmE-pj-UDO"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bvj-q5-AeU">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bvj-q5-AeU" customClass="THTextField" customModule="TryHard" customModuleProvider="target">
                                 <rect key="frame" x="20" y="134" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xjj-1G-52S">
                                 <rect key="frame" x="20" y="172" width="51" height="30"/>
@@ -69,15 +69,23 @@
                                     <action selector="unholdCall:" destination="j5M-96-4TC" eventType="touchUpInside" id="5mX-2I-HeQ"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hm6-LE-efo">
+                                <rect key="frame" x="20" y="324" width="560" height="268"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hm6-LE-efo" secondAttribute="trailing" constant="20" id="0cR-ee-OBc"/>
                             <constraint firstItem="Xjj-1G-52S" firstAttribute="top" secondItem="Bvj-q5-AeU" secondAttribute="bottom" constant="8" id="AQa-jc-ygu"/>
                             <constraint firstItem="Bvj-q5-AeU" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="FhR-9z-Gf6"/>
+                            <constraint firstItem="hm6-LE-efo" firstAttribute="top" secondItem="qdF-pU-Xlx" secondAttribute="bottom" constant="8" id="HyD-PU-fqj"/>
                             <constraint firstItem="1CB-Rt-zgd" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="Ifb-j2-l2L"/>
                             <constraint firstItem="E6z-j7-ten" firstAttribute="top" secondItem="Xjj-1G-52S" secondAttribute="bottom" constant="8" id="NiS-Mh-9eg"/>
+                            <constraint firstItem="hm6-LE-efo" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="O15-YP-seK"/>
                             <constraint firstItem="qdF-pU-Xlx" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="O5W-SY-npd"/>
                             <constraint firstItem="mfS-GN-vdM" firstAttribute="top" secondItem="nbd-7u-jFb" secondAttribute="bottom" id="QEq-rP-7bh"/>
+                            <constraint firstItem="whU-Zn-R8B" firstAttribute="top" secondItem="hm6-LE-efo" secondAttribute="bottom" constant="8" id="QKN-ur-4Nf"/>
                             <constraint firstItem="wCK-cr-TOk" firstAttribute="leading" secondItem="dSs-HV-NXx" secondAttribute="leading" constant="20" id="TQ9-qS-JoT"/>
                             <constraint firstItem="l3K-GC-NVm" firstAttribute="top" secondItem="E6z-j7-ten" secondAttribute="bottom" constant="8" id="YAO-40-DiE"/>
                             <constraint firstItem="qdF-pU-Xlx" firstAttribute="top" secondItem="l3K-GC-NVm" secondAttribute="bottom" constant="8" id="egc-Ls-lR9"/>
@@ -93,8 +101,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="friend" destination="Bvj-q5-AeU" id="idZ-IU-TZO"/>
-                        <outlet property="nickname" destination="mfS-GN-vdM" id="Dk0-hX-Pn1"/>
+                        <outlet property="friend" destination="Bvj-q5-AeU" id="uvO-bb-KXF"/>
+                        <outlet property="nickname" destination="mfS-GN-vdM" id="JiA-x6-9c9"/>
+                        <outlet property="videoView" destination="hm6-LE-efo" id="sEy-jK-9md"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xJJ-Hc-1G3" userLabel="First Responder" sceneMemberID="firstResponder"/>

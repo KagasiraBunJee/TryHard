@@ -34,6 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             TryProject(title: "AudioCommands", projectInfo: "", vc: VCLoader<THCommandVC>.load(storyboardId: .Audio, inStoryboardID: "THCommandVC")),
             TryProject(title: "PJSIP", projectInfo: "", vc: VCLoader<THPJSIP>.load(storyboardId: .SIP, inStoryboardID: "THPJSIP"))
         ]
+        
+        tableView.tableFooterView = UIView()
     }
     
     //MARK:- UITableViewDataSource

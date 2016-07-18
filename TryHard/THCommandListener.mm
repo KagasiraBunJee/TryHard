@@ -37,29 +37,29 @@
         ps = NULL;
         config = NULL;
         
-        NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"model"];
-        NSString *musicFile = [[NSBundle mainBundle] pathForResource:@"goforward" ofType:@"raw"];
+//        NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"model"];
+//        NSString *musicFile = [[NSBundle mainBundle] pathForResource:@"goforward" ofType:@"raw"];
+//        
+//        const char *usFolderPath = [[modelPath stringByAppendingString:@"/en-us/en-us"] cStringUsingEncoding:NSUTF8StringEncoding];
+//        const char *uslmbinfile = [[modelPath stringByAppendingString:@"/en-us/en-us.lm.bin"] cStringUsingEncoding:NSUTF8StringEncoding];
+//        const char *uscmudictfile = [[modelPath stringByAppendingString:@"/en-us/cmudict-en-us.dict"] cStringUsingEncoding:NSUTF8StringEncoding];
+//        
+//        config = cmd_ln_init(NULL, ps_args(), TRUE,
+//                             "-hmm", usFolderPath,
+//                             "-lm", uslmbinfile,
+//                             "-dict", uscmudictfile,
+//                             NULL);
+//        if (config == NULL)
+//        {
+//            NSLog(@"Error to create config object");
+//        }
         
-        const char *usFolderPath = [[modelPath stringByAppendingString:@"/en-us/en-us"] cStringUsingEncoding:NSUTF8StringEncoding];
-        const char *uslmbinfile = [[modelPath stringByAppendingString:@"/en-us/en-us.lm.bin"] cStringUsingEncoding:NSUTF8StringEncoding];
-        const char *uscmudictfile = [[modelPath stringByAppendingString:@"/en-us/cmudict-en-us.dict"] cStringUsingEncoding:NSUTF8StringEncoding];
+//        ps = ps_init(config);
         
-        config = cmd_ln_init(NULL, ps_args(), TRUE,
-                             "-hmm", usFolderPath,
-                             "-lm", uslmbinfile,
-                             "-dict", uscmudictfile,
-                             NULL);
-        if (config == NULL)
-        {
-            NSLog(@"Error to create config object");
-        }
-        
-        ps = ps_init(config);
-        
-        if (ps == NULL)
-        {
-            NSLog(@"Failed to create recognizer");
-        }
+//        if (ps == NULL)
+//        {
+//            NSLog(@"Failed to create recognizer");
+//        }
     }
     return self;
 }

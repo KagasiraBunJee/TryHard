@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "THPJSIPDelegate.h"
 
 @interface THPJSipManager : NSObject
 
 @property (nonatomic, weak) id<THPJSipManagerDelegate> delegate;
+
+@property (nonatomic, assign, readonly) int calls;
+@property (nonatomic, assign, readonly) int incomingCalls;
+@property (nonatomic) UIView *videoView;
 
 +(THPJSipManager*) sharedManager;
 -(void)registerUser:(NSString *)sipUser sipDomain:(NSString *)sipDomain;

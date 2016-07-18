@@ -10,10 +10,11 @@ import UIKit
 
 class THPJSIP: UIViewController, THPJSipManagerDelegate {
     
-    @IBOutlet weak var nickname: UITextField!
-    @IBOutlet weak var friend: UITextField!
+    @IBOutlet weak var nickname: THTextField!
+    @IBOutlet weak var friend: THTextField!
+    @IBOutlet weak var videoView: UIView!
     
-    lazy var serverDomain = "192.168.0.105"
+    lazy var serverDomain = "10.0.1.68"
     
     var sipManager:THPJSipManager!
     var currentCall:Int32?
@@ -23,6 +24,7 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
 
         sipManager = THPJSipManager.sharedManager()
         sipManager.delegate = self
+        sipManager.videoView = videoView
     }
     
     @IBAction func registerAction(sender: AnyObject) {

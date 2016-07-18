@@ -18,6 +18,12 @@
 		19133F9B1D26B08B0090F5A7 /* THCommandVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19133F9A1D26B08B0090F5A7 /* THCommandVC.swift */; };
 		19133F9D1D26B0FB0090F5A7 /* Audio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19133F9C1D26B0FB0090F5A7 /* Audio.storyboard */; };
 		191FD8E81D0AF0D100205F2D /* THPrivateBT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191FD8E71D0AF0D100205F2D /* THPrivateBT.swift */; };
+		192B8E451D3CB25200962A18 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E441D3CB25200962A18 /* opencv2.framework */; };
+		192B8E481D3D28A000962A18 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E461D3D28A000962A18 /* CoreAudio.framework */; };
+		192B8E491D3D28A000962A18 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E471D3D28A000962A18 /* CoreVideo.framework */; };
+		192B8E4B1D3D28B700962A18 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E4A1D3D28B700962A18 /* OpenGLES.framework */; };
+		192B8E4D1D3D28CE00962A18 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E4C1D3D28CE00962A18 /* QuartzCore.framework */; };
+		192B8E4F1D3D2CD800962A18 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E4E1D3D2CD800962A18 /* CFNetwork.framework */; };
 		1930ED331D1944BC00C44266 /* THCameraManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1930ED321D1944BC00C44266 /* THCameraManager.mm */; };
 		1930ED361D1969FD00C44266 /* THImageFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1930ED351D1969FD00C44266 /* THImageFilter.mm */; };
 		193155131D0FE21200C0E62A /* THPublicBT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193155121D0FE21200C0E62A /* THPublicBT.swift */; };
@@ -75,7 +81,6 @@
 		19CB61801D0EA312004241C7 /* THDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CB617F1D0EA312004241C7 /* THDevice.swift */; };
 		19CB61821D0EAD02004241C7 /* THBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CB61811D0EAD02004241C7 /* THBluetoothManager.swift */; };
 		854BEB421D115BEE003B3B63 /* MIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BEB411D115BEE003B3B63 /* MIServiceManager.swift */; };
-		8569BA311D3B8A2900E564FE /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8569BA301D3B8A2900E564FE /* opencv2.framework */; };
 		8569BA351D3B95C400E564FE /* PJSIPCallInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8569BA341D3B95C400E564FE /* PJSIPCallInfo.m */; };
 		85F89FAA1D11942500F26A71 /* MIUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F89FA91D11942500F26A71 /* MIUserInfo.swift */; };
 		85F89FAD1D119CF100F26A71 /* MIByteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F89FAC1D119CF100F26A71 /* MIByteHelper.m */; };
@@ -411,6 +416,12 @@
 		19133F9C1D26B0FB0090F5A7 /* Audio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Audio.storyboard; sourceTree = "<group>"; };
 		191FD8E71D0AF0D100205F2D /* THPrivateBT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THPrivateBT.swift; sourceTree = "<group>"; };
 		191FD8ED1D0AF81000205F2D /* TryHard-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TryHard-Bridging-Header.h"; path = "TryHard/TryHard-Bridging-Header.h"; sourceTree = "<group>"; };
+		192B8E441D3CB25200962A18 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = TryHard/opencv2.framework; sourceTree = "<group>"; };
+		192B8E461D3D28A000962A18 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		192B8E471D3D28A000962A18 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		192B8E4A1D3D28B700962A18 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		192B8E4C1D3D28CE00962A18 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		192B8E4E1D3D2CD800962A18 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1930ED311D1944BC00C44266 /* THCameraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCameraManager.h; sourceTree = "<group>"; };
 		1930ED321D1944BC00C44266 /* THCameraManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = THCameraManager.mm; sourceTree = "<group>"; };
 		1930ED341D1969FD00C44266 /* THImageFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THImageFilter.h; sourceTree = "<group>"; };
@@ -524,7 +535,6 @@
 		19CD6C061D1006DA00F180A5 /* BluetoothManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BluetoothManager.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/BluetoothManager.framework; sourceTree = DEVELOPER_DIR; };
 		65EBDEA9D8BA64A0F5F26411 /* Pods-TryHard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TryHard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TryHard/Pods-TryHard.debug.xcconfig"; sourceTree = "<group>"; };
 		854BEB411D115BEE003B3B63 /* MIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIServiceManager.swift; sourceTree = "<group>"; };
-		8569BA301D3B8A2900E564FE /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		8569BA321D3B94E000E564FE /* THPJSIPDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPJSIPDelegate.h; sourceTree = "<group>"; };
 		8569BA331D3B95C400E564FE /* PJSIPCallInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJSIPCallInfo.h; sourceTree = "<group>"; };
 		8569BA341D3B95C400E564FE /* PJSIPCallInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJSIPCallInfo.m; sourceTree = "<group>"; };
@@ -540,10 +550,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192B8E4F1D3D2CD800962A18 /* CFNetwork.framework in Frameworks */,
+				192B8E4D1D3D28CE00962A18 /* QuartzCore.framework in Frameworks */,
+				192B8E4B1D3D28B700962A18 /* OpenGLES.framework in Frameworks */,
+				192B8E481D3D28A000962A18 /* CoreAudio.framework in Frameworks */,
+				192B8E491D3D28A000962A18 /* CoreVideo.framework in Frameworks */,
 				19644A3A1D141739008712CC /* AssetsLibrary.framework in Frameworks */,
 				19644A381D141723008712CC /* CoreMedia.framework in Frameworks */,
 				199139DE1D25636000CAA99E /* libsphinxad.a in Frameworks */,
-				8569BA311D3B8A2900E564FE /* opencv2.framework in Frameworks */,
+				192B8E451D3CB25200962A18 /* opencv2.framework in Frameworks */,
 				199139DC1D25634400CAA99E /* libsphinxbase.a in Frameworks */,
 				19644A361D14171C008712CC /* AVFoundation.framework in Frameworks */,
 				CE938B36B5692693070F3386 /* Pods_TryHard.framework in Frameworks */,
@@ -1183,7 +1198,7 @@
 		1956AC781C9C42EF00E5DF0A = {
 			isa = PBXGroup;
 			children = (
-				8569BA301D3B8A2900E564FE /* opencv2.framework */,
+				192B8E441D3CB25200962A18 /* opencv2.framework */,
 				199139D91D255D5000CAA99E /* libpocketsphinx.a */,
 				199139DB1D25634400CAA99E /* libsphinxbase.a */,
 				199139DD1D25636000CAA99E /* libsphinxad.a */,
@@ -1512,6 +1527,11 @@
 		A7F4EDC60E59D8F261D75AC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				192B8E4E1D3D2CD800962A18 /* CFNetwork.framework */,
+				192B8E4C1D3D28CE00962A18 /* QuartzCore.framework */,
+				192B8E4A1D3D28B700962A18 /* OpenGLES.framework */,
+				192B8E461D3D28A000962A18 /* CoreAudio.framework */,
+				192B8E471D3D28A000962A18 /* CoreVideo.framework */,
 				19644A391D141739008712CC /* AssetsLibrary.framework */,
 				19644A371D141723008712CC /* CoreMedia.framework */,
 				19644A351D14171C008712CC /* AVFoundation.framework */,

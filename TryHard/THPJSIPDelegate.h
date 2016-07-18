@@ -15,6 +15,7 @@
 @required
 -(void)sipOnIncomingCall:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
 @optional
+-(void)sipOnCallOnCalling:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
 -(void)sipOnCallDidConfirm:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
 -(void)sipOnCallDidHangUp:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
 
