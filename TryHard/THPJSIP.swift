@@ -32,12 +32,12 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
     }
     
     @IBAction func makeCall(sender: AnyObject) {
-        sipManager.callTo(friend.text!)
+        sipManager.callTo(friend.text!, withVideo: true)
     }
     
     @IBAction func answerCall(sender: AnyObject) {
         if let call = currentCall {
-            sipManager.answer(call)
+            sipManager.answer(call, withVideo: true)
         }
     }
     

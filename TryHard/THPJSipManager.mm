@@ -60,16 +60,6 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     if (status != PJ_SUCCESS) error("Error adding account", status);
 }
 
--(void)callTo:(NSString *)sipUser
-{
-    char regUri[MAX_SIP_REG_URI_LENGTH];
-    sprintf(regUri, "sip:%s", [sipUser UTF8String]);
-    pj_str_t uri = pj_str(regUri);
-    
-    self.status = pjsua_call_make_call(currentAccount, &uri, NULL, NULL, NULL, NULL);
-    if (self.status != PJ_SUCCESS) error("Error making call", status);
-}
-
 -(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo
 {
     char regUri[MAX_SIP_REG_URI_LENGTH];
@@ -87,11 +77,6 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     
     self.status = pjsua_call_make_call(currentAccount, &uri, &callCfg, NULL, NULL, NULL);
     if (self.status != PJ_SUCCESS) error("Error making call", status);
-}
-
--(void)answer:(int) call_id
-{
-    pjsua_call_answer2(call_id, NULL, 200, NULL, NULL);
 }
 
 -(void)answer:(int) call_id withVideo:(BOOL) withVideo
