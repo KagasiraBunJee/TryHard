@@ -28,7 +28,13 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
     }
     
     @IBAction func registerAction(sender: AnyObject) {
-        sipManager.registerUser(nickname.text!, sipDomain: serverDomain)
+        let dict = [
+            "userName" : "test",
+            "userLastName" : "testtest"
+        ]
+        let data = NSKeyedArchiver.archivedDataWithRootObject(dict)
+        
+        sipManager.registerUser(nickname.text!, sipDomain: serverDomain, userInfo: UnsafeMutablePointer<Void>(data.bytes))
     }
     
     @IBAction func makeCall(sender: AnyObject) {

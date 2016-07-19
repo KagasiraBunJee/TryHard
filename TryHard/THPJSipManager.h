@@ -19,11 +19,17 @@
 @property (nonatomic) UIView *videoView;
 
 +(THPJSipManager*) sharedManager;
--(void)registerUser:(NSString *)sipUser sipDomain:(NSString *)sipDomain;
+
+-(void)registerUser:(NSString *)sipUser sipDomain:(NSString *)sipDomain userInfo:(void* ) userInfo;
+
 -(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo;
 -(void)answer:(int) call_id withVideo:(BOOL) withVideo;
 -(void)hangUp:(int) call_id;
 -(void)holdCall:(int) call_id;
 -(void)unholdCall:(int) call_id;
+
+-(NSData*)getAccInfo:(int)acc_id;
+
+//Friends methods
 
 @end

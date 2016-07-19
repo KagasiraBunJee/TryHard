@@ -54,9 +54,9 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     return self;
 }
 
--(void)registerUser:(NSString *)sipUser sipDomain:(NSString *)sipDomain
+-(void)registerUser:(NSString *)sipUser sipDomain:(NSString *)sipDomain userInfo:(void* ) userInfo
 {
-    currentAccount = registerAcc(status, sipUser, sipDomain);
+    currentAccount = registerAcc(status, sipUser, sipDomain, userInfo);
     if (status != PJ_SUCCESS) error("Error adding account", status);
 }
 
@@ -70,7 +70,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     pjsua_call_setting callCfg;
     pjsua_call_setting_default(&callCfg);
     callCfg.vid_cnt = 1;
-    if (withVideo == NO || [UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    if (withVideo == NO || ![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
     {
         callCfg.vid_cnt = 0;
     }
@@ -85,7 +85,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     pjsua_call_setting_default(&callCfg);
     callCfg.vid_cnt = 1;
     
-    if (withVideo == NO || [UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    if (withVideo == NO || ![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
     {
         callCfg.vid_cnt = 0;
     }
@@ -106,6 +106,14 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
 -(void)unholdCall:(int)call_id
 {
     pjsua_call_reinvite(call_id, PJSUA_CALL_UNHOLD, NULL);
+}
+
+-(NSData*)getAccInfo:(int)acc_id
+{
+    void * data = pjsua_acc_get_user_data(acc_id);
+    
+    NSData *nsdata = [NSData dataWithBytes:data length:sizeof(data)];
+    return nsdata;
 }
 
 #pragma mark - setting up methods
@@ -211,7 +219,7 @@ static void error(const char *title, pj_status_t status)
     pjsua_destroy();
 }
 
-static pjsua_acc_id registerAcc(pj_status_t &status, NSString* sipUser, NSString* sipDomain)
+static pjsua_acc_id registerAcc(pj_status_t &status, NSString* sipUser, NSString* sipDomain, void* userData)
 {
     pjsua_acc_id acc_id;
     pjsua_acc_config cfg;
@@ -231,12 +239,12 @@ static pjsua_acc_id registerAcc(pj_status_t &status, NSString* sipUser, NSString
     // 2. Register the account
     status = pjsua_acc_add(&cfg, PJ_TRUE, &acc_id);
     if (status != PJ_SUCCESS) error("Error registering acc", status);
+    if (status == PJ_SUCCESS) pjsua_acc_set_user_data(acc_id, userData);
     
-    char codec[MAX_SIP_ID_LENGTH];
-    sprintf(sipId, "%s", "H263-1998/96");
-    pj_str_t pro = pj_str(codec);
-    pjsua_vid_codec_set_priority(&pro,255);
-    
+//    char codec[MAX_SIP_ID_LENGTH];
+//    sprintf(sipId, "%s", "H263-1998/96");
+//    pj_str_t pro = pj_str(codec);
+//    pjsua_vid_codec_set_priority(&pro,255);
     
     return acc_id;
 }
@@ -321,85 +329,106 @@ static void on_call_media_state(pjsua_call_id call_id)
 
 static void on_call_media_event(pjsua_call_id call_id, unsigned med_idx, pjmedia_event *event)
 {
-#if PJSUA_HAS_VIDEO
     if (event->type == PJMEDIA_EVENT_FMT_CHANGED) {
         /* Adjust renderer window size to original video size */
         pjsua_call_info ci;
         
         pjsua_call_get_info(call_id, &ci);
         
-        if ((ci.media[med_idx].type == PJMEDIA_TYPE_VIDEO) &&
-            (ci.media[med_idx].dir & PJMEDIA_DIR_DECODING))
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
         {
-            pjsua_vid_win_id wid;
-            pjmedia_rect_size size;
-            pjsua_vid_win_info win_info;
-            
-            wid = ci.media[med_idx].stream.vid.win_in;
-            pjsua_vid_win_get_info(wid, &win_info);
-            
-            size = event->data.fmt_changed.new_fmt.det.vid.size;
-            if (size.w != win_info.size.w || size.h != win_info.size.h) {
-                pjsua_vid_win_set_size(wid, &size);
-                
-                /* Re-arrange video windows */
-                
-                int vid_idx;
+            if ((ci.media[med_idx].type == PJMEDIA_TYPE_VIDEO) &&
+                (ci.media[med_idx].dir & PJMEDIA_DIR_DECODING))
+            {
                 pjsua_vid_win_id wid;
+                pjmedia_rect_size size;
+                pjsua_vid_win_info win_info;
                 
-                vid_idx = pjsua_call_get_vid_stream_idx(call_id);
-                pj_bool_t videoRunning = pjsua_call_vid_stream_is_running(call_id, vid_idx, ci.media_dir);
-                if (vid_idx >= 0 && videoRunning == PJ_TRUE) {
+                wid = ci.media[med_idx].stream.vid.win_in;
+                pjsua_vid_win_get_info(wid, &win_info);
+                
+                size = event->data.fmt_changed.new_fmt.det.vid.size;
+                if (size.w != win_info.size.w || size.h != win_info.size.h) {
+                    pjsua_vid_win_set_size(wid, &size);
                     
-                    wid = ci.media[vid_idx].stream.vid.win_in;
+                    /* Re-arrange video windows */
                     
-                    pjsua_vid_win_info vid_info;
-                    pj_status_t status = pjsua_vid_win_get_info(wid, &vid_info);
-                    if (status == PJ_SUCCESS)
-                    {
-                        UIView *parent = manager.videoView;
-                        UIView *view = (__bridge UIView *)vid_info.hwnd.info.ios.window;
+                    int vid_idx;
+                    pjsua_vid_win_id wid;
+                    
+                    vid_idx = pjsua_call_get_vid_stream_idx(call_id);
+                    pj_bool_t videoRunning = pjsua_call_vid_stream_is_running(call_id, vid_idx, ci.media_dir);
+                    if (vid_idx >= 0 && videoRunning == PJ_TRUE) {
                         
-                        if (view) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                /* Add the video window as subview */
-                                if (![view isDescendantOfView:parent])
-                                    [parent addSubview:view];
-                                
-                                if (!vid_info.is_native) {
-                                    /* Resize it to fit width */
-                                    view.bounds = CGRectMake(0, 0, parent.bounds.size.width,
-                                                             (parent.bounds.size.height *
-                                                              1.0*parent.bounds.size.width/
-                                                              view.bounds.size.width));
-                                    /* Center it horizontally */
-                                    view.center = CGPointMake(parent.bounds.size.width/2.0,
-                                                              view.bounds.size.height/2.0);
-                                } else {
-                                    /* Preview window, move it to the bottom */
-                                    view.center = CGPointMake(parent.bounds.size.width/2.0,
-                                                              parent.bounds.size.height-
-                                                              view.bounds.size.height/2.0);
-                                }
-                            });
+                        wid = ci.media[vid_idx].stream.vid.win_in;
+                        
+                        pjsua_vid_win_info vid_info;
+                        pj_status_t status = pjsua_vid_win_get_info(wid, &vid_info);
+                        
+                        pjmedia_coord pos;
+                        int i, last;
+                        
+                        pos.x = 0;
+                        pos.y = 10;
+                        last = (wid == PJSUA_INVALID_ID) ? PJSUA_MAX_VID_WINS : wid;
+                        
+                        for (i=0; i<last; ++i) {
+                            pjsua_vid_win_info wi;
+                            pj_status_t status;
+                            
+                            status = pjsua_vid_win_get_info(i, &wi);
+                            if (status != PJ_SUCCESS)
+                                continue;
+                            
+                            if (wid == PJSUA_INVALID_ID)
+                                pjsua_vid_win_set_pos(i, &pos);
+                            
+                            if (wi.show)
+                                pos.y += wi.size.h;
+                        }
+                        
+                        if (wid != PJSUA_INVALID_ID)
+                            pjsua_vid_win_set_pos(wid, &pos);
+                        
+                        if (status == PJ_SUCCESS)
+                        {
+                            UIView *parent = manager.videoView;
+                            UIView *view = (__bridge UIView *)vid_info.hwnd.info.ios.window;
+                            
+                            if (view) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    /* Add the video window as subview */
+                                    if (![view isDescendantOfView:parent])
+                                        [parent addSubview:view];
+                                    
+                                    if (!vid_info.is_native) {
+                                        /* Resize it to fit width */
+                                        view.bounds = CGRectMake(0, 0, parent.bounds.size.width,
+                                                                 (parent.bounds.size.height *
+                                                                  1.0*parent.bounds.size.width/
+                                                                  view.bounds.size.width));
+                                        /* Center it horizontally */
+                                        view.center = CGPointMake(parent.bounds.size.width/2.0,
+                                                                  view.bounds.size.height/2.0);
+                                    } else {
+                                        /* Preview window, move it to the bottom */
+                                        view.center = CGPointMake(parent.bounds.size.width/2.0,
+                                                                  parent.bounds.size.height-
+                                                                  view.bounds.size.height/2.0);
+                                    }
+                                });
+                            }
                         }
                     }
                 }
             }
         }
     }
-#else
-    PJ_UNUSED_ARG(call_id);
-    PJ_UNUSED_ARG(med_idx);
-    PJ_UNUSED_ARG(event);
-#endif
 }
 
 static void on_reg_state2(pjsua_acc_id acc_id, pjsua_reg_info *info)
 {
     PJ_LOG(3,(THIS_FILE, "on_reg_state2() Register acc %d", acc_id));
-    int accs = pjsua_acc_get_count();
-    NSLog(@"Accounts count: %i", accs);
 }
 
 @end
