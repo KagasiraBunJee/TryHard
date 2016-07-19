@@ -66,10 +66,24 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     sprintf(regUri, "sip:%s", [sipUser UTF8String]);
     pj_str_t uri = pj_str(regUri);
     
+    self.status = pjsua_call_make_call(currentAccount, &uri, NULL, NULL, NULL, NULL);
+    if (self.status != PJ_SUCCESS) error("Error making call", status);
+}
+
+-(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo
+{
+    char regUri[MAX_SIP_REG_URI_LENGTH];
+    sprintf(regUri, "sip:%s", [sipUser UTF8String]);
+    pj_str_t uri = pj_str(regUri);
+    
     
     pjsua_call_setting callCfg;
     pjsua_call_setting_default(&callCfg);
     callCfg.vid_cnt = 1;
+    if (withVideo == NO || [UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    {
+        callCfg.vid_cnt = 0;
+    }
     
     self.status = pjsua_call_make_call(currentAccount, &uri, &callCfg, NULL, NULL, NULL);
     if (self.status != PJ_SUCCESS) error("Error making call", status);
@@ -77,9 +91,20 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
 
 -(void)answer:(int) call_id
 {
+    pjsua_call_answer2(call_id, NULL, 200, NULL, NULL);
+}
+
+-(void)answer:(int) call_id withVideo:(BOOL) withVideo
+{
     pjsua_call_setting callCfg;
     pjsua_call_setting_default(&callCfg);
     callCfg.vid_cnt = 1;
+    
+    if (withVideo == NO || [UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    {
+        callCfg.vid_cnt = 0;
+    }
+    
     pjsua_call_answer2(call_id, &callCfg, 200, NULL, NULL);
 }
 
