@@ -23,7 +23,7 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sipManager = THPJSipManager.sharedManager()
+        sipManager = THPJSipManager(outboundProxy: "proxy.sipthor.net", port: "5060")
         sipManager.delegate = self
         sipManager.videoView = videoView
     }
@@ -35,7 +35,16 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
         ]
         let data = NSKeyedArchiver.archivedDataWithRootObject(dict)
         
-        sipManager.registerUser(nickname.text!, sipDomain: serverDomain, userInfo: UnsafeMutablePointer<Void>(data.bytes))
+        let credInfo = PJSIPCredention()
+        credInfo.username = "historickk"
+        credInfo.nickname = "kagasirabunjee"
+        credInfo.address = "sip2sip.info"
+        credInfo.dataType = .PLAIN_PASSWORD
+        credInfo.data = "111111"
+        credInfo.realm = "sip2sip.info"
+        credInfo.scheme = "digest"
+        
+        sipManager.registerUser(credInfo, userInfo: UnsafeMutablePointer<Void>(data.bytes))
     }
     
     @IBAction func makeCall(sender: AnyObject) {
