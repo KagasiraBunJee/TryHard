@@ -46,6 +46,26 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
         [self initTCPPjSuaTransport];
         [self startPjSip];
         
+//        pjsip_resolver_t *resolver;
+//        
+//        pj_caching_pool cp;
+//        pj_caching_pool_init(&cp, NULL, 1024*1024);
+//        
+//        pj_pool_t *pool;
+//        pool = pj_pool_create(&cp.factory, "resolver_pool", 4000, 4000, NULL);
+//        
+//        pjsip_resolver_create(pool, &resolver);
+//        
+//        pjsip_host_info host;
+//        host.flag = PJSIP_TRANSPORT_DATAGRAM;
+//        host.type = PJSIP_TRANSPORT_UDP;
+//        host.addr.host = pj_str((char *)"sip2sip.info");
+//        host.addr.port = 5060;
+//        
+//        void *token = NULL;
+//        
+//        pjsip_resolve(resolver, pool, &host, token, resolver_cb_func);
+        
         _calls = 0;
         _incomingCalls = 0;
         
@@ -130,6 +150,8 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     cfg.cb.on_call_state = &on_call_state;
     cfg.cb.on_reg_state2 = &on_reg_state2;
     cfg.cb.on_call_media_event = &on_call_media_event;
+    cfg.outbound_proxy_cnt = 1;
+    cfg.outbound_proxy[0] = pj_str((char *)"sip:proxy.sipthor.net:5060");
     
     pjsua_logging_config log_cfg;
     pjsua_logging_config_default(&log_cfg);
@@ -226,7 +248,7 @@ static pjsua_acc_id registerAcc(pj_status_t &status, NSString* sipUser, NSString
     pjsua_acc_config_default(&cfg);
     
     char sipId[MAX_SIP_ID_LENGTH];
-    sprintf(sipId, "sip:%s@%s", [sipUser UTF8String], [sipDomain UTF8String]);
+    sprintf(sipId, "sip:%s@%s:5060", [sipUser UTF8String], [sipDomain UTF8String]);
     cfg.id = pj_str(sipId);
     
     char regUri[MAX_SIP_REG_URI_LENGTH];
@@ -235,11 +257,16 @@ static pjsua_acc_id registerAcc(pj_status_t &status, NSString* sipUser, NSString
     cfg.reg_uri = pj_str(regUri);
     cfg.vid_out_auto_transmit = PJ_TRUE;
     cfg.vid_in_auto_show = PJ_TRUE;
+    cfg.cred_count = 1;
+    cfg.cred_info[0].username = pj_str((char *)"kagasirabunjee");
+    cfg.cred_info[0].realm = pj_str((char *)"sip2sip.info");
+    cfg.cred_info[0].data_type = PJSIP_CRED_DATA_PLAIN_PASSWD;
+    cfg.cred_info[0].data = pj_str((char *)"111111");
+    cfg.cred_info[0].scheme = pj_str((char *)"digest");
     
     // 2. Register the account
     status = pjsua_acc_add(&cfg, PJ_TRUE, &acc_id);
     if (status != PJ_SUCCESS) error("Error registering acc", status);
-    if (status == PJ_SUCCESS) pjsua_acc_set_user_data(acc_id, userData);
     
 //    char codec[MAX_SIP_ID_LENGTH];
 //    sprintf(sipId, "%s", "H263-1998/96");
@@ -429,6 +456,22 @@ static void on_call_media_event(pjsua_call_id call_id, unsigned med_idx, pjmedia
 static void on_reg_state2(pjsua_acc_id acc_id, pjsua_reg_info *info)
 {
     PJ_LOG(3,(THIS_FILE, "on_reg_state2() Register acc %d", acc_id));
+}
+
+static void resolver_cb_func(pj_status_t status, void *token, const struct pjsip_server_addresses *addr)
+{
+    const pjsip_server_addresses addrs = addr[0];
+    
+    
+    
+    unsigned char bytes[4];
+    bytes[0] = addrs.entry[0].addr.ipv4.sin_addr.s_addr & 0xFF;
+    bytes[1] = (addrs.entry[0].addr.ipv4.sin_addr.s_addr >> 8) & 0xFF;
+    bytes[2] = (addrs.entry[0].addr.ipv4.sin_addr.s_addr >> 16) & 0xFF;
+    bytes[3] = (addrs.entry[0].addr.ipv4.sin_addr.s_addr >> 24) & 0xFF;
+    
+    
+    NSLog(@"%d.%d.%d.%d\n", bytes[3], bytes[2], bytes[1], bytes[0]);
 }
 
 @end

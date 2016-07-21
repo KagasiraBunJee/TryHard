@@ -14,7 +14,8 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
     @IBOutlet weak var friend: THTextField!
     @IBOutlet weak var videoView: UIView!
     
-    lazy var serverDomain = "10.0.1.68"
+//    lazy var serverDomain = "10.0.1.68"
+    lazy var serverDomain = "sip2sip.info"
     
     var sipManager:THPJSipManager!
     var currentCall:Int32?
