@@ -14,6 +14,9 @@
 {
     pj_status_t status;
     pjsua_acc_id currentAccount;
+    pjsua_config app_cfg;
+    NSString *out_bound_proxy;
+    NSString *out_bound_proxy_port;
 }
 
 @property pj_status_t status;
@@ -36,6 +39,20 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
         sharedManager = [[self alloc] init];
     });
     return sharedManager;
+}
+
+- (id)initWithOutboundProxy:(NSString*)outboundProxy port:(NSString*)port
+{
+    out_bound_proxy = outboundProxy;
+    out_bound_proxy_port = port;
+    self = [super init];
+    if(self) {
+        [self initPjSua];
+        [self initUDPPjSuaTransport];
+        [self initTCPPjSuaTransport];
+        [self startPjSip];
+    }
+    return self;
 }
 
 - (id)init {
@@ -74,10 +91,33 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     return self;
 }
 
--(void)registerUser:(NSString *)sipUser sipDomain:(NSString *)sipDomain userInfo:(void* ) userInfo
+-(void)registerUser:(PJSIPCredention *)cred userInfo:(void* ) userInfo
 {
-    currentAccount = registerAcc(status, sipUser, sipDomain, userInfo);
-    if (status != PJ_SUCCESS) error("Error adding account", status);
+    pjsua_acc_id acc_id;
+    pjsua_acc_config cfg;
+    pjsua_acc_config_default(&cfg);
+    
+    char sipId[MAX_SIP_ID_LENGTH];
+    sprintf(sipId, "sip:%s@%s:5060", [cred.username UTF8String], [cred.realm UTF8String]);
+    cfg.id = pj_str(sipId);
+    
+    char regUri[MAX_SIP_REG_URI_LENGTH];
+    sprintf(regUri, "sip:%s", [cred.realm UTF8String]);
+    
+    cfg.reg_uri = pj_str(regUri);
+    cfg.vid_out_auto_transmit = hasVideoSupport();
+    cfg.vid_in_auto_show = hasVideoSupport();
+    
+    cfg.cred_count = 1;
+    cfg.cred_info[0].username = pj_str((char *)[cred.username UTF8String]);
+    cfg.cred_info[0].realm = pj_str((char *)[cred.realm UTF8String]);
+    cfg.cred_info[0].data_type = (int)cred.dataType;
+    cfg.cred_info[0].data = pj_str((char *)[cred.data UTF8String]);
+    cfg.cred_info[0].scheme = pj_str((char *)[cred.scheme UTF8String]);
+    
+    // 2. Register the account
+    status = pjsua_acc_add(&cfg, PJ_TRUE, &acc_id);
+    if (status != PJ_SUCCESS) error("Error registering acc", status);
 }
 
 -(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo
@@ -90,7 +130,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     pjsua_call_setting callCfg;
     pjsua_call_setting_default(&callCfg);
     callCfg.vid_cnt = 1;
-    if (withVideo == NO || ![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    if (withVideo == NO || hasVideoSupport() == PJ_FALSE)
     {
         callCfg.vid_cnt = 0;
     }
@@ -105,7 +145,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     pjsua_call_setting_default(&callCfg);
     callCfg.vid_cnt = 1;
     
-    if (withVideo == NO || ![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    if (withVideo == NO || hasVideoSupport() == PJ_FALSE)
     {
         callCfg.vid_cnt = 0;
     }
@@ -142,22 +182,27 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     status = pjsua_create();
     if (status != PJ_SUCCESS) error("Error in pjsua_create()", status);
     
-    pjsua_config cfg;
-    pjsua_config_default (&cfg);
+    pjsua_config_default (&app_cfg);
     
-    cfg.cb.on_incoming_call = &on_incoming_call;
-    cfg.cb.on_call_media_state = &on_call_media_state;
-    cfg.cb.on_call_state = &on_call_state;
-    cfg.cb.on_reg_state2 = &on_reg_state2;
-    cfg.cb.on_call_media_event = &on_call_media_event;
-    cfg.outbound_proxy_cnt = 1;
-    cfg.outbound_proxy[0] = pj_str((char *)"sip:proxy.sipthor.net:5060");
+    app_cfg.cb.on_incoming_call = &on_incoming_call;
+    app_cfg.cb.on_call_media_state = &on_call_media_state;
+    app_cfg.cb.on_call_state = &on_call_state;
+    app_cfg.cb.on_reg_state2 = &on_reg_state2;
+    app_cfg.cb.on_call_media_event = &on_call_media_event;
     
+    if (![out_bound_proxy isEqualToString:@""])
+    {
+        char proxy[MAX_SIP_REG_URI_LENGTH];
+        sprintf(proxy, "sip:%s:%s", [out_bound_proxy UTF8String], [out_bound_proxy_port UTF8String]);
+        app_cfg.outbound_proxy_cnt = 1;
+        app_cfg.outbound_proxy[0] = pj_str((char *)proxy);
+    }
+
     pjsua_logging_config log_cfg;
     pjsua_logging_config_default(&log_cfg);
     log_cfg.console_level = 4;
     
-    status = pjsua_init(&cfg, &log_cfg, NULL);
+    status = pjsua_init(&app_cfg, &log_cfg, NULL);
     if (status != PJ_SUCCESS) error("Error in pjsua_init()", status);
 }
 
@@ -184,6 +229,9 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
 
 -(void)startPjSip
 {
+    pj_str_t pro = pj_str((char *)"H263-1998/96");
+    pjsua_vid_codec_set_priority(&pro,255);
+    
     status = pjsua_start();
     if (status != PJ_SUCCESS) error("Error starting pjsua", status);
     
@@ -235,6 +283,14 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
 }
 
 #pragma mark - help methods
+static pj_bool_t hasVideoSupport()
+{
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+        return PJ_TRUE;
+    
+    return PJ_FALSE;
+}
+
 static void error(const char *title, pj_status_t status)
 {
     pjsua_perror(THIS_FILE, title, status);
@@ -243,37 +299,10 @@ static void error(const char *title, pj_status_t status)
 
 static pjsua_acc_id registerAcc(pj_status_t &status, NSString* sipUser, NSString* sipDomain, void* userData)
 {
-    pjsua_acc_id acc_id;
-    pjsua_acc_config cfg;
-    pjsua_acc_config_default(&cfg);
+
     
-    char sipId[MAX_SIP_ID_LENGTH];
-    sprintf(sipId, "sip:%s@%s:5060", [sipUser UTF8String], [sipDomain UTF8String]);
-    cfg.id = pj_str(sipId);
     
-    char regUri[MAX_SIP_REG_URI_LENGTH];
-    sprintf(regUri, "sip:%s", [sipDomain UTF8String]);
-    
-    cfg.reg_uri = pj_str(regUri);
-    cfg.vid_out_auto_transmit = PJ_TRUE;
-    cfg.vid_in_auto_show = PJ_TRUE;
-    cfg.cred_count = 1;
-    cfg.cred_info[0].username = pj_str((char *)"kagasirabunjee");
-    cfg.cred_info[0].realm = pj_str((char *)"sip2sip.info");
-    cfg.cred_info[0].data_type = PJSIP_CRED_DATA_PLAIN_PASSWD;
-    cfg.cred_info[0].data = pj_str((char *)"111111");
-    cfg.cred_info[0].scheme = pj_str((char *)"digest");
-    
-    // 2. Register the account
-    status = pjsua_acc_add(&cfg, PJ_TRUE, &acc_id);
-    if (status != PJ_SUCCESS) error("Error registering acc", status);
-    
-//    char codec[MAX_SIP_ID_LENGTH];
-//    sprintf(sipId, "%s", "H263-1998/96");
-//    pj_str_t pro = pj_str(codec);
-//    pjsua_vid_codec_set_priority(&pro,255);
-    
-    return acc_id;
+    return 2;
 }
 
 #pragma mark - Callback for pjsip
