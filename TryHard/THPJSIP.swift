@@ -59,7 +59,7 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
     
     @IBAction func hangUP(sender: AnyObject) {
         if let call = currentCall {
-            sipManager.hangUp(call)
+            sipManager.hangUp(call, withMessage: nil)
         }
     }
     

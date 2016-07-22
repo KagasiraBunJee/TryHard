@@ -27,7 +27,9 @@
 
 -(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo;
 -(void)answer:(int) call_id withVideo:(BOOL) withVideo;
--(void)hangUp:(int) call_id;
+-(void)hangUp:(int) call_id withMessage:(NSString*)message;
+-(void)busy:(int) call_id withMessage:(NSString*)message;
+-(void)hangUpAll;
 -(void)holdCall:(int) call_id;
 -(void)unholdCall:(int) call_id;
 

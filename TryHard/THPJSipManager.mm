@@ -158,9 +158,25 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     pjsua_call_answer2(call_id, &callCfg, 200, NULL, NULL);
 }
 
--(void)hangUp:(int)call_id
+-(void)busy:(int)call_id withMessage:(NSString*)message
 {
-    pjsua_call_hangup(call_id, 200, NULL, NULL);
+    [self hangUp:call_id reasonCode:603 reasonMsg:message];
+}
+
+-(void)hangUp:(int) call_id withMessage:(NSString*)message
+{
+    [self hangUp:call_id reasonCode:200 reasonMsg:message];
+}
+
+-(void)hangUp:(int)call_id reasonCode:(int)reasonCode reasonMsg:(NSString *)reasonMsg
+{
+    pj_str_t reason = pj_str((char *)[reasonMsg UTF8String]);
+    pjsua_call_hangup(call_id, reasonCode, &reason, NULL);
+}
+
+-(void)hangUpAll
+{
+    pjsua_call_hangup_all();
 }
 
 -(void)holdCall:(int)call_id
