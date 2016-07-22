@@ -13,10 +13,13 @@
 @protocol THPJSipManagerDelegate <NSObject>
 
 @required
--(void)sipOnIncomingCall:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
+-(void)pjsip_onIncomingCall:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
 @optional
--(void)sipOnCallOnCalling:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
--(void)sipOnCallDidConfirm:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
--(void)sipOnCallDidHangUp:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
+-(void)pjsip_onCallOnCalling:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
+-(void)pjsip_onCallDidConfirm:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
+-(void)pjsip_onCallDidHangUp:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
+-(void)pjsip_onAccountRegisterStateChanged:(int) accId statusCode:(int)statusCode;
+-(void)pjsip_onAccountRegistered:(int) accId;
+-(void)pjsip_onAccountUnRegistered:(int) accId;
 
 @end

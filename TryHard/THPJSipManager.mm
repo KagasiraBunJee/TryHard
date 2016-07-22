@@ -51,6 +51,11 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
         [self initUDPPjSuaTransport];
         [self initTCPPjSuaTransport];
         [self startPjSip];
+        
+        _calls = 0;
+        _incomingCalls = 0;
+        
+        manager = self;
     }
     return self;
 }
@@ -297,14 +302,6 @@ static void error(const char *title, pj_status_t status)
     pjsua_destroy();
 }
 
-static pjsua_acc_id registerAcc(pj_status_t &status, NSString* sipUser, NSString* sipDomain, void* userData)
-{
-
-    
-    
-    return 2;
-}
-
 #pragma mark - Callback for pjsip
 
 /* Callback called by the library upon receiving incoming call */
@@ -323,10 +320,10 @@ void on_incoming_call(pjsua_acc_id acc_id, pjsua_call_id call_id,
               (int)ci.remote_info.slen,
               ci.remote_info.ptr));
     
-    if (manager.delegate && [manager.delegate respondsToSelector:@selector(sipOnIncomingCall:callInfo:)])
+    if (manager.delegate && [manager.delegate respondsToSelector:@selector(pjsip_onIncomingCall:callInfo:)])
     {
         PJSIPCallInfo* info = [[PJSIPCallInfo alloc] initWithCallID:call_id];
-        [manager.delegate sipOnIncomingCall:call_id callInfo:info];
+        [manager.delegate pjsip_onIncomingCall:call_id callInfo:info];
     }
     
     NSLog(@"call incoming");
@@ -347,17 +344,17 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
     if (manager.delegate)
     {
         PJSIPCallInfo* info = [[PJSIPCallInfo alloc] initWithCallID:call_id];
-        if (ci.state == PJSIP_INV_STATE_CONFIRMED && [manager.delegate respondsToSelector:@selector(sipOnCallDidConfirm:callInfo:)])
+        if (ci.state == PJSIP_INV_STATE_CONFIRMED && [manager.delegate respondsToSelector:@selector(pjsip_onCallDidConfirm:callInfo:)])
         {
-            [manager.delegate sipOnCallDidConfirm:call_id callInfo:info];
+            [manager.delegate pjsip_onCallDidConfirm:call_id callInfo:info];
         }
-        else if (ci.state == PJSIP_INV_STATE_CALLING && [manager.delegate respondsToSelector:@selector(sipOnCallOnCalling:callInfo:)])
+        else if (ci.state == PJSIP_INV_STATE_CALLING && [manager.delegate respondsToSelector:@selector(pjsip_onCallOnCalling:callInfo:)])
         {
-            [manager.delegate sipOnCallOnCalling:call_id callInfo:info];
+            [manager.delegate pjsip_onCallOnCalling:call_id callInfo:info];
         }
-        else if (ci.state == PJSIP_INV_STATE_DISCONNECTED && [manager.delegate respondsToSelector:@selector(sipOnCallDidHangUp:callInfo:)])
+        else if (ci.state == PJSIP_INV_STATE_DISCONNECTED && [manager.delegate respondsToSelector:@selector(pjsip_onCallDidHangUp:callInfo:)])
         {
-            [manager.delegate sipOnCallDidHangUp:call_id callInfo:info];
+            [manager.delegate pjsip_onCallDidHangUp:call_id callInfo:info];
         }
     }
     
@@ -485,22 +482,32 @@ static void on_call_media_event(pjsua_call_id call_id, unsigned med_idx, pjmedia
 static void on_reg_state2(pjsua_acc_id acc_id, pjsua_reg_info *info)
 {
     PJ_LOG(3,(THIS_FILE, "on_reg_state2() Register acc %d", acc_id));
+    if (manager.delegate)
+    {
+        if (info->renew == PJ_TRUE && info->cbparam->code == 200 && [manager.delegate respondsToSelector:@selector(pjsip_onAccountRegistered:)])
+        {
+            [manager.delegate pjsip_onAccountRegistered:acc_id];
+        }
+        
+        if (info->renew == PJ_TRUE && [manager.delegate respondsToSelector:@selector(pjsip_onAccountRegisterStateChanged:statusCode:)])
+        {
+            [manager.delegate pjsip_onAccountRegisterStateChanged:acc_id statusCode:info->cbparam->code];
+        }
+    }
 }
 
-static void resolver_cb_func(pj_status_t status, void *token, const struct pjsip_server_addresses *addr)
-{
-    const pjsip_server_addresses addrs = addr[0];
-    
-    
-    
-    unsigned char bytes[4];
-    bytes[0] = addrs.entry[0].addr.ipv4.sin_addr.s_addr & 0xFF;
-    bytes[1] = (addrs.entry[0].addr.ipv4.sin_addr.s_addr >> 8) & 0xFF;
-    bytes[2] = (addrs.entry[0].addr.ipv4.sin_addr.s_addr >> 16) & 0xFF;
-    bytes[3] = (addrs.entry[0].addr.ipv4.sin_addr.s_addr >> 24) & 0xFF;
-    
-    
-    NSLog(@"%d.%d.%d.%d\n", bytes[3], bytes[2], bytes[1], bytes[0]);
-}
+//static void resolver_cb_func(pj_status_t status, void *token, const struct pjsip_server_addresses *addr)
+//{
+//    const pjsip_server_addresses addrs = addr[0];
+//    
+//    unsigned char bytes[4];
+//    bytes[0] = addrs.entry[0].addr.ipv4.sin_addr.s_addr & 0xFF;
+//    bytes[1] = (addrs.entry[0].addr.ipv4.sin_addr.s_addr >> 8) & 0xFF;
+//    bytes[2] = (addrs.entry[0].addr.ipv4.sin_addr.s_addr >> 16) & 0xFF;
+//    bytes[3] = (addrs.entry[0].addr.ipv4.sin_addr.s_addr >> 24) & 0xFF;
+//    
+//    
+//    NSLog(@"%d.%d.%d.%d\n", bytes[3], bytes[2], bytes[1], bytes[0]);
+//}
 
 @end
