@@ -59,7 +59,7 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
     
     @IBAction func hangUP(sender: AnyObject) {
         if let call = currentCall {
-            sipManager.hangUp(call)
+            sipManager.hangUp(call, withMessage: nil)
         }
     }
     
@@ -76,8 +76,16 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
     }
     
     //MARK:- THPJSipManagerDelegate
-    func sipOnIncomingCall(callId: Int32, callInfo: PJSIPCallInfo!) {
+    func pjsip_onIncomingCall(callId: Int32, callInfo: PJSIPCallInfo!) {
         currentCall = callId
         print("incoming call")
+    }
+    
+    func pjsip_onAccountRegisterStateChanged(accId: Int32, statusCode: Int32) {
+        print("account state changed for ID: \(accId) with status: \(statusCode)")
+    }
+    
+    func pjsip_onAccountRegistered(accId: Int32) {
+        print("account registered with ID: \(accId)")
     }
 }
