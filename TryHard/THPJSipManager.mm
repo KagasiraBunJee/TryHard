@@ -41,32 +41,22 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     return sharedManager;
 }
 
-- (id)initWithOutboundProxy:(NSString*)outboundProxy port:(NSString*)port
+-(void)start
 {
-    out_bound_proxy = outboundProxy;
-    out_bound_proxy_port = port;
-    self = [super init];
-    if(self) {
-        [self initPjSua];
-        [self initUDPPjSuaTransport];
-        [self initTCPPjSuaTransport];
-        [self startPjSip];
-        
-        _calls = 0;
-        _incomingCalls = 0;
-        
-        manager = self;
-    }
-    return self;
+    [self initPjSua];
+    [self initUDPPjSuaTransport];
+    [self initTCPPjSuaTransport];
+    [self startPjSip];
+
 }
 
 - (id)init {
     if (self = [super init]) {
         
-        [self initPjSua];
-        [self initUDPPjSuaTransport];
-        [self initTCPPjSuaTransport];
-        [self startPjSip];
+//        [self initPjSua];
+//        [self initUDPPjSuaTransport];
+//        [self initTCPPjSuaTransport];
+//        [self startPjSip];
         
 //        pjsip_resolver_t *resolver;
 //        
@@ -94,6 +84,16 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
         manager = self;
     }
     return self;
+}
+
+-(void)setOutboundProxy:(NSString *)outboundProxy
+{
+    out_bound_proxy = outboundProxy;
+}
+
+-(void)setOutboundProxyPort:(NSString *)outboundProxyPort
+{
+    out_bound_proxy_port = outboundProxyPort;
 }
 
 -(void)registerUser:(PJSIPCredention *)cred userInfo:(void* ) userInfo
@@ -338,8 +338,10 @@ void on_incoming_call(pjsua_acc_id acc_id, pjsua_call_id call_id,
     
     if (manager.delegate && [manager.delegate respondsToSelector:@selector(pjsip_onIncomingCall:callInfo:)])
     {
-        PJSIPCallInfo* info = [[PJSIPCallInfo alloc] initWithCallID:call_id];
-        [manager.delegate pjsip_onIncomingCall:call_id callInfo:info];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PJSIPCallInfo* info = [[PJSIPCallInfo alloc] initWithCallID:call_id];
+            [manager.delegate pjsip_onIncomingCall:call_id callInfo:info];
+        });
     }
     
     NSLog(@"call incoming");
@@ -362,15 +364,21 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
         PJSIPCallInfo* info = [[PJSIPCallInfo alloc] initWithCallID:call_id];
         if (ci.state == PJSIP_INV_STATE_CONFIRMED && [manager.delegate respondsToSelector:@selector(pjsip_onCallDidConfirm:callInfo:)])
         {
-            [manager.delegate pjsip_onCallDidConfirm:call_id callInfo:info];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [manager.delegate pjsip_onCallDidConfirm:call_id callInfo:info];
+            });
         }
         else if (ci.state == PJSIP_INV_STATE_CALLING && [manager.delegate respondsToSelector:@selector(pjsip_onCallOnCalling:callInfo:)])
         {
-            [manager.delegate pjsip_onCallOnCalling:call_id callInfo:info];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [manager.delegate pjsip_onCallOnCalling:call_id callInfo:info];
+            });
         }
         else if (ci.state == PJSIP_INV_STATE_DISCONNECTED && [manager.delegate respondsToSelector:@selector(pjsip_onCallDidHangUp:callInfo:)])
         {
-            [manager.delegate pjsip_onCallDidHangUp:call_id callInfo:info];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [manager.delegate pjsip_onCallDidHangUp:call_id callInfo:info];
+            });
         }
     }
     
@@ -502,12 +510,17 @@ static void on_reg_state2(pjsua_acc_id acc_id, pjsua_reg_info *info)
     {
         if (info->renew == PJ_TRUE && info->cbparam->code == 200 && [manager.delegate respondsToSelector:@selector(pjsip_onAccountRegistered:)])
         {
-            [manager.delegate pjsip_onAccountRegistered:acc_id];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [manager.delegate pjsip_onAccountRegistered:acc_id];
+            });
         }
         
         if (info->renew == PJ_TRUE && [manager.delegate respondsToSelector:@selector(pjsip_onAccountRegisterStateChanged:statusCode:)])
         {
-            [manager.delegate pjsip_onAccountRegisterStateChanged:acc_id statusCode:info->cbparam->code];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [manager.delegate pjsip_onAccountRegisterStateChanged:acc_id statusCode:info->cbparam->code];
+            });
+            
         }
     }
 }

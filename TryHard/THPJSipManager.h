@@ -18,11 +18,13 @@
 @property (nonatomic, assign, readonly) int calls;
 @property (nonatomic, assign, readonly) int incomingCalls;
 @property (nonatomic, retain) NSString *outboundProxy;
+@property (nonatomic, retain) NSString *outboundProxyPort;
 @property (nonatomic) UIView *videoView;
 
 +(THPJSipManager*) sharedManager;
 
-- (id)initWithOutboundProxy:(NSString*)outboundProxy port:(NSString*)port;
+-(void)start;
+
 -(void)registerUser:(PJSIPCredention *)cred userInfo:(void* ) userInfo;
 
 -(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo;
