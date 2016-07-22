@@ -24,8 +24,10 @@
 +(THPJSipManager*) sharedManager;
 
 -(void)start;
+-(BOOL)started;
 
 -(void)registerUser:(PJSIPCredention *)cred userInfo:(void* ) userInfo;
+-(int)accID;
 
 -(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo;
 -(void)answer:(int) call_id withVideo:(BOOL) withVideo;

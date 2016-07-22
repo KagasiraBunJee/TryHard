@@ -47,7 +47,6 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     [self initUDPPjSuaTransport];
     [self initTCPPjSuaTransport];
     [self startPjSip];
-
 }
 
 - (id)init {
@@ -84,16 +83,6 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
         manager = self;
     }
     return self;
-}
-
--(void)setOutboundProxy:(NSString *)outboundProxy
-{
-    out_bound_proxy = outboundProxy;
-}
-
--(void)setOutboundProxyPort:(NSString *)outboundProxyPort
-{
-    out_bound_proxy_port = outboundProxyPort;
 }
 
 -(void)registerUser:(PJSIPCredention *)cred userInfo:(void* ) userInfo
@@ -195,6 +184,28 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     
     NSData *nsdata = [NSData dataWithBytes:data length:sizeof(data)];
     return nsdata;
+}
+
+-(void)setAccountPresence:(int)acc_id presence:(BOOL)online
+{
+    pjsua_acc_set_online_status(acc_id, online == YES ? PJ_TRUE : PJ_FALSE);
+}
+
+#pragma mark - getters & setters
+
+-(void)setOutboundProxy:(NSString *)outboundProxy
+{
+    out_bound_proxy = outboundProxy;
+}
+
+-(void)setOutboundProxyPort:(NSString *)outboundProxyPort
+{
+    out_bound_proxy_port = outboundProxyPort;
+}
+
+-(BOOL)started
+{
+    return pjsua_get_state() == PJSUA_STATE_RUNNING;
 }
 
 #pragma mark - setting up methods
@@ -505,7 +516,6 @@ static void on_call_media_event(pjsua_call_id call_id, unsigned med_idx, pjmedia
 
 static void on_reg_state2(pjsua_acc_id acc_id, pjsua_reg_info *info)
 {
-    PJ_LOG(3,(THIS_FILE, "on_reg_state2() Register acc %d", acc_id));
     if (manager.delegate)
     {
         if (info->renew == PJ_TRUE && info->cbparam->code == 200 && [manager.delegate respondsToSelector:@selector(pjsip_onAccountRegistered:)])
