@@ -24,7 +24,7 @@ class THSIPLoginVC: UIViewController, THPJSipManagerDelegate {
         
         if !usernameTF.text!.isEmpty && !passwordTF.text!.isEmpty {
             let sipManager = THPJSipManager.sharedManager()
-//            sipManager.outboundProxy = "proxy.sipthor.net"
+//            sipManager.outboundProxy = "sip.linphone.org"
 //            sipManager.outboundProxyPort = "5060"
             sipManager.delegate = self
             sipManager.start()
@@ -36,7 +36,8 @@ class THSIPLoginVC: UIViewController, THPJSipManagerDelegate {
             credInfo.dataType = .PLAIN_PASSWORD
             credInfo.data = passwordTF.text!
             credInfo.realm = "sip.linphone.org"
-//            credInfo.scheme = "digest"
+            credInfo.proxy = "sip.linphone.org"
+            credInfo.scheme = "digest"
             
             sipManager.registerUser(credInfo, userInfo: nil)
         }
@@ -50,7 +51,6 @@ class THSIPLoginVC: UIViewController, THPJSipManagerDelegate {
     
     func pjsip_onAccountRegistered(accId: Int32) {
         onSuccess?()
-        THPJSipManager.sharedManager().setAccountPresence(accId, online: true)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

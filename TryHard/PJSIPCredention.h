@@ -23,5 +23,6 @@ typedef NS_ENUM(NSUInteger, PJSIP_CRED_TYPE) {
 @property PJSIP_CRED_TYPE dataType;
 @property (nonatomic, retain) NSString *data;
 @property (nonatomic, retain) NSString *scheme;
+@property (nonatomic, retain) NSString *proxy;
 
 @end

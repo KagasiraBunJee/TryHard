@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -30,7 +30,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hK8-L8-121" customClass="THTextField" customModule="TryHard" customModuleProvider="target">
-                                <rect key="frame" x="20" y="307.5" width="560" height="30"/>
+                                <rect key="frame" x="20" y="308" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
@@ -200,9 +200,42 @@
                     <view key="view" contentMode="scaleToFill" id="wVh-Gj-QIq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3pw-TV-hd9">
+                                <rect key="frame" x="20" y="28" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwL-AO-WL7">
+                                <rect key="frame" x="20" y="66" width="46" height="30"/>
+                                <state key="normal" title="call"/>
+                                <connections>
+                                    <action selector="callAction:" destination="xHP-29-2wo" eventType="touchUpInside" id="wTs-NU-Cmh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MM2-pp-lsx">
+                                <rect key="frame" x="20" y="104" width="46" height="30"/>
+                                <state key="normal" title="answer"/>
+                                <connections>
+                                    <action selector="answerAction:" destination="xHP-29-2wo" eventType="touchUpInside" id="y6i-Vm-hyo"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3pw-TV-hd9" firstAttribute="top" secondItem="6uB-hD-WBo" secondAttribute="bottom" constant="8" id="3Sk-9X-SnS"/>
+                            <constraint firstAttribute="trailing" secondItem="3pw-TV-hd9" secondAttribute="trailing" constant="20" id="Aze-qS-nIN"/>
+                            <constraint firstItem="MM2-pp-lsx" firstAttribute="top" secondItem="EwL-AO-WL7" secondAttribute="bottom" constant="8" id="DeD-Nb-Gvq"/>
+                            <constraint firstItem="EwL-AO-WL7" firstAttribute="leading" secondItem="wVh-Gj-QIq" secondAttribute="leading" constant="20" id="Scw-ox-1gk"/>
+                            <constraint firstItem="MM2-pp-lsx" firstAttribute="leading" secondItem="wVh-Gj-QIq" secondAttribute="leading" constant="20" id="Ys9-4M-AvK"/>
+                            <constraint firstItem="EwL-AO-WL7" firstAttribute="top" secondItem="3pw-TV-hd9" secondAttribute="bottom" constant="8" id="ZAo-v5-RhH"/>
+                            <constraint firstItem="3pw-TV-hd9" firstAttribute="leading" secondItem="wVh-Gj-QIq" secondAttribute="leading" constant="20" id="iFp-iA-e46"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Main" id="cce-rR-dtm"/>
+                    <connections>
+                        <outlet property="contact" destination="3pw-TV-hd9" id="Ur9-yh-e0O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mhb-MF-ZLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -236,7 +269,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MzY-m6-JbN" id="eeN-KR-je7">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
