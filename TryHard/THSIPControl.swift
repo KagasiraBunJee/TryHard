@@ -8,7 +8,7 @@
 
 import UIKit
 
-class THSIPControl: UIViewController, THPJSipManagerDelegate {
+class THSIPControl: UIViewController, PJSIPDelegate, PJSIPBuddyDelegate {
 
     var sipManager:THPJSipManager!
     @IBOutlet weak var contact: UITextField!
@@ -18,6 +18,7 @@ class THSIPControl: UIViewController, THPJSipManagerDelegate {
         
         sipManager = THPJSipManager.sharedManager()
         sipManager.delegate = self
+        sipManager.buddyDelegate = self
     }
     
     @IBAction func callAction(sender: AnyObject) {

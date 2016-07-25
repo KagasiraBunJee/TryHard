@@ -8,7 +8,7 @@
 
 import UIKit
 
-class THPJSIP: UIViewController, THPJSipManagerDelegate {
+class THPJSIP: UIViewController, PJSIPDelegate {
     
     @IBOutlet weak var nickname: THTextField!
     @IBOutlet weak var friend: THTextField!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class THSIPLoginVC: UIViewController, THPJSipManagerDelegate {
+class THSIPLoginVC: UIViewController, PJSIPRegisterDelegate {
 
     @IBOutlet weak var usernameTF: THTextField!
     @IBOutlet weak var passwordTF: THTextField!
@@ -26,7 +26,7 @@ class THSIPLoginVC: UIViewController, THPJSipManagerDelegate {
             let sipManager = THPJSipManager.sharedManager()
 //            sipManager.outboundProxy = "sip.linphone.org"
 //            sipManager.outboundProxyPort = "5060"
-            sipManager.delegate = self
+            sipManager.regDelegate = self
             sipManager.start()
             
             let credInfo = PJSIPCredention()
@@ -44,10 +44,7 @@ class THSIPLoginVC: UIViewController, THPJSipManagerDelegate {
         
     }
     
-    //MARK:- THPJSipManagerDelegate
-    func pjsip_onIncomingCall(callId: Int32, callInfo: PJSIPCallInfo!) {
-        
-    }
+    //MARK:- PJSIPRegisterDelegate
     
     func pjsip_onAccountRegistered(accId: Int32) {
         onSuccess?()

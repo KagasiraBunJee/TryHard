@@ -18,6 +18,8 @@
 		19133F9B1D26B08B0090F5A7 /* THCommandVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19133F9A1D26B08B0090F5A7 /* THCommandVC.swift */; };
 		19133F9D1D26B0FB0090F5A7 /* Audio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19133F9C1D26B0FB0090F5A7 /* Audio.storyboard */; };
 		191FD8E81D0AF0D100205F2D /* THPrivateBT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191FD8E71D0AF0D100205F2D /* THPrivateBT.swift */; };
+		19295B291D465DAA0014FEF1 /* PJSIPBuddyDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 19295B281D465CFF0014FEF1 /* PJSIPBuddyDelegate.h */; };
+		19295B2A1D465E2B0014FEF1 /* PJSIPBuddyDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 19295B281D465CFF0014FEF1 /* PJSIPBuddyDelegate.h */; };
 		192B8E481D3D28A000962A18 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E461D3D28A000962A18 /* CoreAudio.framework */; };
 		192B8E491D3D28A000962A18 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E471D3D28A000962A18 /* CoreVideo.framework */; };
 		192B8E4B1D3D28B700962A18 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E4A1D3D28B700962A18 /* OpenGLES.framework */; };
@@ -504,6 +506,8 @@
 		19133F9C1D26B0FB0090F5A7 /* Audio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Audio.storyboard; sourceTree = "<group>"; };
 		191FD8E71D0AF0D100205F2D /* THPrivateBT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THPrivateBT.swift; sourceTree = "<group>"; };
 		191FD8ED1D0AF81000205F2D /* TryHard-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TryHard-Bridging-Header.h"; path = "TryHard/TryHard-Bridging-Header.h"; sourceTree = "<group>"; };
+		19295B271D465CBA0014FEF1 /* PJSIPRegisterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJSIPRegisterDelegate.h; sourceTree = "<group>"; };
+		19295B281D465CFF0014FEF1 /* PJSIPBuddyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJSIPBuddyDelegate.h; sourceTree = "<group>"; };
 		192B8E461D3D28A000962A18 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		192B8E471D3D28A000962A18 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		192B8E4A1D3D28B700962A18 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -631,7 +635,7 @@
 		856806631D428B480085AC28 /* THCallVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCallVC.swift; sourceTree = "<group>"; };
 		856806671D428C4B0085AC28 /* THFriendListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THFriendListVC.swift; sourceTree = "<group>"; };
 		8568066A1D428DC70085AC28 /* THFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THFriendCell.swift; sourceTree = "<group>"; };
-		8569BA321D3B94E000E564FE /* THPJSIPDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPJSIPDelegate.h; sourceTree = "<group>"; };
+		8569BA321D3B94E000E564FE /* PJSIPDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJSIPDelegate.h; sourceTree = "<group>"; };
 		8569BA331D3B95C400E564FE /* PJSIPCallInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJSIPCallInfo.h; sourceTree = "<group>"; };
 		8569BA341D3B95C400E564FE /* PJSIPCallInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJSIPCallInfo.m; sourceTree = "<group>"; };
 		85C6E2FF1D3EBADA00CBF24D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = TryHard/opencv2.framework; sourceTree = "<group>"; };
@@ -717,7 +721,9 @@
 			children = (
 				19012B081D37E83700072A3E /* THPJSipManager.h */,
 				19012B091D37E83700072A3E /* THPJSipManager.mm */,
-				8569BA321D3B94E000E564FE /* THPJSIPDelegate.h */,
+				8569BA321D3B94E000E564FE /* PJSIPDelegate.h */,
+				19295B271D465CBA0014FEF1 /* PJSIPRegisterDelegate.h */,
+				19295B281D465CFF0014FEF1 /* PJSIPBuddyDelegate.h */,
 				8569BA331D3B95C400E564FE /* PJSIPCallInfo.h */,
 				8569BA341D3B95C400E564FE /* PJSIPCallInfo.m */,
 				1990AB3F1D412002003AD662 /* PJSIPCredention.h */,
@@ -2012,6 +2018,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19295B291D465DAA0014FEF1 /* PJSIPBuddyDelegate.h in Sources */,
 				19012B061D37E75600072A3E /* THPJSIP.swift in Sources */,
 				1956AC8D1C9C42EF00E5DF0A /* TryHard.xcdatamodeld in Sources */,
 				1956ACB61C9C447F00E5DF0A /* TryProject.swift in Sources */,
@@ -2080,6 +2087,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19295B2A1D465E2B0014FEF1 /* PJSIPBuddyDelegate.h in Sources */,
 				8559ECDE1D43D37900C44E31 /* THPJSIP.swift in Sources */,
 				8559ECDF1D43D37900C44E31 /* TryHard.xcdatamodeld in Sources */,
 				8559ECE01D43D37900C44E31 /* TryProject.swift in Sources */,

@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "THPJSIPDelegate.h"
+#import "PJSIPDelegate.h"
+#import "PJSIPRegisterDelegate.h"
+#import "PJSIPBuddyDelegate.h"
 #import "PJSIPCredention.h"
 
 @interface THPJSipManager : NSObject
 
-@property (nonatomic, weak) id<THPJSipManagerDelegate> delegate;
+@property (nonatomic, weak) id<PJSIPDelegate> delegate;
+@property (nonatomic, weak) id<PJSIPRegisterDelegate> regDelegate;
+@property (nonatomic, weak) id<PJSIPBuddyDelegate> buddyDelegate;
 
 @property (nonatomic, assign, readonly) int calls;
 @property (nonatomic, assign, readonly) int incomingCalls;

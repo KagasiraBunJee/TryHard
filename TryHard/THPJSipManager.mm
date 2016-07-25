@@ -555,19 +555,19 @@ static void on_call_media_event(pjsua_call_id call_id, unsigned med_idx, pjmedia
 #pragma mark Callbacks for pjsua_accs
 static void on_reg_state2(pjsua_acc_id acc_id, pjsua_reg_info *info)
 {
-    if (manager.delegate)
+    if (manager.regDelegate)
     {
-        if (info->renew == PJ_TRUE && info->cbparam->code == 200 && [manager.delegate respondsToSelector:@selector(pjsip_onAccountRegistered:)])
+        if (info->renew == PJ_TRUE && info->cbparam->code == 200 && [manager.regDelegate respondsToSelector:@selector(pjsip_onAccountRegistered:)])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [manager.delegate pjsip_onAccountRegistered:acc_id];
+                [manager.regDelegate pjsip_onAccountRegistered:acc_id];
             });
         }
         
-        if (info->renew == PJ_TRUE && [manager.delegate respondsToSelector:@selector(pjsip_onAccountRegisterStateChanged:statusCode:)])
+        if (info->renew == PJ_TRUE && [manager.regDelegate respondsToSelector:@selector(pjsip_onAccountRegisterStateChanged:statusCode:)])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [manager.delegate pjsip_onAccountRegisterStateChanged:acc_id statusCode:info->cbparam->code];
+                [manager.regDelegate pjsip_onAccountRegisterStateChanged:acc_id statusCode:info->cbparam->code];
             });
             
         }
@@ -586,9 +586,9 @@ static void on_incoming_subscribe(pjsua_acc_id acc_id,
 {
     pjsip_status_code newcode = (pjsip_status_code)PJSIP_SC_DECLINE;
     code = &newcode;
-    if (manager.delegate)
+    if (manager.buddyDelegate)
     {
-        if ([manager.delegate respondsToSelector:@selector(pjsip_onFriendRequestReceived:buddyURI:reason:msg:)])
+        if ([manager.buddyDelegate respondsToSelector:@selector(pjsip_onFriendRequestReceived:buddyURI:reason:msg:)])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSString *msg;
@@ -603,7 +603,7 @@ static void on_incoming_subscribe(pjsua_acc_id acc_id,
                     msg = [NSString stringWithCString:msg_data->msg_body.ptr encoding:NSUTF8StringEncoding];
                 }
                 
-                [manager.delegate pjsip_onFriendRequestReceived:buddy_id buddyURI:buddyURI reason:reasonString msg:msg];
+                [manager.buddyDelegate pjsip_onFriendRequestReceived:buddy_id buddyURI:buddyURI reason:reasonString msg:msg];
             });
         }
     }
