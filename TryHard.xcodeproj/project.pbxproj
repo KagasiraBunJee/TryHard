@@ -2436,7 +2436,7 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					PJ_AUTOCONF,
+					"PJ_AUTOCONF=1",
 				);
 				HEADER_SEARCH_PATHS = (
 					$SOURCE_ROOT/include,
@@ -2496,7 +2496,7 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					PJ_AUTOCONF,
+					"PJ_AUTOCONF=1",
 				);
 				HEADER_SEARCH_PATHS = (
 					$SOURCE_ROOT/include,
