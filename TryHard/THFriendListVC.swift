@@ -6,8 +6,29 @@
 //  Copyright © 2016 Sergey Polishchuk. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class THFriendListVC: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchFriend: THTextField!
+    
+    var sipManager:THPJSipManager!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        sipManager = THPJSipManager.sharedManager()
+        
+        tableView.tableFooterView = UIView()
+        
+        searchFriend.onDone = {
+            
+            let id = self.sipManager.findBuddy(self.searchFriend.text!)
+            print("buddy found with id \(id)")
+            
+        }
+    }
 
+    
 }

@@ -101,6 +101,9 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     cfg.reg_uri = pj_str(regUri);
     cfg.vid_out_auto_transmit = hasVideoSupport();
     cfg.vid_in_auto_show = hasVideoSupport();
+    cfg.publish_enabled = PJ_TRUE;
+    cfg.proxy[0] = pj_str(regUri);
+    cfg.proxy_cnt = 1;
     
     cfg.cred_count = 1;
     cfg.cred_info[0].username = pj_str((char *)[cred.username UTF8String]);
@@ -186,9 +189,31 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     return nsdata;
 }
 
--(void)setAccountPresence:(int)acc_id presence:(BOOL)online
+-(void)setAccountPresence:(int)acc_id online:(BOOL)presence
 {
-    pjsua_acc_set_online_status(acc_id, online == YES ? PJ_TRUE : PJ_FALSE);
+//    pjsua_acc_set_online_status(acc_id, presence == YES ? PJ_TRUE : PJ_FALSE);
+}
+
+-(void)findBuddy:(NSString *)buddyURI
+{
+    pjsua_buddy_id buddy_id;
+    char buddyURIFull[MAX_SIP_ID_LENGTH];
+    sprintf(buddyURIFull, "sip:%s@sip2sip.info", [buddyURI UTF8String]);
+    pj_status_t action_status = pjsua_verify_url(buddyURIFull);
+
+    pj_str_t uri = pj_str(buddyURIFull);
+    pjsua_buddy_id bud_id = pjsua_buddy_find(&uri);
+    
+    if(bud_id == PJSUA_INVALID_ID)
+    {
+        pjsua_buddy_config config;
+        pjsua_buddy_config_default(&config);
+        config.uri = uri;
+        config.subscribe = 1;
+        
+        action_status = pjsua_buddy_add(&config, &buddy_id);
+        NSLog(@"subscribe sent");
+    }
 }
 
 #pragma mark - getters & setters
@@ -221,8 +246,15 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     app_cfg.cb.on_call_state = &on_call_state;
     app_cfg.cb.on_reg_state2 = &on_reg_state2;
     app_cfg.cb.on_call_media_event = &on_call_media_event;
+    app_cfg.cb.on_incoming_subscribe = &on_incoming_subscribe;
+    app_cfg.cb.on_srv_subscribe_state = &on_srv_buddy_state_changed;
+    app_cfg.cb.on_buddy_evsub_state = &on_buddy_evsub_state;
+    app_cfg.cb.on_buddy_state = &on_buddy_state;
     
-    if (![out_bound_proxy isEqualToString:@""])
+//    app_cfg.stun_srv_cnt = 1;
+//    app_cfg.stun_srv[0] = pj_str((char *)"sip2sip.info");
+    
+    if (![out_bound_proxy isEqualToString:@""] && out_bound_proxy != NULL)
     {
         char proxy[MAX_SIP_REG_URI_LENGTH];
         sprintf(proxy, "sip:%s:%s", [out_bound_proxy UTF8String], [out_bound_proxy_port UTF8String]);
@@ -329,7 +361,8 @@ static void error(const char *title, pj_status_t status)
     pjsua_destroy();
 }
 
-#pragma mark - Callback for pjsip
+#pragma mark - Callbacks for pjsip
+#pragma mark Callbacks for pjsua_calls
 
 /* Callback called by the library upon receiving incoming call */
 void on_incoming_call(pjsua_acc_id acc_id, pjsua_call_id call_id,
@@ -514,6 +547,7 @@ static void on_call_media_event(pjsua_call_id call_id, unsigned med_idx, pjmedia
     }
 }
 
+#pragma mark Callbacks for pjsua_accs
 static void on_reg_state2(pjsua_acc_id acc_id, pjsua_reg_info *info)
 {
     if (manager.delegate)
@@ -533,6 +567,67 @@ static void on_reg_state2(pjsua_acc_id acc_id, pjsua_reg_info *info)
             
         }
     }
+}
+
+#pragma mark Callbacks for buddy system
+static void on_incoming_subscribe(pjsua_acc_id acc_id,
+                                      pjsua_srv_pres *srv_pres,
+                                      pjsua_buddy_id buddy_id,
+                                      const pj_str_t *from,
+                                      pjsip_rx_data *rdata,
+                                      pjsip_status_code *code,
+                                      pj_str_t *reason,
+                                      pjsua_msg_data *msg_data)
+{
+//    if (manager.delegate)
+//    {
+//        if ([manager.delegate respondsToSelector:@selector(pjsip_onFriendRequestReceived:buddyURI:reason:msg:)])
+//        {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                NSString *buddyURI = [NSString stringWithCString:from->ptr encoding:NSUTF8StringEncoding];
+//                NSString *reasonString = [NSString stringWithCString:reason->ptr encoding:NSUTF8StringEncoding];
+//                NSString *msg = [NSString stringWithCString:msg_data->msg_body.ptr encoding:NSUTF8StringEncoding];
+//                [manager.delegate pjsip_onFriendRequestReceived:buddy_id buddyURI:buddyURI reason:reasonString msg:msg];
+//            });
+//        }
+//    }
+    
+    
+    code = (pjsip_status_code *)300;
+//    pjsua_pres_notify(acc_id, srv_pres, PJSIP_EVSUB_STATE_PENDING, NULL, NULL, PJ_FALSE, NULL);
+    return;
+}
+
+static void on_srv_buddy_state_changed(pjsua_acc_id acc_id,
+                                       pjsua_srv_pres *srv_pres,
+                                       const pj_str_t *remote_uri,
+                                       pjsip_evsub_state state,
+                                       pjsip_event *event)
+{
+    NSLog(@"on_srv_buddy_state_changed buddy state changed");
+}
+
+static void on_buddy_evsub_state(pjsua_buddy_id buddy_id,
+               pjsip_evsub *sub,
+               pjsip_event *event)
+{
+    
+    
+    pjsua_buddy_info b_info;
+    pjsua_buddy_get_info(buddy_id, &b_info);
+    
+//    pjsua_buddy_subscribe_pres(buddy_id, PJ_TRUE);
+    
+    PJ_LOG(3,(THIS_FILE, "on_buddy_evsub_state Buddy %.*s with id %d is %.*s",
+              (int)b_info.uri.slen, b_info.uri.ptr, b_info.id,
+              (int)b_info.status_text.slen, b_info.status_text.ptr));
+    
+//    NSLog(@"on_buddy_evsub_state buddy state changed for buddy %i with state", buddy_id);
+}
+
+static void on_buddy_state(pjsua_buddy_id buddy_id)
+{
+    NSLog(@"on_buddy_state %i", buddy_id);
 }
 
 //static void resolver_cb_func(pj_status_t status, void *token, const struct pjsip_server_addresses *addr)

@@ -32,7 +32,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             TryProject(title: "ImageProcessing", projectInfo: "", vc: VCLoader<THImageProcessingVC>.load(storyboardId: .ImageProcessing, inStoryboardID: "THImageProcessingVC")),
             TryProject(title: "VideoProcessing", projectInfo: "", vc: VCLoader<THVideoController>.load(storyboardId: .VideoProcessing, inStoryboardID: "THVideoController")),
             TryProject(title: "AudioCommands", projectInfo: "", vc: VCLoader<THCommandVC>.load(storyboardId: .Audio, inStoryboardID: "THCommandVC")),
-            TryProject(title: "PJSIP", projectInfo: "", vc: VCLoader<THPJSIP>.load(storyboardId: .SIP, inStoryboardID: "THPJSIP"))
+//            TryProject(title: "PJSIP", projectInfo: "", vc: VCLoader<THPJSIP>.load(storyboardId: .SIP, inStoryboardID: "THPJSIP"))
+            TryProject(title: "PJSIP", projectInfo: "", vc: VCLoader<THSIPLoginVC>.load(storyboardId: .SIP, inStoryboardID: "THSIPLoginVC"), present: true)
         ]
         
         tableView.tableFooterView = UIView()
@@ -57,7 +58,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let project = projects[indexPath.row]
         
-        self.navigationController?.pushViewController(project.viewController!, animated: true)
+        if project.present {
+            if let vc = project.viewController as? THSIPLoginVC {
+                
+                let go = {
+                    let vc = VCLoader<UITabBarController>.load(storyboardId: .SIP, inStoryboardID: "sipControl")
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+                if THPJSipManager.sharedManager().started() {
+                    go()
+                } else {
+                    vc.onSuccess = {
+                        let vc = VCLoader<UITabBarController>.load(storyboardId: .SIP, inStoryboardID: "sipControl")
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    self.navigationController?.presentViewController(project.viewController!, animated: true, completion: nil)
+                }
+            }
+        } else {
+            self.navigationController?.pushViewController(project.viewController!, animated: true)
+        }
     }
 }
 

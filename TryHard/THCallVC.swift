@@ -6,8 +6,13 @@
 //  Copyright © 2016 Sergey Polishchuk. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class THCallVC: UIViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
 }

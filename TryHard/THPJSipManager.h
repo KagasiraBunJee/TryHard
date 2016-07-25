@@ -27,7 +27,9 @@
 -(BOOL)started;
 
 -(void)registerUser:(PJSIPCredention *)cred userInfo:(void* ) userInfo;
--(int)accID;
+-(void)setAccountPresence:(int)acc_id online:(BOOL)presence;
+
+-(void)findBuddy:(NSString *)buddyURI;
 
 -(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo;
 -(void)answer:(int) call_id withVideo:(BOOL) withVideo;

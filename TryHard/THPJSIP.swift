@@ -23,7 +23,7 @@ class THPJSIP: UIViewController, THPJSipManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sipManager = THPJSipManager(outboundProxy: "proxy.sipthor.net", port: "5060")
+//        sipManager = THPJSipManager(outboundProxy: "proxy.sipthor.net", port: "5060")
         sipManager.delegate = self
         sipManager.videoView = videoView
     }

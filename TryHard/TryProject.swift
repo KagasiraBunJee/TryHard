@@ -14,13 +14,15 @@ class TryProject {
     var projectInfo = ""
     var storyBoardID = ""
     var viewController:UIViewController?
+    var present:Bool = false
     
-    convenience init(title:String, projectInfo:String, vc:UIViewController) {
+    convenience init(title:String, projectInfo:String, vc:UIViewController, present:Bool = false) {
         
         self.init()
         
         self.title = title
         self.projectInfo = projectInfo
         self.viewController = vc
+        self.present = present
     }
 }

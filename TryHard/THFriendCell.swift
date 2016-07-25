@@ -6,8 +6,13 @@
 //  Copyright © 2016 Sergey Polishchuk. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class THFriendCell: UITableViewCell {
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
 }

@@ -81,6 +81,93 @@
 		19CB61801D0EA312004241C7 /* THDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CB617F1D0EA312004241C7 /* THDevice.swift */; };
 		19CB61821D0EAD02004241C7 /* THBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CB61811D0EAD02004241C7 /* THBluetoothManager.swift */; };
 		854BEB421D115BEE003B3B63 /* MIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BEB411D115BEE003B3B63 /* MIServiceManager.swift */; };
+		8559ECDE1D43D37900C44E31 /* THPJSIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19012B051D37E75600072A3E /* THPJSIP.swift */; };
+		8559ECDF1D43D37900C44E31 /* TryHard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1956AC8B1C9C42EF00E5DF0A /* TryHard.xcdatamodeld */; };
+		8559ECE01D43D37900C44E31 /* TryProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1956ACB51C9C447F00E5DF0A /* TryProject.swift */; };
+		8559ECE11D43D37900C44E31 /* THVideoHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1994FEA51D18160800253C5A /* THVideoHelper.mm */; };
+		8559ECE21D43D37900C44E31 /* THNewChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196D33F11CFDD5FA0031D023 /* THNewChatCell.swift */; };
+		8559ECE31D43D37900C44E31 /* MIByteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F89FAC1D119CF100F26A71 /* MIByteHelper.m */; };
+		8559ECE41D43D37900C44E31 /* THTesseractVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E08D81D12CB7F00CB0EED /* THTesseractVC.swift */; };
+		8559ECE51D43D37900C44E31 /* THCommandVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19133F9A1D26B08B0090F5A7 /* THCommandVC.swift */; };
+		8559ECE61D43D37900C44E31 /* THImageSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E08E11D12E06C00CB0EED /* THImageSelector.swift */; };
+		8559ECE71D43D37900C44E31 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E08E61D12E3BF00CB0EED /* ImageCell.swift */; };
+		8559ECE81D43D37900C44E31 /* THSwiftChartsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F72051CAD841300484580 /* THSwiftChartsVC.swift */; };
+		8559ECE91D43D37900C44E31 /* THBlurVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194DFBB31CE6214500A2762D /* THBlurVC.swift */; };
+		8559ECEA1D43D37900C44E31 /* THFriendListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856806671D428C4B0085AC28 /* THFriendListVC.swift */; };
+		8559ECEB1D43D37900C44E31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1956AC861C9C42EF00E5DF0A /* ViewController.swift */; };
+		8559ECEC1D43D37900C44E31 /* THFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8568066A1D428DC70085AC28 /* THFriendCell.swift */; };
+		8559ECED1D43D37900C44E31 /* THCameraManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1930ED321D1944BC00C44266 /* THCameraManager.mm */; };
+		8559ECEE1D43D37900C44E31 /* THTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1981867C1CF86FC60037B745 /* THTextField.swift */; };
+		8559ECEF1D43D37900C44E31 /* MIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BEB411D115BEE003B3B63 /* MIServiceManager.swift */; };
+		8559ECF01D43D37900C44E31 /* PJSIPCallInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8569BA341D3B95C400E564FE /* PJSIPCallInfo.m */; };
+		8559ECF11D43D37900C44E31 /* THPublicBT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193155121D0FE21200C0E62A /* THPublicBT.swift */; };
+		8559ECF21D43D37900C44E31 /* THHelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1994FEA21D180D6300253C5A /* THHelpVC.swift */; };
+		8559ECF31D43D37900C44E31 /* UIImage+CV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 19644A3D1D142079008712CC /* UIImage+CV.mm */; };
+		8559ECF41D43D37900C44E31 /* THCommandListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 19133F971D26AD420090F5A7 /* THCommandListener.mm */; };
+		8559ECF51D43D37900C44E31 /* THAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193155171D0FF2BD00C0E62A /* THAccessory.swift */; };
+		8559ECF61D43D37900C44E31 /* THDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CB617F1D0EA312004241C7 /* THDevice.swift */; };
+		8559ECF71D43D37900C44E31 /* THChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A0FA171CEF30F1000B1B2B /* THChatCell.swift */; };
+		8559ECF81D43D37900C44E31 /* THSIPControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856806601D4288560085AC28 /* THSIPControl.swift */; };
+		8559ECF91D43D37900C44E31 /* THBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CB61811D0EAD02004241C7 /* THBluetoothManager.swift */; };
+		8559ECFA1D43D37900C44E31 /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1986C6B61D0E97C50061BD27 /* BTDevice.m */; };
+		8559ECFB1D43D37900C44E31 /* THSocketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A0FA141CEF2BE0000B1B2B /* THSocketVC.swift */; };
+		8559ECFC1D43D37900C44E31 /* THImageFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1930ED351D1969FD00C44266 /* THImageFilter.mm */; };
+		8559ECFD1D43D37900C44E31 /* QExpandVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194DFBAB1CE5FBCF00A2762D /* QExpandVC.swift */; };
+		8559ECFE1D43D37900C44E31 /* PJSIPCredention.m in Sources */ = {isa = PBXBuildFile; fileRef = 1990AB401D412002003AD662 /* PJSIPCredention.m */; };
+		8559ECFF1D43D37900C44E31 /* THImageProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19644A461D142907008712CC /* THImageProcessingVC.swift */; };
+		8559ED001D43D37900C44E31 /* THRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196D33EF1CFDCF5C0031D023 /* THRoundedView.swift */; };
+		8559ED011D43D37900C44E31 /* THCallVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856806631D428B480085AC28 /* THCallVC.swift */; };
+		8559ED021D43D37900C44E31 /* THVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19644A491D14360E008712CC /* THVideoController.swift */; };
+		8559ED031D43D37900C44E31 /* THPrivateBT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191FD8E71D0AF0D100205F2D /* THPrivateBT.swift */; };
+		8559ED041D43D37900C44E31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1956AC841C9C42EF00E5DF0A /* AppDelegate.swift */; };
+		8559ED051D43D37900C44E31 /* MI-Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1931551B1D0FF77300C0E62A /* MI-Services.swift */; };
+		8559ED061D43D37900C44E31 /* THSIPLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8568065D1D42882F0085AC28 /* THSIPLoginVC.swift */; };
+		8559ED071D43D37900C44E31 /* THPJSipManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 19012B091D37E83700072A3E /* THPJSipManager.mm */; };
+		8559ED081D43D37900C44E31 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A0FA191CEF4190000B1B2B /* Extensions.swift */; };
+		8559ED091D43D37900C44E31 /* VCLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199D9E201CE1CC50008AF05F /* VCLoader.swift */; };
+		8559ED0A1D43D37900C44E31 /* MIUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F89FA91D11942500F26A71 /* MIUserInfo.swift */; };
+		8559ED0C1D43D37900C44E31 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E4E1D3D2CD800962A18 /* CFNetwork.framework */; };
+		8559ED0D1D43D37900C44E31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E4C1D3D28CE00962A18 /* QuartzCore.framework */; };
+		8559ED0E1D43D37900C44E31 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E4A1D3D28B700962A18 /* OpenGLES.framework */; };
+		8559ED0F1D43D37900C44E31 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E461D3D28A000962A18 /* CoreAudio.framework */; };
+		8559ED101D43D37900C44E31 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192B8E471D3D28A000962A18 /* CoreVideo.framework */; };
+		8559ED111D43D37900C44E31 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19644A391D141739008712CC /* AssetsLibrary.framework */; };
+		8559ED121D43D37900C44E31 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19644A371D141723008712CC /* CoreMedia.framework */; };
+		8559ED131D43D37900C44E31 /* libsphinxad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 199139DD1D25636000CAA99E /* libsphinxad.a */; };
+		8559ED141D43D37900C44E31 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C6E2FF1D3EBADA00CBF24D /* opencv2.framework */; };
+		8559ED151D43D37900C44E31 /* libsphinxbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 199139DB1D25634400CAA99E /* libsphinxbase.a */; };
+		8559ED161D43D37900C44E31 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19644A351D14171C008712CC /* AVFoundation.framework */; };
+		8559ED171D43D37900C44E31 /* Pods_TryHard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E25153A3A5DA438C94C8C0 /* Pods_TryHard.framework */; };
+		8559ED181D43D37900C44E31 /* libpocketsphinx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 199139D91D255D5000CAA99E /* libpocketsphinx.a */; };
+		8559ED191D43D37900C44E31 /* pjsipfull.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 197760591D3931C50057795D /* pjsipfull.a */; };
+		8559ED1B1D43D37900C44E31 /* goforward.raw in Resources */ = {isa = PBXBuildFile; fileRef = 199139FA1D256C0E00CAA99E /* goforward.raw */; };
+		8559ED1C1D43D37900C44E31 /* trained_classifierNM2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 19644A4F1D144610008712CC /* trained_classifierNM2.xml */; };
+		8559ED1D1D43D37900C44E31 /* sip_autoconf.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 19012EA81D37EA7400072A3E /* sip_autoconf.h.in */; };
+		8559ED1E1D43D37900C44E31 /* Bluetooth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 193155141D0FE29900C0E62A /* Bluetooth.storyboard */; };
+		8559ED1F1D43D37900C44E31 /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = 194CC9EF1D23BF64006C953D /* haarcascade_frontalface_default.xml */; };
+		8559ED201D43D37900C44E31 /* ImageProcessing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19644A441D1428B0008712CC /* ImageProcessing.storyboard */; };
+		8559ED211D43D37900C44E31 /* m_auto.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 19012DB61D37EA7300072A3E /* m_auto.h.in */; };
+		8559ED221D43D37900C44E31 /* os_auto.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 19012DBE1D37EA7300072A3E /* os_auto.h.in */; };
+		8559ED231D43D37900C44E31 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 198E08DE1D12DB9400CB0EED /* tessdata */; };
+		8559ED241D43D37900C44E31 /* Accessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 193155191D0FF2CE00C0E62A /* Accessory.storyboard */; };
+		8559ED251D43D37900C44E31 /* config_auto.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 19012E301D37EA7300072A3E /* config_auto.h.in */; };
+		8559ED261D43D37900C44E31 /* model in Resources */ = {isa = PBXBuildFile; fileRef = 199139F81D2566CE00CAA99E /* model */; };
+		8559ED271D43D37900C44E31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1956AC901C9C42EF00E5DF0A /* LaunchScreen.storyboard */; };
+		8559ED281D43D37900C44E31 /* VideoProcessing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19644A4B1D14363E008712CC /* VideoProcessing.storyboard */; };
+		8559ED291D43D37900C44E31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1956AC8E1C9C42EF00E5DF0A /* Assets.xcassets */; };
+		8559ED2A1D43D37900C44E31 /* trained_classifierNM1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 19644A4E1D144610008712CC /* trained_classifierNM1.xml */; };
+		8559ED2B1D43D37900C44E31 /* config_auto.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 19012E701D37EA7400072A3E /* config_auto.h.in */; };
+		8559ED2C1D43D37900C44E31 /* SIP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197760561D38DF2A0057795D /* SIP.storyboard */; };
+		8559ED2D1D43D37900C44E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1956AC881C9C42EF00E5DF0A /* Main.storyboard */; };
+		8559ED2E1D43D37900C44E31 /* Audio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19133F9C1D26B0FB0090F5A7 /* Audio.storyboard */; };
+		8559ED2F1D43D37900C44E31 /* ImageSelector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198E08E31D12E07E00CB0EED /* ImageSelector.storyboard */; };
+		8559ED301D43D37900C44E31 /* 3D.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19671CD01CE46FAE008A4C5A /* 3D.storyboard */; };
+		8559ED311D43D37900C44E31 /* Tesseract.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198E08D51D12CB4500CB0EED /* Tesseract.storyboard */; };
+		8568065E1D42882F0085AC28 /* THSIPLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8568065D1D42882F0085AC28 /* THSIPLoginVC.swift */; };
+		856806611D4288560085AC28 /* THSIPControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856806601D4288560085AC28 /* THSIPControl.swift */; };
+		856806641D428B480085AC28 /* THCallVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856806631D428B480085AC28 /* THCallVC.swift */; };
+		856806681D428C4B0085AC28 /* THFriendListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856806671D428C4B0085AC28 /* THFriendListVC.swift */; };
+		8568066B1D428DC70085AC28 /* THFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8568066A1D428DC70085AC28 /* THFriendCell.swift */; };
 		8569BA351D3B95C400E564FE /* PJSIPCallInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8569BA341D3B95C400E564FE /* PJSIPCallInfo.m */; };
 		85C6E3001D3EBADA00CBF24D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C6E2FF1D3EBADA00CBF24D /* opencv2.framework */; };
 		85F89FAA1D11942500F26A71 /* MIUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F89FA91D11942500F26A71 /* MIUserInfo.swift */; };
@@ -537,6 +624,13 @@
 		19CD6C061D1006DA00F180A5 /* BluetoothManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BluetoothManager.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/BluetoothManager.framework; sourceTree = DEVELOPER_DIR; };
 		65EBDEA9D8BA64A0F5F26411 /* Pods-TryHard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TryHard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TryHard/Pods-TryHard.debug.xcconfig"; sourceTree = "<group>"; };
 		854BEB411D115BEE003B3B63 /* MIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIServiceManager.swift; sourceTree = "<group>"; };
+		8559ED371D43D37900C44E31 /* TryHard device.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TryHard device.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8559ED381D43D37900C44E31 /* TryHard copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TryHard copy-Info.plist"; path = "/Users/sergei/Documents/ios/TryHard/TryHard copy-Info.plist"; sourceTree = "<absolute>"; };
+		8568065D1D42882F0085AC28 /* THSIPLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THSIPLoginVC.swift; sourceTree = "<group>"; };
+		856806601D4288560085AC28 /* THSIPControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THSIPControl.swift; sourceTree = "<group>"; };
+		856806631D428B480085AC28 /* THCallVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCallVC.swift; sourceTree = "<group>"; };
+		856806671D428C4B0085AC28 /* THFriendListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THFriendListVC.swift; sourceTree = "<group>"; };
+		8568066A1D428DC70085AC28 /* THFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THFriendCell.swift; sourceTree = "<group>"; };
 		8569BA321D3B94E000E564FE /* THPJSIPDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPJSIPDelegate.h; sourceTree = "<group>"; };
 		8569BA331D3B95C400E564FE /* PJSIPCallInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJSIPCallInfo.h; sourceTree = "<group>"; };
 		8569BA341D3B95C400E564FE /* PJSIPCallInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJSIPCallInfo.m; sourceTree = "<group>"; };
@@ -584,12 +678,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8559ED0B1D43D37900C44E31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8559ED0C1D43D37900C44E31 /* CFNetwork.framework in Frameworks */,
+				8559ED0D1D43D37900C44E31 /* QuartzCore.framework in Frameworks */,
+				8559ED0E1D43D37900C44E31 /* OpenGLES.framework in Frameworks */,
+				8559ED0F1D43D37900C44E31 /* CoreAudio.framework in Frameworks */,
+				8559ED101D43D37900C44E31 /* CoreVideo.framework in Frameworks */,
+				8559ED111D43D37900C44E31 /* AssetsLibrary.framework in Frameworks */,
+				8559ED121D43D37900C44E31 /* CoreMedia.framework in Frameworks */,
+				8559ED131D43D37900C44E31 /* libsphinxad.a in Frameworks */,
+				8559ED141D43D37900C44E31 /* opencv2.framework in Frameworks */,
+				8559ED151D43D37900C44E31 /* libsphinxbase.a in Frameworks */,
+				8559ED161D43D37900C44E31 /* AVFoundation.framework in Frameworks */,
+				8559ED171D43D37900C44E31 /* Pods_TryHard.framework in Frameworks */,
+				8559ED181D43D37900C44E31 /* libpocketsphinx.a in Frameworks */,
+				8559ED191D43D37900C44E31 /* pjsipfull.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		19012B041D37E73B00072A3E /* PJSIP */ = {
 			isa = PBXGroup;
 			children = (
+				8568065F1D4288400085AC28 /* Control */,
+				8568065C1D42880F0085AC28 /* Login */,
 				19012B051D37E75600072A3E /* THPJSIP.swift */,
 			);
 			name = PJSIP;
@@ -1215,6 +1332,7 @@
 				1956AC821C9C42EF00E5DF0A /* Products */,
 				2F4174F5207D9240C43E4E10 /* Pods */,
 				A7F4EDC60E59D8F261D75AC4 /* Frameworks */,
+				8559ED381D43D37900C44E31 /* TryHard copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1224,6 +1342,7 @@
 				1956AC811C9C42EF00E5DF0A /* TryHard.app */,
 				1956AC981C9C42EF00E5DF0A /* TryHardTests.xctest */,
 				1956ACA31C9C42EF00E5DF0A /* TryHardUITests.xctest */,
+				8559ED371D43D37900C44E31 /* TryHard device.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1529,6 +1648,49 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8568065C1D42880F0085AC28 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8568065D1D42882F0085AC28 /* THSIPLoginVC.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		8568065F1D4288400085AC28 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				856806661D428C380085AC28 /* FriendList */,
+				856806621D428B260085AC28 /* Call */,
+				856806601D4288560085AC28 /* THSIPControl.swift */,
+			);
+			name = Control;
+			sourceTree = "<group>";
+		};
+		856806621D428B260085AC28 /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				856806631D428B480085AC28 /* THCallVC.swift */,
+			);
+			name = Call;
+			sourceTree = "<group>";
+		};
+		856806661D428C380085AC28 /* FriendList */ = {
+			isa = PBXGroup;
+			children = (
+				856806691D428DA40085AC28 /* Cell */,
+				856806671D428C4B0085AC28 /* THFriendListVC.swift */,
+			);
+			name = FriendList;
+			sourceTree = "<group>";
+		};
+		856806691D428DA40085AC28 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8568066A1D428DC70085AC28 /* THFriendCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		A7F4EDC60E59D8F261D75AC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1605,6 +1767,26 @@
 			productReference = 1956ACA31C9C42EF00E5DF0A /* TryHardUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8559ECDB1D43D37900C44E31 /* TryHard device */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8559ED341D43D37900C44E31 /* Build configuration list for PBXNativeTarget "TryHard device" */;
+			buildPhases = (
+				8559ECDC1D43D37900C44E31 /* Check Pods Manifest.lock */,
+				8559ECDD1D43D37900C44E31 /* Sources */,
+				8559ED0B1D43D37900C44E31 /* Frameworks */,
+				8559ED1A1D43D37900C44E31 /* Resources */,
+				8559ED321D43D37900C44E31 /* Embed Pods Frameworks */,
+				8559ED331D43D37900C44E31 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TryHard device";
+			productName = TryHard;
+			productReference = 8559ED371D43D37900C44E31 /* TryHard device.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1648,6 +1830,7 @@
 			projectRoot = "";
 			targets = (
 				1956AC801C9C42EF00E5DF0A /* TryHard */,
+				8559ECDB1D43D37900C44E31 /* TryHard device */,
 				1956AC971C9C42EF00E5DF0A /* TryHardTests */,
 				1956ACA21C9C42EF00E5DF0A /* TryHardUITests */,
 			);
@@ -1699,10 +1882,85 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8559ED1A1D43D37900C44E31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8559ED1B1D43D37900C44E31 /* goforward.raw in Resources */,
+				8559ED1C1D43D37900C44E31 /* trained_classifierNM2.xml in Resources */,
+				8559ED1D1D43D37900C44E31 /* sip_autoconf.h.in in Resources */,
+				8559ED1E1D43D37900C44E31 /* Bluetooth.storyboard in Resources */,
+				8559ED1F1D43D37900C44E31 /* haarcascade_frontalface_default.xml in Resources */,
+				8559ED201D43D37900C44E31 /* ImageProcessing.storyboard in Resources */,
+				8559ED211D43D37900C44E31 /* m_auto.h.in in Resources */,
+				8559ED221D43D37900C44E31 /* os_auto.h.in in Resources */,
+				8559ED231D43D37900C44E31 /* tessdata in Resources */,
+				8559ED241D43D37900C44E31 /* Accessory.storyboard in Resources */,
+				8559ED251D43D37900C44E31 /* config_auto.h.in in Resources */,
+				8559ED261D43D37900C44E31 /* model in Resources */,
+				8559ED271D43D37900C44E31 /* LaunchScreen.storyboard in Resources */,
+				8559ED281D43D37900C44E31 /* VideoProcessing.storyboard in Resources */,
+				8559ED291D43D37900C44E31 /* Assets.xcassets in Resources */,
+				8559ED2A1D43D37900C44E31 /* trained_classifierNM1.xml in Resources */,
+				8559ED2B1D43D37900C44E31 /* config_auto.h.in in Resources */,
+				8559ED2C1D43D37900C44E31 /* SIP.storyboard in Resources */,
+				8559ED2D1D43D37900C44E31 /* Main.storyboard in Resources */,
+				8559ED2E1D43D37900C44E31 /* Audio.storyboard in Resources */,
+				8559ED2F1D43D37900C44E31 /* ImageSelector.storyboard in Resources */,
+				8559ED301D43D37900C44E31 /* 3D.storyboard in Resources */,
+				8559ED311D43D37900C44E31 /* Tesseract.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		597898E16FC03D3C9E68FD89 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TryHard/Pods-TryHard-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8559ECDC1D43D37900C44E31 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8559ED321D43D37900C44E31 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TryHard/Pods-TryHard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8559ED331D43D37900C44E31 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1766,7 +2024,9 @@
 				198E08E71D12E3BF00CB0EED /* ImageCell.swift in Sources */,
 				194F72061CAD841300484580 /* THSwiftChartsVC.swift in Sources */,
 				194DFBB41CE6214500A2762D /* THBlurVC.swift in Sources */,
+				856806681D428C4B0085AC28 /* THFriendListVC.swift in Sources */,
 				1956AC871C9C42EF00E5DF0A /* ViewController.swift in Sources */,
+				8568066B1D428DC70085AC28 /* THFriendCell.swift in Sources */,
 				1930ED331D1944BC00C44266 /* THCameraManager.mm in Sources */,
 				1981867D1CF86FC60037B745 /* THTextField.swift in Sources */,
 				854BEB421D115BEE003B3B63 /* MIServiceManager.swift in Sources */,
@@ -1778,6 +2038,7 @@
 				193155181D0FF2BD00C0E62A /* THAccessory.swift in Sources */,
 				19CB61801D0EA312004241C7 /* THDevice.swift in Sources */,
 				19A0FA181CEF30F1000B1B2B /* THChatCell.swift in Sources */,
+				856806611D4288560085AC28 /* THSIPControl.swift in Sources */,
 				19CB61821D0EAD02004241C7 /* THBluetoothManager.swift in Sources */,
 				1986C6B71D0E97C50061BD27 /* BTDevice.m in Sources */,
 				19A0FA151CEF2BE0000B1B2B /* THSocketVC.swift in Sources */,
@@ -1786,10 +2047,12 @@
 				1990AB411D412002003AD662 /* PJSIPCredention.m in Sources */,
 				19644A471D142907008712CC /* THImageProcessingVC.swift in Sources */,
 				196D33F01CFDCF5C0031D023 /* THRoundedView.swift in Sources */,
+				856806641D428B480085AC28 /* THCallVC.swift in Sources */,
 				19644A4A1D14360E008712CC /* THVideoController.swift in Sources */,
 				191FD8E81D0AF0D100205F2D /* THPrivateBT.swift in Sources */,
 				1956AC851C9C42EF00E5DF0A /* AppDelegate.swift in Sources */,
 				1931551C1D0FF77300C0E62A /* MI-Services.swift in Sources */,
+				8568065E1D42882F0085AC28 /* THSIPLoginVC.swift in Sources */,
 				19012B0A1D37E83700072A3E /* THPJSipManager.mm in Sources */,
 				19A0FA1A1CEF4190000B1B2B /* Extensions.swift in Sources */,
 				199D9E211CE1CC50008AF05F /* VCLoader.swift in Sources */,
@@ -1810,6 +2073,58 @@
 			buildActionMask = 2147483647;
 			files = (
 				1956ACA81C9C42EF00E5DF0A /* TryHardUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8559ECDD1D43D37900C44E31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8559ECDE1D43D37900C44E31 /* THPJSIP.swift in Sources */,
+				8559ECDF1D43D37900C44E31 /* TryHard.xcdatamodeld in Sources */,
+				8559ECE01D43D37900C44E31 /* TryProject.swift in Sources */,
+				8559ECE11D43D37900C44E31 /* THVideoHelper.mm in Sources */,
+				8559ECE21D43D37900C44E31 /* THNewChatCell.swift in Sources */,
+				8559ECE31D43D37900C44E31 /* MIByteHelper.m in Sources */,
+				8559ECE41D43D37900C44E31 /* THTesseractVC.swift in Sources */,
+				8559ECE51D43D37900C44E31 /* THCommandVC.swift in Sources */,
+				8559ECE61D43D37900C44E31 /* THImageSelector.swift in Sources */,
+				8559ECE71D43D37900C44E31 /* ImageCell.swift in Sources */,
+				8559ECE81D43D37900C44E31 /* THSwiftChartsVC.swift in Sources */,
+				8559ECE91D43D37900C44E31 /* THBlurVC.swift in Sources */,
+				8559ECEA1D43D37900C44E31 /* THFriendListVC.swift in Sources */,
+				8559ECEB1D43D37900C44E31 /* ViewController.swift in Sources */,
+				8559ECEC1D43D37900C44E31 /* THFriendCell.swift in Sources */,
+				8559ECED1D43D37900C44E31 /* THCameraManager.mm in Sources */,
+				8559ECEE1D43D37900C44E31 /* THTextField.swift in Sources */,
+				8559ECEF1D43D37900C44E31 /* MIServiceManager.swift in Sources */,
+				8559ECF01D43D37900C44E31 /* PJSIPCallInfo.m in Sources */,
+				8559ECF11D43D37900C44E31 /* THPublicBT.swift in Sources */,
+				8559ECF21D43D37900C44E31 /* THHelpVC.swift in Sources */,
+				8559ECF31D43D37900C44E31 /* UIImage+CV.mm in Sources */,
+				8559ECF41D43D37900C44E31 /* THCommandListener.mm in Sources */,
+				8559ECF51D43D37900C44E31 /* THAccessory.swift in Sources */,
+				8559ECF61D43D37900C44E31 /* THDevice.swift in Sources */,
+				8559ECF71D43D37900C44E31 /* THChatCell.swift in Sources */,
+				8559ECF81D43D37900C44E31 /* THSIPControl.swift in Sources */,
+				8559ECF91D43D37900C44E31 /* THBluetoothManager.swift in Sources */,
+				8559ECFA1D43D37900C44E31 /* BTDevice.m in Sources */,
+				8559ECFB1D43D37900C44E31 /* THSocketVC.swift in Sources */,
+				8559ECFC1D43D37900C44E31 /* THImageFilter.mm in Sources */,
+				8559ECFD1D43D37900C44E31 /* QExpandVC.swift in Sources */,
+				8559ECFE1D43D37900C44E31 /* PJSIPCredention.m in Sources */,
+				8559ECFF1D43D37900C44E31 /* THImageProcessingVC.swift in Sources */,
+				8559ED001D43D37900C44E31 /* THRoundedView.swift in Sources */,
+				8559ED011D43D37900C44E31 /* THCallVC.swift in Sources */,
+				8559ED021D43D37900C44E31 /* THVideoController.swift in Sources */,
+				8559ED031D43D37900C44E31 /* THPrivateBT.swift in Sources */,
+				8559ED041D43D37900C44E31 /* AppDelegate.swift in Sources */,
+				8559ED051D43D37900C44E31 /* MI-Services.swift in Sources */,
+				8559ED061D43D37900C44E31 /* THSIPLoginVC.swift in Sources */,
+				8559ED071D43D37900C44E31 /* THPJSipManager.mm in Sources */,
+				8559ED081D43D37900C44E31 /* Extensions.swift in Sources */,
+				8559ED091D43D37900C44E31 /* VCLoader.swift in Sources */,
+				8559ED0A1D43D37900C44E31 /* MIUserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1935,6 +2250,8 @@
 			baseConfigurationReference = 65EBDEA9D8BA64A0F5F26411 /* Pods-TryHard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1993,6 +2310,8 @@
 			baseConfigurationReference = D5076CB0D7E0A05798C6981D /* Pods-TryHard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2094,6 +2413,126 @@
 			};
 			name = Release;
 		};
+		8559ED351D43D37900C44E31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65EBDEA9D8BA64A0F5F26411 /* Pods-TryHard.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TryHard",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					PJ_AUTOCONF,
+				);
+				HEADER_SEARCH_PATHS = (
+					$SOURCE_ROOT/include,
+					$SOURCE_ROOT/include/pjlib/include,
+					"$SOURCE_ROOT/include/pjlib-util/include",
+					$SOURCE_ROOT/include/pjmedia/include,
+					$SOURCE_ROOT/include/pjnath/include,
+					$SOURCE_ROOT/include/pjsip/include,
+				);
+				INFOPLIST_FILE = "TryHard copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"/usr/lib/libstdc++.6.0.9.dylib",
+					"-l\"stdc++\"",
+					"-framework",
+					"\"CocoaAsyncSocket\"",
+					"-framework",
+					"\"DGActivityIndicatorView\"",
+					"-framework",
+					"\"HanabiCollectionViewLayout\"",
+					"-framework",
+					"\"LiveFrost\"",
+					"-framework",
+					"\"PeerTalk\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SwiftCharts\"",
+					"-framework",
+					"\"TesseractOCR\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ekreative.mapamagic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TryHard/TryHard-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		8559ED361D43D37900C44E31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5076CB0D7E0A05798C6981D /* Pods-TryHard.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TryHard",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					PJ_AUTOCONF,
+				);
+				HEADER_SEARCH_PATHS = (
+					$SOURCE_ROOT/include,
+					$SOURCE_ROOT/include/pjlib/include,
+					"$SOURCE_ROOT/include/pjlib-util/include",
+					$SOURCE_ROOT/include/pjmedia/include,
+					$SOURCE_ROOT/include/pjnath/include,
+					$SOURCE_ROOT/include/pjsip/include,
+				);
+				INFOPLIST_FILE = "TryHard copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"/usr/lib/libstdc++.6.0.9.dylib",
+					"-l\"stdc++\"",
+					"-framework",
+					"\"CocoaAsyncSocket\"",
+					"-framework",
+					"\"DGActivityIndicatorView\"",
+					"-framework",
+					"\"HanabiCollectionViewLayout\"",
+					"-framework",
+					"\"LiveFrost\"",
+					"-framework",
+					"\"PeerTalk\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SwiftCharts\"",
+					"-framework",
+					"\"TesseractOCR\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ekreative.mapamagic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TryHard/TryHard-Bridging-Header.h";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2129,6 +2568,15 @@
 			buildConfigurations = (
 				1956ACB31C9C42EF00E5DF0A /* Debug */,
 				1956ACB41C9C42EF00E5DF0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8559ED341D43D37900C44E31 /* Build configuration list for PBXNativeTarget "TryHard device" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8559ED351D43D37900C44E31 /* Debug */,
+				8559ED361D43D37900C44E31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
