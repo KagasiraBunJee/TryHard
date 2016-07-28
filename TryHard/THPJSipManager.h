@@ -17,9 +17,9 @@
 @interface THPJSipManager : NSObject
 
 //delegates
-@property (nonatomic, weak) id<PJSIPDelegate> delegate;
-@property (nonatomic, weak) id<PJSIPRegisterDelegate> regDelegate;
-@property (nonatomic, weak) id<PJSIPBuddyDelegate> buddyDelegate;
+@property (weak) id<PJSIPDelegate> delegate;
+@property (weak) id<PJSIPRegisterDelegate> regDelegate;
+@property (weak) id<PJSIPBuddyDelegate> buddyDelegate;
 
 //calls
 @property (nonatomic, assign, readonly) int calls;

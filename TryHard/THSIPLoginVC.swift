@@ -48,6 +48,7 @@ class THSIPLoginVC: UIViewController, PJSIPRegisterDelegate {
     
     func pjsip_onAccountRegistered(accId: Int32) {
         onSuccess?()
+        THPJSipManager.sharedManager().regDelegate = nil
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

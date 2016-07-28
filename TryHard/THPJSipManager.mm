@@ -10,6 +10,8 @@
 #include <pjsua-lib/pjsua.h>
 #define THIS_FILE "THPJSipManager.m"
 
+#define PJSUA_PRES_TIMER   60
+
 @interface THPJSipManager ()
 {
     pj_status_t status;
@@ -197,6 +199,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
 -(void)setAccountPresence:(int)acc_id online:(BOOL)presence
 {
     pjsua_acc_set_online_status(acc_id, presence == YES ? PJ_TRUE : PJ_FALSE);
+    
 }
 
 -(void)addBuddy:(NSString *)buddyURI
@@ -232,6 +235,10 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
         {
             NSLog(@"subscribe sent");
         }
+    }
+    else
+    {
+        pjsua_buddy_subscribe_pres(bud_id, PJ_TRUE);
     }
 }
 
@@ -299,8 +306,6 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
         app_cfg.outbound_proxy[0] = pj_str((char *)proxy);
     }
     
-    
-    
     pjsua_logging_config log_cfg;
     pjsua_logging_config_default(&log_cfg);
     log_cfg.console_level = 4;
@@ -332,7 +337,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
 
 -(void)startPjSip
 {
-    pj_str_t pro = pj_str((char *)"H263-1998/96");
+    pj_str_t pro = pj_str((char *)"H264/97");
     pjsua_vid_codec_set_priority(&pro,255);
     
     status = pjsua_start();
@@ -626,7 +631,7 @@ static void on_incoming_subscribe(pjsua_acc_id acc_id,
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSString *msg;
                 NSString *reasonString;
-                NSString *buddyURI = [NSString stringWithCString:from->ptr encoding:NSUTF8StringEncoding];
+                NSString *buddyURI = [[NSString stringWithCString:from->ptr encoding:NSUTF8StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                 
                 if (reason->slen > 0) {
                     reasonString = [NSString stringWithCString:reason->ptr encoding:NSUTF8StringEncoding];
@@ -642,7 +647,7 @@ static void on_incoming_subscribe(pjsua_acc_id acc_id,
     }
     
 //    pj_str_t status_str = pj_str((char*)"Unknown");
-//    pjsua_pres_notify(acc_id, srv_pres, PJSIP_EVSUB_STATE_ACTIVE, NULL, NULL, PJ_FALSE, NULL);
+    pjsua_pres_notify(acc_id, srv_pres, PJSIP_EVSUB_STATE_ACTIVE, NULL, NULL, PJ_FALSE, NULL);
     return;
 }
 
@@ -655,7 +660,8 @@ static void on_srv_buddy_state_changed(pjsua_acc_id acc_id,
     NSLog(@"on_srv_buddy_state_changed buddy state changed");
     if (state == PJSIP_EVSUB_STATE_TERMINATED)
     {
-        pjsua_buddy_subscribe_pres(0, PJ_TRUE);
+        
+        [manager addBuddy:[NSString stringWithCString:remote_uri->ptr length:remote_uri->slen]];
     }
 }
 

@@ -71,11 +71,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 } else {
                     vc.onSuccess = {
                         dispatch_async(dispatch_get_main_queue(), {
-                            let vc = VCLoader<UITabBarController>.load(storyboardId: .SIP, inStoryboardID: "sipControl")
-                            self.navigationController?.pushViewController(vc, animated: true)
+                            let sipVC = VCLoader.loadInitial(storyboardId: .SIP)
+                            self.navigationController?.pushViewController(sipVC, animated: true)
                         })
                     }
-                    self.presentViewController(project.viewController!, animated: true, completion: nil)
+                    self.presentViewController(vc, animated: true, completion: nil)
                 }
             }
         } else {
