@@ -29,12 +29,20 @@ class THSIPControl: UIViewController, PJSIPDelegate, PJSIPBuddyDelegate {
         sipManager.answer(0, withVideo: false)
     }
     
+    @IBAction func setOnlineAction(sender: AnyObject) {
+        sipManager.setAccountPresence(0, online: true)
+    }
+    
+    @IBAction func setOfflineAction(sender: AnyObject) {
+        sipManager.setAccountPresence(0, online: false)
+    }
+    
     //MARK:- THPJSipManagerDelegate
     func pjsip_onIncomingCall(callId: Int32, callInfo: PJSIPCallInfo!) {
         print("call incoming")
     }
     
     func pjsip_onFriendRequestReceived(buddyId: Int32, buddyURI: String!, reason: String!, msg: String!) {
-        print("user \(buddyURI) wants to add you to friends")
+        sipManager.addBuddy(buddyURI)
     }
 }

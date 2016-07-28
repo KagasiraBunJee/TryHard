@@ -8,27 +8,55 @@
 
 import UIKit
 
-class THFriendListVC: UIViewController {
+class THFriendListVC: UIViewController, UITableViewDataSource, UITableViewDelegate, PJSIPBuddyDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchFriend: THTextField!
     
     var sipManager:THPJSipManager!
+    var buddies:[PJSIPBuddy]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sipManager = THPJSipManager.sharedManager()
+        sipManager.buddyDelegate = self
+        
+        buddies = sipManager.buddyList()
         
         tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
         
         searchFriend.onDone = {
             
-            let id = self.sipManager.findBuddy(self.searchFriend.text!)
-            print("buddy found with id \(id)")
-            
+            self.sipManager.addBuddy(self.searchFriend.text!)
         }
     }
 
+    //MARK:- UITableViewDataSource
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return buddies.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let buddy = buddies[indexPath.row];
+        let cell = tableView.dequeueReusableCellWithIdentifier("friendCell") as! THFriendCell
+        
+        cell.buddyName.text = buddy.buddyLogin
+        cell.setBuddyStatus(buddy.buddyStatus)
+        
+        return cell
+    }
+    
+    //MARK:- UITableViewDelegate
+    
+    //MARK:- PJSIPBuddyDelegate
+    func pjsip_onBuddyStateChanged(buddyId: Int32, buddy: PJSIPBuddy!) {
+        
+        buddies = sipManager.buddyList()
+        tableView.reloadData()
+    }
 }

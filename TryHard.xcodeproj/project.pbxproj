@@ -165,6 +165,9 @@
 		8559ED2F1D43D37900C44E31 /* ImageSelector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198E08E31D12E07E00CB0EED /* ImageSelector.storyboard */; };
 		8559ED301D43D37900C44E31 /* 3D.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19671CD01CE46FAE008A4C5A /* 3D.storyboard */; };
 		8559ED311D43D37900C44E31 /* Tesseract.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198E08D51D12CB4500CB0EED /* Tesseract.storyboard */; };
+		855D35971D48AA80008ED138 /* PJSIPBuddy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 855D35961D48AA80008ED138 /* PJSIPBuddy.mm */; };
+		855D35981D48BE43008ED138 /* PJSIPBuddy.h in Sources */ = {isa = PBXBuildFile; fileRef = 855D35951D48AA80008ED138 /* PJSIPBuddy.h */; };
+		855D35991D48BE81008ED138 /* PJSIPBuddy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 855D35961D48AA80008ED138 /* PJSIPBuddy.mm */; };
 		8568065E1D42882F0085AC28 /* THSIPLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8568065D1D42882F0085AC28 /* THSIPLoginVC.swift */; };
 		856806611D4288560085AC28 /* THSIPControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856806601D4288560085AC28 /* THSIPControl.swift */; };
 		856806641D428B480085AC28 /* THCallVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856806631D428B480085AC28 /* THCallVC.swift */; };
@@ -630,6 +633,8 @@
 		854BEB411D115BEE003B3B63 /* MIServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIServiceManager.swift; sourceTree = "<group>"; };
 		8559ED371D43D37900C44E31 /* TryHard device.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TryHard device.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8559ED381D43D37900C44E31 /* TryHard copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TryHard copy-Info.plist"; path = "/Users/sergei/Documents/ios/TryHard/TryHard copy-Info.plist"; sourceTree = "<absolute>"; };
+		855D35951D48AA80008ED138 /* PJSIPBuddy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJSIPBuddy.h; sourceTree = "<group>"; };
+		855D35961D48AA80008ED138 /* PJSIPBuddy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PJSIPBuddy.mm; sourceTree = "<group>"; };
 		8568065D1D42882F0085AC28 /* THSIPLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THSIPLoginVC.swift; sourceTree = "<group>"; };
 		856806601D4288560085AC28 /* THSIPControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THSIPControl.swift; sourceTree = "<group>"; };
 		856806631D428B480085AC28 /* THCallVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCallVC.swift; sourceTree = "<group>"; };
@@ -728,6 +733,8 @@
 				8569BA341D3B95C400E564FE /* PJSIPCallInfo.m */,
 				1990AB3F1D412002003AD662 /* PJSIPCredention.h */,
 				1990AB401D412002003AD662 /* PJSIPCredention.m */,
+				855D35951D48AA80008ED138 /* PJSIPBuddy.h */,
+				855D35961D48AA80008ED138 /* PJSIPBuddy.mm */,
 			);
 			name = PJSIP;
 			sourceTree = "<group>";
@@ -2060,6 +2067,7 @@
 				1956AC851C9C42EF00E5DF0A /* AppDelegate.swift in Sources */,
 				1931551C1D0FF77300C0E62A /* MI-Services.swift in Sources */,
 				8568065E1D42882F0085AC28 /* THSIPLoginVC.swift in Sources */,
+				855D35971D48AA80008ED138 /* PJSIPBuddy.mm in Sources */,
 				19012B0A1D37E83700072A3E /* THPJSipManager.mm in Sources */,
 				19A0FA1A1CEF4190000B1B2B /* Extensions.swift in Sources */,
 				199D9E211CE1CC50008AF05F /* VCLoader.swift in Sources */,
@@ -2087,6 +2095,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				855D35991D48BE81008ED138 /* PJSIPBuddy.mm in Sources */,
+				855D35981D48BE43008ED138 /* PJSIPBuddy.h in Sources */,
 				19295B2A1D465E2B0014FEF1 /* PJSIPBuddyDelegate.h in Sources */,
 				8559ECDE1D43D37900C44E31 /* THPJSIP.swift in Sources */,
 				8559ECDF1D43D37900C44E31 /* TryHard.xcdatamodeld in Sources */,

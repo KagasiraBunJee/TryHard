@@ -19,5 +19,9 @@
 -(void)pjsip_onCallOnCalling:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
 -(void)pjsip_onCallDidConfirm:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
 -(void)pjsip_onCallDidHangUp:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
+//message
+-(void)pjsip_onMessageIncome:(int) callId callInfo:(PJSIPCallInfo*) callInfo
+                    message:(NSString *)message
+                      sender:(NSString*)sender;
 
 @end

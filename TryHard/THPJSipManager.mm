@@ -14,6 +14,7 @@
 {
     pj_status_t status;
     pjsua_acc_id currentAccount;
+    pjsua_srv_pres *srv_pres;
     NSString *out_bound_proxy;
     NSString *out_bound_proxy_port;
 }
@@ -100,6 +101,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     cfg.reg_uri = pj_str(regUri);
     cfg.vid_out_auto_transmit = hasVideoSupport();
     cfg.vid_in_auto_show = hasVideoSupport();
+    cfg.publish_enabled = PJ_TRUE;
     
     cfg.cred_count = 1;
     cfg.cred_info[0].username = pj_str((char *)[cred.username UTF8String]);
@@ -197,11 +199,22 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     pjsua_acc_set_online_status(acc_id, presence == YES ? PJ_TRUE : PJ_FALSE);
 }
 
--(void)findBuddy:(NSString *)buddyURI
+-(void)addBuddy:(NSString *)buddyURI
 {
     pjsua_buddy_id buddy_id;
+    
     char buddyURIFull[MAX_SIP_ID_LENGTH];
-    sprintf(buddyURIFull, "sip:%s@sip.linphone.org", [buddyURI UTF8String]);
+    
+    
+    if (pjsua_verify_url((char *)[buddyURI UTF8String]) != PJ_SUCCESS)
+    {
+        sprintf(buddyURIFull, "sip:%s@sip.linphone.org", [buddyURI UTF8String]);
+    }
+    else
+    {
+        sprintf(buddyURIFull, "%s", [buddyURI UTF8String]);
+    }
+    
     pj_status_t action_status = pjsua_verify_url(buddyURIFull);
 
     pj_str_t uri = pj_str(buddyURIFull);
@@ -220,6 +233,25 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
             NSLog(@"subscribe sent");
         }
     }
+}
+
+-(NSArray<PJSIPBuddy*> *)buddyList
+{
+    NSMutableArray<PJSIPBuddy*> *buddyArr = [[NSMutableArray alloc] init];
+    
+    int buddyCount = pjsua_get_buddy_count();
+    for (int i = 0; i < buddyCount; i++)
+    {
+        PJSIPBuddy *buddy = [[PJSIPBuddy alloc] initWithBuddyId:i];
+        [buddyArr addObject:buddy];
+    }
+    
+    return buddyArr;
+}
+
+-(int)boddiesCount
+{
+    return pjsua_get_buddy_count();
 }
 
 #pragma mark - getters & setters
@@ -266,6 +298,8 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
         app_cfg.outbound_proxy_cnt = 1;
         app_cfg.outbound_proxy[0] = pj_str((char *)proxy);
     }
+    
+    
     
     pjsua_logging_config log_cfg;
     pjsua_logging_config_default(&log_cfg);
@@ -392,8 +426,6 @@ void on_incoming_call(pjsua_acc_id acc_id, pjsua_call_id call_id,
             [manager.delegate pjsip_onIncomingCall:call_id callInfo:info];
         });
     }
-    
-    NSLog(@"call incoming");
 }
 
 /* Callback called by the library when call's state has changed */
@@ -584,8 +616,9 @@ static void on_incoming_subscribe(pjsua_acc_id acc_id,
                                       pj_str_t *reason,
                                       pjsua_msg_data *msg_data)
 {
-    pjsip_status_code newcode = (pjsip_status_code)PJSIP_SC_DECLINE;
-    code = &newcode;
+    manager->srv_pres = srv_pres;
+//    pjsip_status_code newcode = (pjsip_status_code)PJSIP_SC_DECLINE;
+//    code = &newcode;
     if (manager.buddyDelegate)
     {
         if ([manager.buddyDelegate respondsToSelector:@selector(pjsip_onFriendRequestReceived:buddyURI:reason:msg:)])
@@ -609,7 +642,7 @@ static void on_incoming_subscribe(pjsua_acc_id acc_id,
     }
     
 //    pj_str_t status_str = pj_str((char*)"Unknown");
-//    pjsua_pres_notify(acc_id, srv_pres, PJSIP_EVSUB_STATE_PENDING, &status_str, NULL, PJ_FALSE, NULL);
+//    pjsua_pres_notify(acc_id, srv_pres, PJSIP_EVSUB_STATE_ACTIVE, NULL, NULL, PJ_FALSE, NULL);
     return;
 }
 
@@ -620,6 +653,10 @@ static void on_srv_buddy_state_changed(pjsua_acc_id acc_id,
                                        pjsip_event *event)
 {
     NSLog(@"on_srv_buddy_state_changed buddy state changed");
+    if (state == PJSIP_EVSUB_STATE_TERMINATED)
+    {
+        pjsua_buddy_subscribe_pres(0, PJ_TRUE);
+    }
 }
 
 static void on_buddy_evsub_state(pjsua_buddy_id buddy_id,
@@ -641,12 +678,12 @@ static void on_buddy_state(pjsua_buddy_id buddy_id)
 {
     NSLog(@"on_buddy_state %i", buddy_id);
     
-    pjsua_buddy_info b_info;
-    pjsua_buddy_get_info(buddy_id, &b_info);
-    
-    if (b_info.sub_state == PJSIP_EVSUB_STATE_NULL)
+    if (manager.buddyDelegate && [manager.buddyDelegate respondsToSelector:@selector(pjsip_onBuddyStateChanged:buddy:)])
     {
-        NSLog(@"on_buddy_state subscription null");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PJSIPBuddy* buddy = [[PJSIPBuddy alloc] initWithBuddyId:buddy_id];
+            [manager.buddyDelegate pjsip_onBuddyStateChanged:buddy_id buddy:buddy];
+        });
     }
 }
 
@@ -657,7 +694,29 @@ static void on_message_incoming2(pjsua_call_id call_id, const pj_str_t *from,
                                 const pj_str_t *mime_type, const pj_str_t *body,
                                 pjsip_rx_data *rdata, pjsua_acc_id acc_id)
 {
-    NSLog(@"on_message_incoming2 message has come");
+    if (manager.delegate)
+    {
+        if ([manager.delegate respondsToSelector:@selector(pjsip_onMessageIncome:callInfo:message:sender:)])
+        {
+            PJSIPCallInfo* info = NULL;
+            if (call_id != PJSUA_INVALID_ID)
+            {
+                info = [[PJSIPCallInfo alloc] initWithCallID:call_id];
+            }
+            if (strncmp(mime_type->ptr, "text/plain", mime_type->slen))
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSString *msg;
+                    NSString *sender = [NSString stringWithCString:from->ptr encoding:NSUTF8StringEncoding];
+                    if (body->slen > 0 )
+                    {
+                        msg = [NSString stringWithCString:body->ptr encoding:NSUTF8StringEncoding];
+                    }
+                    [manager.delegate pjsip_onMessageIncome:call_id callInfo:info message:msg sender:sender];
+                });
+            }
+        }
+    }
 }
 
 //static void resolver_cb_func(pj_status_t status, void *token, const struct pjsip_server_addresses *addr)
