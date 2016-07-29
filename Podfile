@@ -14,6 +14,8 @@ target 'TryHard' do
     pod 'CocoaAsyncSocket'
     pod 'PeerTalk'
     pod 'HanabiCollectionViewLayout', :git => 'https://github.com/kshin/Hanabi'
+    pod 'FoldingCell'
+    pod 'AFDropdownNotification'
 end
 
 target 'TryHardTests' do

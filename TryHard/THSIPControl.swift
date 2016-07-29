@@ -44,5 +44,7 @@ class THSIPControl: UIViewController, PJSIPDelegate, PJSIPBuddyDelegate {
     
     func pjsip_onFriendRequestReceived(buddyId: Int32, buddyURI: String!, reason: String!, msg: String!) {
         sipManager.addBuddy(buddyURI)
+        
+        THNotificationHelper.showNotification("Somebody has added you to friends", title: "Friends")
     }
 }

@@ -7,6 +7,7 @@
 //
 
 #include "PJSIPCallInfo.h"
+#include "PJSIPMessage.h"
 
 @protocol PJSIPDelegate;
 
@@ -21,7 +22,9 @@
 -(void)pjsip_onCallDidHangUp:(int) callId callInfo:(PJSIPCallInfo*) callInfo;
 //message
 -(void)pjsip_onMessageIncome:(int) callId callInfo:(PJSIPCallInfo*) callInfo
-                    message:(NSString *)message
+                     message:(PJSIPMessage *)message
                       sender:(NSString*)sender;
+-(void)pjsip_onTyping:(int) callId callInfo:(PJSIPCallInfo*) callInfo
+             isTyping:(BOOL) isTyping;
 
 @end

@@ -80,6 +80,10 @@
 		19A0FA151CEF2BE0000B1B2B /* THSocketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A0FA141CEF2BE0000B1B2B /* THSocketVC.swift */; };
 		19A0FA181CEF30F1000B1B2B /* THChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A0FA171CEF30F1000B1B2B /* THChatCell.swift */; };
 		19A0FA1A1CEF4190000B1B2B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A0FA191CEF4190000B1B2B /* Extensions.swift */; };
+		19B3CD601D4B5D46007EDF34 /* THNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3CD5F1D4B5D46007EDF34 /* THNotificationHelper.swift */; };
+		19B3CD611D4B5D46007EDF34 /* THNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3CD5F1D4B5D46007EDF34 /* THNotificationHelper.swift */; };
+		19B3CD641D4B714D007EDF34 /* PJSIPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3CD631D4B714D007EDF34 /* PJSIPMessage.m */; };
+		19B3CD651D4B714D007EDF34 /* PJSIPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3CD631D4B714D007EDF34 /* PJSIPMessage.m */; };
 		19CB61801D0EA312004241C7 /* THDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CB617F1D0EA312004241C7 /* THDevice.swift */; };
 		19CB61821D0EAD02004241C7 /* THBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CB61811D0EAD02004241C7 /* THBluetoothManager.swift */; };
 		854BEB421D115BEE003B3B63 /* MIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BEB411D115BEE003B3B63 /* MIServiceManager.swift */; };
@@ -626,6 +630,9 @@
 		19A0FA141CEF2BE0000B1B2B /* THSocketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THSocketVC.swift; sourceTree = "<group>"; };
 		19A0FA171CEF30F1000B1B2B /* THChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THChatCell.swift; sourceTree = "<group>"; };
 		19A0FA191CEF4190000B1B2B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		19B3CD5F1D4B5D46007EDF34 /* THNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THNotificationHelper.swift; sourceTree = "<group>"; };
+		19B3CD621D4B714D007EDF34 /* PJSIPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJSIPMessage.h; sourceTree = "<group>"; };
+		19B3CD631D4B714D007EDF34 /* PJSIPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJSIPMessage.m; sourceTree = "<group>"; };
 		19CB617F1D0EA312004241C7 /* THDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDevice.swift; sourceTree = "<group>"; };
 		19CB61811D0EAD02004241C7 /* THBluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THBluetoothManager.swift; sourceTree = "<group>"; };
 		19CD6C061D1006DA00F180A5 /* BluetoothManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BluetoothManager.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/BluetoothManager.framework; sourceTree = DEVELOPER_DIR; };
@@ -735,6 +742,8 @@
 				1990AB401D412002003AD662 /* PJSIPCredention.m */,
 				855D35951D48AA80008ED138 /* PJSIPBuddy.h */,
 				855D35961D48AA80008ED138 /* PJSIPBuddy.mm */,
+				19B3CD621D4B714D007EDF34 /* PJSIPMessage.h */,
+				19B3CD631D4B714D007EDF34 /* PJSIPMessage.m */,
 			);
 			name = PJSIP;
 			sourceTree = "<group>";
@@ -1630,6 +1639,7 @@
 				85F89FAC1D119CF100F26A71 /* MIByteHelper.m */,
 				19133F961D26AD420090F5A7 /* THCommandListener.h */,
 				19133F971D26AD420090F5A7 /* THCommandListener.mm */,
+				19B3CD5F1D4B5D46007EDF34 /* THNotificationHelper.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -2033,6 +2043,7 @@
 				196D33F21CFDD5FA0031D023 /* THNewChatCell.swift in Sources */,
 				85F89FAD1D119CF100F26A71 /* MIByteHelper.m in Sources */,
 				198E08D91D12CB7F00CB0EED /* THTesseractVC.swift in Sources */,
+				19B3CD601D4B5D46007EDF34 /* THNotificationHelper.swift in Sources */,
 				19133F9B1D26B08B0090F5A7 /* THCommandVC.swift in Sources */,
 				198E08E21D12E06C00CB0EED /* THImageSelector.swift in Sources */,
 				198E08E71D12E3BF00CB0EED /* ImageCell.swift in Sources */,
@@ -2048,6 +2059,7 @@
 				193155131D0FE21200C0E62A /* THPublicBT.swift in Sources */,
 				1994FEA31D180D6300253C5A /* THHelpVC.swift in Sources */,
 				19644A3E1D142079008712CC /* UIImage+CV.mm in Sources */,
+				19B3CD641D4B714D007EDF34 /* PJSIPMessage.m in Sources */,
 				19133F981D26AD420090F5A7 /* THCommandListener.mm in Sources */,
 				193155181D0FF2BD00C0E62A /* THAccessory.swift in Sources */,
 				19CB61801D0EA312004241C7 /* THDevice.swift in Sources */,
@@ -2097,6 +2109,7 @@
 			files = (
 				855D35991D48BE81008ED138 /* PJSIPBuddy.mm in Sources */,
 				855D35981D48BE43008ED138 /* PJSIPBuddy.h in Sources */,
+				19B3CD611D4B5D46007EDF34 /* THNotificationHelper.swift in Sources */,
 				19295B2A1D465E2B0014FEF1 /* PJSIPBuddyDelegate.h in Sources */,
 				8559ECDE1D43D37900C44E31 /* THPJSIP.swift in Sources */,
 				8559ECDF1D43D37900C44E31 /* TryHard.xcdatamodeld in Sources */,
@@ -2114,6 +2127,7 @@
 				8559ECEB1D43D37900C44E31 /* ViewController.swift in Sources */,
 				8559ECEC1D43D37900C44E31 /* THFriendCell.swift in Sources */,
 				8559ECED1D43D37900C44E31 /* THCameraManager.mm in Sources */,
+				19B3CD651D4B714D007EDF34 /* PJSIPMessage.m in Sources */,
 				8559ECEE1D43D37900C44E31 /* THTextField.swift in Sources */,
 				8559ECEF1D43D37900C44E31 /* MIServiceManager.swift in Sources */,
 				8559ECF01D43D37900C44E31 /* PJSIPCallInfo.m in Sources */,

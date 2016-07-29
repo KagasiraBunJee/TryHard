@@ -104,6 +104,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     cfg.vid_out_auto_transmit = hasVideoSupport();
     cfg.vid_in_auto_show = hasVideoSupport();
     cfg.publish_enabled = PJ_TRUE;
+//    cfg.contact_uri_params = pj_str((char *)[cred.username UTF8String]);
     
     cfg.cred_count = 1;
     cfg.cred_info[0].username = pj_str((char *)[cred.username UTF8String]);
@@ -261,6 +262,28 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     return pjsua_get_buddy_count();
 }
 
+-(void)sendMessage:(NSString *)msg destURI:(NSString *)destURI call_id:(int)call_id
+{
+    pj_str_t pjmsg = pj_str((char*)[msg UTF8String]);
+    pj_str_t pj_to = pj_str((char*)[destURI UTF8String]);
+    pj_str_t pjmsg_mimetype = pj_str((char*)"text/plain");
+    
+    if (call_id != PJSUA_INVALID_ID)
+    {
+        pjsua_call_send_im(call_id, &pjmsg_mimetype, &pjmsg, NULL, NULL);
+    }
+    else
+    {
+        pjsua_im_send(pjsua_acc_get_default(), &pj_to, &pjmsg_mimetype, &pjmsg, NULL, NULL);
+    }
+}
+
+-(void)notifyTyping:(NSString *)destURI isTyping:(BOOL)isTyping
+{
+    pj_str_t pj_to = pj_str((char*)[destURI UTF8String]);
+    pjsua_im_typing(pjsua_acc_get_default(), &pj_to, isTyping, NULL);
+}
+
 #pragma mark - getters & setters
 
 -(void)setOutboundProxy:(NSString *)outboundProxy
@@ -297,6 +320,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     app_cfg.cb.on_buddy_evsub_state = &on_buddy_evsub_state;
     app_cfg.cb.on_buddy_state = &on_buddy_state;
     app_cfg.cb.on_pager2 = &on_message_incoming2;
+    app_cfg.cb.on_typing2 = &on_typing2;
     
     if (![out_bound_proxy isEqualToString:@""] && out_bound_proxy != NULL)
     {
@@ -713,16 +737,28 @@ static void on_message_incoming2(pjsua_call_id call_id, const pj_str_t *from,
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSString *msg;
-                    NSString *sender = [NSString stringWithCString:from->ptr encoding:NSUTF8StringEncoding];
+                    NSString *sender = [NSString stringWithCString:from->ptr length:from->slen];
+                    NSString *dest = [NSString stringWithCString:to->ptr length:to->slen];
                     if (body->slen > 0 )
                     {
-                        msg = [NSString stringWithCString:body->ptr encoding:NSUTF8StringEncoding];
+                        msg = [NSString stringWithCString:body->ptr length:body->slen];
                     }
-                    [manager.delegate pjsip_onMessageIncome:call_id callInfo:info message:msg sender:sender];
+                    
+                    PJSIPMessage *message = [[PJSIPMessage alloc] initWithSender:sender to:dest msg:msg];
+                    
+                    [manager.delegate pjsip_onMessageIncome:call_id callInfo:info message:message sender:sender];
                 });
             }
         }
     }
+}
+
+static void on_typing2(pjsua_call_id call_id, const pj_str_t *from,
+                       const pj_str_t *to, const pj_str_t *contact,
+                       pj_bool_t is_typing, pjsip_rx_data *rdata,
+                       pjsua_acc_id acc_id)
+{
+    
 }
 
 //static void resolver_cb_func(pj_status_t status, void *token, const struct pjsip_server_addresses *addr)

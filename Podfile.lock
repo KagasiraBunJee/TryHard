@@ -1,4 +1,5 @@
 PODS:
+  - AFDropdownNotification (1.1)
   - CocoaAsyncSocket (7.4.3):
     - CocoaAsyncSocket/All (= 7.4.3)
   - CocoaAsyncSocket/All (7.4.3):
@@ -7,6 +8,7 @@ PODS:
   - CocoaAsyncSocket/GCD (7.4.3)
   - CocoaAsyncSocket/RunLoop (7.4.3)
   - DGActivityIndicatorView (2.0)
+  - FoldingCell (1.0.0)
   - HanabiCollectionViewLayout (1.1.1)
   - LiveFrost (1.1.2)
   - PeerTalk (0.0.1)
@@ -17,8 +19,10 @@ PODS:
   - TesseractOCRiOS (4.0.0)
 
 DEPENDENCIES:
+  - AFDropdownNotification
   - CocoaAsyncSocket
   - DGActivityIndicatorView
+  - FoldingCell
   - HanabiCollectionViewLayout (from `https://github.com/kshin/Hanabi`)
   - LiveFrost (~> 1.1.2)
   - PeerTalk
@@ -41,8 +45,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/gali8/Tesseract-OCR-iOS.git
 
 SPEC CHECKSUMS:
+  AFDropdownNotification: 4125b132cd03a8d6293e09ce000aeef55ced1364
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
+  FoldingCell: ca0b0f73a853143bf7d968c04a6604d25fbf1af7
   HanabiCollectionViewLayout: b0fc52553b3225afdd7a9a97d62b57436211b137
   LiveFrost: 0631143a00e336ad6a8f183d4b02df93f8900d9d
   PeerTalk: 5e6843592fea14a4221a9829c43d92a309b7130b

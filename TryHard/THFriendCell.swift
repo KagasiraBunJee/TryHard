@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import FoldingCell
 
-class THFriendCell: UITableViewCell {
-
+class THFriendCell: FoldingCell {
+    
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var buddyName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         
     }
     
@@ -29,5 +31,12 @@ class THFriendCell: UITableViewCell {
             statusView.backgroundColor = UIColor.greenColor()
         }
         
+    }
+    
+    override func animationDuration(itemIndex:NSInteger, type:AnimationType)-> NSTimeInterval {
+        
+        // durations count equal it itemCount
+        let durations = [0.33, 0.26, 0.26] // timing animation for each view
+        return durations[itemIndex]
     }
 }

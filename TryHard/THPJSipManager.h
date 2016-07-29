@@ -48,6 +48,10 @@
 -(void)holdCall:(int) call_id;
 -(void)unholdCall:(int) call_id;
 
+//message
+-(void)sendMessage:(NSString*)msg destURI:(NSString*)destURI call_id:(int)call_id;
+-(void)notifyTyping:(NSString *)destURI isTyping:(BOOL)isTyping;
+
 -(NSData*)getAccInfo:(int)acc_id;
 
 //Friends methods
