@@ -48,7 +48,7 @@ class THPJSIP: UIViewController, PJSIPDelegate {
     }
     
     @IBAction func makeCall(sender: AnyObject) {
-        sipManager.callTo(friend.text!, withVideo: true)
+        sipManager.callTo(friend.text!, withVideo: true, conferenceID: 0)
     }
     
     @IBAction func answerCall(sender: AnyObject) {

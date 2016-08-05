@@ -46,6 +46,7 @@ typedef pjsip_status_code PJ_STATUS_CODE;
 //make enum with roles
 //@property (nonatomic, assign, readonly) int role;
 @property (nonatomic, assign, readonly) int accID;
+@property (nonatomic, assign, readonly) int conf_port;
 @property (nonatomic, retain, readonly) NSString *localInfo;
 @property (nonatomic, retain, readonly) NSString *localContact;
 @property (nonatomic, retain, readonly) NSString *remoteInfo;

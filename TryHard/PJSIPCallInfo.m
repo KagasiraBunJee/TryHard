@@ -20,6 +20,7 @@
         
         _callID = ci.id;
         _accID = ci.acc_id;
+        _conf_port = ci.conf_slot;
         _localInfo = [NSString stringWithFormat:@"%s", ci.local_info.ptr];
         _localContact = [NSString stringWithFormat:@"%s", ci.local_contact.ptr];
         _remoteInfo = [NSString stringWithFormat:@"%s", ci.remote_info.ptr];

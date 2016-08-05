@@ -24,3 +24,4 @@
 
 //pods
 #import <AFDropdownNotification/AFDropdownNotification.h>
+#import <RDHCollectionViewGridLayout/RDHCollectionViewGridLayout.h>

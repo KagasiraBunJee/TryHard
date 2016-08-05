@@ -19,6 +19,9 @@
     pjsua_srv_pres *srv_pres;
     NSString *out_bound_proxy;
     NSString *out_bound_proxy_port;
+    
+    PJSIPCallInfo *currentCall;
+    NSString *SIP_DOMAIN;
 }
 
 @property pj_status_t status;
@@ -99,6 +102,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     
     char regUri[MAX_SIP_REG_URI_LENGTH];
     sprintf(regUri, "sip:%s", [cred.realm UTF8String]);
+    SIP_DOMAIN = cred.realm;
     
     cfg.reg_uri = pj_str(regUri);
     cfg.vid_out_auto_transmit = hasVideoSupport();
@@ -108,7 +112,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     
     cfg.cred_count = 1;
     cfg.cred_info[0].username = pj_str((char *)[cred.username UTF8String]);
-    cfg.cred_info[0].realm = pj_str((char *)"*");
+    cfg.cred_info[0].realm = pj_str((char *)[cred.realm UTF8String]);
     cfg.cred_info[0].data_type = (int)cred.dataType;
     cfg.cred_info[0].data = pj_str((char *)[cred.data UTF8String]);
     cfg.cred_info[0].scheme = pj_str((char *)[cred.scheme UTF8String]);
@@ -116,7 +120,7 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     if (![cred.proxy isEqualToString:@""] && cred.proxy != NULL)
     {
         char proxyURI[MAX_SIP_REG_URI_LENGTH];
-        sprintf(proxyURI, "sip:%s", [cred.proxy UTF8String]);
+        sprintf(proxyURI, "sip:%s;transport=tcp", [cred.proxy UTF8String]);
         cfg.proxy_cnt = 1;
         cfg.proxy[0] = pj_str(proxyURI);
     }
@@ -126,22 +130,48 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     if (status != PJ_SUCCESS) error("Error registering acc", status);
 }
 
--(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo
+-(BOOL)callIsActive:(int)call_id
+{
+    pjsua_call_info info;
+    pj_status_t status = pjsua_call_get_info(call_id, &info);
+    pj_bool_t isActive = pjsua_call_is_active(call_id);
+    
+    return isActive == PJ_TRUE;
+}
+
+-(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo conferenceID:(int)conferenceID
 {
     char regUri[MAX_SIP_REG_URI_LENGTH];
-    sprintf(regUri, "sip:%s", [sipUser UTF8String]);
+    sprintf(regUri, "sip:%s@%s", [sipUser UTF8String], [SIP_DOMAIN UTF8String]);
     pj_str_t uri = pj_str(regUri);
     
     pjsua_call_setting callCfg;
     pjsua_call_setting_default(&callCfg);
     callCfg.vid_cnt = 1;
-    if (withVideo == NO || hasVideoSupport() == PJ_FALSE)
+//    if (withVideo == NO || hasVideoSupport() == PJ_FALSE)
+//    {
+//        callCfg.vid_cnt = 0;
+//    }
+    
+    NSLog(@"conf ports created: %i", pjsua_conf_get_active_ports());
+    
+    void *userData = NULL;
+    
+    if (conferenceID != PJSUA_INVALID_ID)
     {
-        callCfg.vid_cnt = 0;
+        userData = &conferenceID;
+    }
+    else
+    {
+        
     }
     
-    self.status = pjsua_call_make_call(0, &uri, &callCfg, NULL, NULL, NULL);
+    self.status = pjsua_call_make_call(0, &uri, &callCfg, userData, NULL, NULL);
     if (self.status != PJ_SUCCESS) error("Error making call", status);
+}
+
+-(void)createConferenceBridge
+{
 }
 
 -(void)answer:(int) call_id withVideo:(BOOL) withVideo
@@ -150,10 +180,10 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     pjsua_call_setting_default(&callCfg);
     callCfg.vid_cnt = 1;
     
-    if (withVideo == NO || hasVideoSupport() == PJ_FALSE)
-    {
-        callCfg.vid_cnt = 0;
-    }
+//    if (withVideo == NO || hasVideoSupport() == PJ_FALSE)
+//    {
+//        callCfg.vid_cnt = 0;
+//    }
     
     pjsua_call_answer2(call_id, &callCfg, 200, NULL, NULL);
 }
@@ -278,10 +308,81 @@ const size_t MAX_SIP_REG_URI_LENGTH = 50;
     }
 }
 
--(void)notifyTyping:(NSString *)destURI isTyping:(BOOL)isTyping
+-(void)notifyTyping:(NSString *)destURI isTyping:(BOOL)isTyping call_id:(int)call_id
 {
     pj_str_t pj_to = pj_str((char*)[destURI UTF8String]);
-    pjsua_im_typing(pjsua_acc_get_default(), &pj_to, isTyping, NULL);
+    
+    if (call_id != PJSUA_INVALID_ID)
+    {
+        pjsua_call_send_typing_ind(call_id, isTyping, NULL);
+    }
+    else
+    {
+        pjsua_im_typing(pjsua_acc_get_default(), &pj_to, isTyping, NULL);
+    }
+}
+
+-(void)keepAlive {
+    /* Register this thread if not yet */
+    if (!pj_thread_is_registered()) {
+        static pj_thread_desc   thread_desc;
+        static pj_thread_t     *thread;
+        pj_thread_register("mainthread", thread_desc, &thread);
+    }
+    
+    for (int i = 0; i < (int)pjsua_acc_get_count(); ++i) {
+        if (pjsua_acc_is_valid(i)) {
+            pjsua_acc_set_registration(i, PJ_TRUE);
+        }
+    }
+    
+    /* Simply sleep for 5s, give the time for library to send transport
+     * keepalive packet, and wait for server response if any. Don't sleep
+     * too short, to avoid too many wakeups, because when there is any
+     * response from server, app will be woken up again (see also #1482).
+     */
+    pj_thread_sleep(5000);
+}
+
+#pragma mark - private methods
+-(void)onCallAccepted:(PJSIPCallInfo*) callInfo
+{
+    if (currentCall == NULL)
+    {
+        currentCall = callInfo;
+    }
+}
+
+-(PJSIPConference *)getConference:(int)confID
+{
+    NSArray<PJSIPConference*> *conferences = [NSArray arrayWithArray:self.conferences];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %i", confID];
+    NSArray<PJSIPConference*> *filteredConfs = [conferences filteredArrayUsingPredicate:predicate];
+    
+    if (filteredConfs.count > 0)
+    {
+        return filteredConfs[0];
+    }
+    
+    return NULL;
+}
+
+-(PJSIPConference *)createConference:(PJSIPCallInfo *)callInfo
+{
+    PJSIPConference *conference = [[PJSIPConference alloc] initWithCallInfo:callInfo];
+    return conference;
+}
+
+-(void)addConference:(PJSIPConference*)conference
+{
+    NSMutableArray<PJSIPConference*> *conferences = [NSMutableArray arrayWithArray:self.conferences];
+    [conferences addObject:conference];
+    _conferences = conferences;
+}
+
+-(void)removeConference
+{
+    
 }
 
 #pragma mark - getters & setters
@@ -472,23 +573,62 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
     if (manager.delegate)
     {
         PJSIPCallInfo* info = [[PJSIPCallInfo alloc] initWithCallID:call_id];
-        if (ci.state == PJSIP_INV_STATE_CONFIRMED && [manager.delegate respondsToSelector:@selector(pjsip_onCallDidConfirm:callInfo:)])
+        if (ci.state == PJSIP_INV_STATE_CONFIRMED)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [manager.delegate pjsip_onCallDidConfirm:call_id callInfo:info];
-            });
+            NSLog(@"Call with id: %i has been accepted", call_id);
+            
+            void *userInfo = pjsua_call_get_user_data(call_id);
+            NSLog(@"test");
+            if (userInfo != NULL)
+            {
+                int confID = *(int*)userInfo;
+                
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"id == %i", confID];
+                NSArray<PJSIPConference *> *confs = [manager.conferences filteredArrayUsingPredicate:pred];
+                if (confs.count > 0)
+                {
+                    PJSIPConference *conf = confs[0];
+                    [conf addParticipant:info];
+                }
+                else
+                {
+                    PJSIPConference *conf = [manager createConference:info];
+                    [conf addParticipant:info];
+                    [manager addConference:conf];
+                }
+            }
+            else
+            {
+                PJSIPConference *conf = [manager createConference:info];
+                [conf addParticipant:info];
+                [manager addConference:conf];
+            }
+            
+            if ([manager.delegate respondsToSelector:@selector(pjsip_onCallDidConfirm:callInfo:)])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [manager.delegate pjsip_onCallDidConfirm:call_id callInfo:info];
+                });
+            }
         }
-        else if (ci.state == PJSIP_INV_STATE_CALLING && [manager.delegate respondsToSelector:@selector(pjsip_onCallOnCalling:callInfo:)])
+        else if (ci.state == PJSIP_INV_STATE_CALLING)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [manager.delegate pjsip_onCallOnCalling:call_id callInfo:info];
-            });
+            if ([manager.delegate respondsToSelector:@selector(pjsip_onCallOnCalling:callInfo:)])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [manager.delegate pjsip_onCallOnCalling:call_id callInfo:info];
+                });
+            }
         }
-        else if (ci.state == PJSIP_INV_STATE_DISCONNECTED && [manager.delegate respondsToSelector:@selector(pjsip_onCallDidHangUp:callInfo:)])
+        //if user hangup call or connection lost
+        else if (ci.state == PJSIP_INV_STATE_DISCONNECTED)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [manager.delegate pjsip_onCallDidHangUp:call_id callInfo:info];
-            });
+            if ([manager.delegate respondsToSelector:@selector(pjsip_onCallDidHangUp:callInfo:)])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [manager.delegate pjsip_onCallDidHangUp:call_id callInfo:info];
+                });
+            }
         }
     }
     
@@ -498,7 +638,6 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
 static void on_call_media_state(pjsua_call_id call_id)
 {
     pjsua_call_info ci;
-    
     pjsua_call_get_info(call_id, &ci);
     
     PJ_LOG(3,(THIS_FILE, "on_call_media_state() Call %d media state=%.*s", call_id,
@@ -510,12 +649,17 @@ static void on_call_media_state(pjsua_call_id call_id)
         pjsua_conf_connect(ci.conf_slot, 0);
         pjsua_conf_connect(0, ci.conf_slot);
     }
-    
-    
 }
 
 static void on_call_media_event(pjsua_call_id call_id, unsigned med_idx, pjmedia_event *event)
 {
+    pjsua_call_info ci;
+    pjsua_call_get_info(call_id, &ci);
+    PJ_LOG(3,(THIS_FILE, "on_call_media_state() Call %d media state=%.*s", call_id,
+              (int)ci.state_text.slen,
+              ci.state_text.ptr));
+    NSLog(@"event type:%u", event->type);
+    
     if (event->type == PJMEDIA_EVENT_FMT_CHANGED) {
         /* Adjust renderer window size to original video size */
         pjsua_call_info ci;

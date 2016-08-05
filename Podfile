@@ -1,7 +1,5 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '8.0'
-# Uncomment this line if you're using Swift
-# use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
 
 use_frameworks!
 
@@ -16,6 +14,8 @@ target 'TryHard' do
     pod 'HanabiCollectionViewLayout', :git => 'https://github.com/kshin/Hanabi'
     pod 'FoldingCell'
     pod 'AFDropdownNotification'
+    pod 'RDHCollectionViewGridLayout', '~> 1.2'
+    pod 'iCarousel', '~> 1.8.2'
 end
 
 target 'TryHardTests' do

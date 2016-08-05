@@ -10,8 +10,10 @@ PODS:
   - DGActivityIndicatorView (2.0)
   - FoldingCell (1.0.0)
   - HanabiCollectionViewLayout (1.1.1)
+  - iCarousel (1.8.2)
   - LiveFrost (1.1.2)
   - PeerTalk (0.0.1)
+  - RDHCollectionViewGridLayout (1.2.4)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
@@ -24,8 +26,10 @@ DEPENDENCIES:
   - DGActivityIndicatorView
   - FoldingCell
   - HanabiCollectionViewLayout (from `https://github.com/kshin/Hanabi`)
+  - iCarousel (~> 1.8.2)
   - LiveFrost (~> 1.1.2)
   - PeerTalk
+  - RDHCollectionViewGridLayout (~> 1.2)
   - SDWebImage (~> 3.8.1)
   - SwiftCharts (~> 0.3)
   - TesseractOCRiOS (from `https://github.com/gali8/Tesseract-OCR-iOS.git`)
@@ -50,8 +54,10 @@ SPEC CHECKSUMS:
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
   FoldingCell: ca0b0f73a853143bf7d968c04a6604d25fbf1af7
   HanabiCollectionViewLayout: b0fc52553b3225afdd7a9a97d62b57436211b137
+  iCarousel: 67c8a43da5a46795b56aadfc96cd36a16f6149b2
   LiveFrost: 0631143a00e336ad6a8f183d4b02df93f8900d9d
   PeerTalk: 5e6843592fea14a4221a9829c43d92a309b7130b
+  RDHCollectionViewGridLayout: 93f663dd0a195dd2fceaa5f962d95ac2be2a3131
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftCharts: c66a449d58f9c811c467f865a47b1b6136b49499
   TesseractOCRiOS: 729989db3984bb60ba3addb053569b172d48c409

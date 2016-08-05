@@ -13,6 +13,8 @@
 #import "PJSIPBuddyDelegate.h"
 #import "PJSIPCredention.h"
 #import "PJSIPBuddy.h"
+#import "PJSIPCall.h"
+#import "PJSIPConference.h"
 
 @interface THPJSipManager : NSObject
 
@@ -24,6 +26,9 @@
 //calls
 @property (nonatomic, assign, readonly) int calls;
 @property (nonatomic, assign, readonly) int incomingCalls;
+@property (nonatomic) PJSIPCallInfo *currentCall;
+
+@property (nonatomic) NSArray<PJSIPConference*> *conferences;
 
 //settings
 @property (nonatomic, retain) NSString *outboundProxy;
@@ -40,13 +45,16 @@
 -(void)setAccountPresence:(int)acc_id online:(BOOL)presence;
 
 //call methods
--(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo;
+-(BOOL)callIsActive:(int) call_id;
+-(void)callTo:(NSString *)sipUser withVideo:(BOOL) withVideo conferenceID:(int)conferenceID;
 -(void)answer:(int) call_id withVideo:(BOOL) withVideo;
 -(void)hangUp:(int) call_id withMessage:(NSString*)message;
 -(void)busy:(int) call_id withMessage:(NSString*)message;
 -(void)hangUpAll;
 -(void)holdCall:(int) call_id;
 -(void)unholdCall:(int) call_id;
+
+-(void)keepAlive;
 
 //message
 -(void)sendMessage:(NSString*)msg destURI:(NSString*)destURI call_id:(int)call_id;
@@ -57,6 +65,7 @@
 //Friends methods
 -(void)addBuddy:(NSString *)buddyURI;
 -(NSArray<PJSIPBuddy*> *)buddyList;
+-(NSArray<PJSIPCallInfo*> *)callList;
 -(int)boddiesCount;
 
 @end

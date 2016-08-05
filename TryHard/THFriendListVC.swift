@@ -17,8 +17,8 @@ class THFriendListVC: UIViewController, UITableViewDataSource, UITableViewDelega
     var sipManager:THPJSipManager!
     var buddies:[PJSIPBuddy]!
     
-    let kCloseCellHeight: CGFloat = 50 // equal or greater foregroundView height
-    let kOpenCellHeight: CGFloat = 200 // equal or greater containerView height
+    let kCloseCellHeight: CGFloat = 75 // equal or greater foregroundView height
+    let kOpenCellHeight: CGFloat = 300 // equal or greater containerView height
     
     var cellHeights = [CGFloat]()
     
@@ -46,7 +46,7 @@ class THFriendListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cellHeights.removeAll(keepCapacity: false)
         
-        for _ in 0...buddies.count {
+        for _ in 0...4 {
             cellHeights.append(kCloseCellHeight)
         }
     }
